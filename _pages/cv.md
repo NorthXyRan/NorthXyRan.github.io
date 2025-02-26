@@ -8,8 +8,9 @@ redirect_from:
 ---
 {% include base_path %}
 
-Education
-=========
+---
+
+# Education
 
 * Where am I going ???
 * South China University of Technology , 2022-2026(expected)
