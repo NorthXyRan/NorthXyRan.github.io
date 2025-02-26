@@ -24,8 +24,8 @@ author:
   # Biographic information
   avatar           : "profile.jpg"
   name             : "Fengyan Lin"
-  pronouns         : "he/his"  
-  bio              : "Short biography for the left-hand sidebar"
+  pronouns         : # "he/his"  
+  bio              : # "Short biography for the left-hand sidebar"
   location         : "China🇨🇳"
   employer         : "South China University of Technology"
   uri              : # URL
