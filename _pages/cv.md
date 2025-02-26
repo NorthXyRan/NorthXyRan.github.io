@@ -11,26 +11,21 @@ redirect_from:
 Education
 =========
 
-* where am I going ???
+* Where am I going ???
 * South China University of Technology , 2022-2026(expected)
 * Sun Yat-sen Memorial Secondry School , 2016-2022
 
 Work experience
 ===============
 
+* 很抱歉，现在还没有进厂～～
+
 Skills
 ======
+
+* 一个不怎么会训练AI大模型的钢琴家非常喜欢打网球和游泳，时不时还会打打篮球，顺便还会健个身
 
 Publications
 ============
 
-<ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-
-Talks
-=====
-
-<ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
+* 很抱歉，现在还没有任何论文发表～～
