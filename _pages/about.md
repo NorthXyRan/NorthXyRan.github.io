@@ -10,9 +10,7 @@ I'm a third year undergraduate student from [School of Software Engineering](htt
 
 You can find my CV here: ???
 
-[GEmail](Daniellin040608@gmail.com) / [Github](https://github.com/NorthXyRan) / [Wechat](../images/wechat.jpg) /
-——————————————
-
+[Gmail](Daniellin040608@gmail.com)   [Github](https://github.com/NorthXyRan)  [Wechat](../images/wechat.jpg)
 
 A data-driven personal website
 ==============================
