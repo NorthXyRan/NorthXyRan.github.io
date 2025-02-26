@@ -17,16 +17,17 @@ url                      : https://northxyran.github.io
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "NorthXyRan/NorthXyRan.github.io"
 
-# Site Author - The following control what appear as part of the author content on the side bar.
-#               If a field is blank the icon and link will not appear, otherwise it will be shown.
-#               Additional customization can be done by editing /_includes/author-profile.html
+# 网站作者 - 以下控制侧边栏上显示作者内容的内容。
+# 如果字段为空，则不会显示图标和链接，否则将显示。
+# 可以通过编辑 /_includes/author-profile.html 进行其他自定义
 author:
   # Biographic information
   avatar           : "profile.png" # 记得要png格式!!!
   name             : "Fengyan Lin 林丰衍"
+  position         : "Student, SCUT"  # 新增职务信息
   pronouns         : # "he/his"  
   bio              : # "Short biography for the left-hand sidebar"
-  location         : "China"
+  location         : "Guangzhou, China"
   employer         : "SCUT"
   uri              : # URL
   email            : "Daniellin040608@gmail.com" 
