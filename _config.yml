@@ -22,12 +22,12 @@ repository               : "academicpages/academicpages.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.jpg"
+  avatar           : "blue.jpeg"
   name             : "Fengyan Lin"
   pronouns         : # "he/his"  
   bio              : # "Short biography for the left-hand sidebar"
   location         : "China🇨🇳"
-  employer         : "South China University of Technology"
+  employer         : "SCUT"
   uri              : # URL
   email            : "Daniellin040608@gmail.com" 
 
