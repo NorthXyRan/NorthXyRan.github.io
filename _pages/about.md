@@ -12,9 +12,9 @@ I'm a third year undergraduate student from [School of Software Engineering](htt
 
 # 🔥NEWS
 
-* 敬请期待......
+* Waiting......
 
 # ❤️‍🔥Miscellaneous
 
-* 我热衷于音乐，3岁开始学习钢琴，9岁通过中国音协十级，10岁通过英皇八级演奏文凭，具有相当高的钢琴水准。本科期间参加过华南理工艺术学院指挥专业课，毕业音乐会，保研复试等活动钢琴伴奏。
-* 我热衷于运动，尤其喜爱篮球，网球，游泳和健身。
+* I am passionate about music and started learning the piano at the age of three. By the age of nine, I passed the China Musicians Association Level 10 exam, and at ten, I obtained the ABRSM Grade 8 Performance Diploma, demonstrating a high level of piano proficiency. During my undergraduate studies, I served as a piano accompanist for various events, including the conducting course at the South China University of Technology’s School of Arts, graduation concerts, and postgraduate entrance exams.
+* I am also enthusiastic about sports, particularly basketball, tennis, swimming, and fitness.
