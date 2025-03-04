@@ -19,7 +19,7 @@ redirect_from:
 Work experience
 ===============
 
-* 很抱歉，现在还没有进厂～～
+* Sorry, I haven't entered the factory yet～～
 
 Skills
 ======
@@ -29,4 +29,4 @@ Skills
 Publications
 ============
 
-* 很抱歉，现在还没有任何论文发表～～
+* Sorry, there is no paper published at the moment～～

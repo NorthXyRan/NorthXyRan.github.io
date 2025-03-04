@@ -10,4 +10,4 @@ redirect_from:
 
 ---
 
-很抱歉，染染大章鱼目前没有任何论文发表～～
+Sorry, there is no paper published at the moment.
