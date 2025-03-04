@@ -4,15 +4,12 @@ title: "Sitemap"
 permalink: /sitemap/
 author_profile: true
 ---
-
 {% include base_path %}
 
 A list of all the posts and pages found on the site. For you robots out there, there is an [XML version]({{ base_path }}/sitemap.xml) available for digesting as well.
 
 <h2>Pages</h2>
-{% for post in site.pages %}
-  {% include archive-single.html %}
-{% endfor %}
+  {% 遍历 site.pages（Jekyll 中存储所有页面对象的变量），并使用 archive-single.html 模板逐个展示。%}
 
 <h2>Posts</h2>
 {% for post in site.posts %}
@@ -25,7 +22,8 @@ A list of all the posts and pages found on the site. For you robots out there, t
 {% unless collection.output == false or collection.label == "posts" %}
   {% capture label %}{{ collection.label }}{% endcapture %}
   {% if label != written_label %}
-  <h2>{{ label }}</h2>
+
+<h2>{{ label }}</h2>
   {% capture written_label %}{{ label }}{% endcapture %}
   {% endif %}
 {% endunless %}
