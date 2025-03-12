@@ -49,12 +49,12 @@ redirect_from:
         .publication {
             display: flex;
             flex-direction: column;
-            align-items: left;
+            align-items: flex-start; /* 子项在容器的起始位置对齐。 */
             margin-bottom: 30px;
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            background-color: #f9f9f9;
+            background-color: #968e8e;
             transition: transform 0.2s ease-in-out;
         }
 
@@ -67,7 +67,7 @@ redirect_from:
             height: auto;
             max-width: 640px;
             border-radius: 5px;
-            margin-bottom: 15px;
+            margin-bottom: 5px; /* 这个属性设置了图片底部与下一个元素（如标题）之间的间距。 */
         }
 
         .publication-details {
