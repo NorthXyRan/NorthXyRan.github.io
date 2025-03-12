@@ -89,6 +89,9 @@ redirect_from:
 
         .links {
             margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
         }
 
         .links a {
@@ -99,7 +102,6 @@ redirect_from:
             color: white;
             text-decoration: none;
             font-size: 14px;
-            margin-right: 10px;
             transition: background-color 0.3s ease;
         }
 
@@ -107,11 +109,13 @@ redirect_from:
             background-color: #0056b3;
         }
     </style>
+    
 </head>
 <body>
     <main>
         <div class="featured-publications">
             <h2>Featured Publications</h2>
+            <!-- 第一篇出版物 -->
             <div class="publication">
                 <img src="/images/publications/test.jpg" alt="Publication Image">
                 <div class="publication-details">
@@ -124,6 +128,21 @@ redirect_from:
                     </div>
                 </div>
             </div>
+
+             <!-- 第二篇出版物 -->
+            <div class="publication">
+                <img src="/images/publications/test.jpg" alt="Publication Image">
+                <div class="publication-details">
+                    <h3>Test</h3>
+                    <p><strong>Authors:</strong> Ranran</p>
+                    <p><strong>Published:</strong> Ranran</p>
+                    <p><strong>Abstract:</strong> 这是一个测试pdf</p>
+                    <div class="links">
+                        <a href="/publications/test.pdf" class="pdf-link">PDF</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 </body>
