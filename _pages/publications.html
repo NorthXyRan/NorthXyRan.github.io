@@ -13,13 +13,102 @@ redirect_from:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publication</title>
-    <!-- Add any additional metadata or links to stylesheets here -->
+    <title>Featured Publications</title>
+    <style>
+        /* 重置默认样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        .featured-publications {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .featured-publications h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #333;
+        }
+
+        .publication {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .publication:hover {
+            transform: scale(1.02);
+        }
+
+        .publication img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .publication-details {
+            flex: 1;
+        }
+
+        .publication-details h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .publication-details p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .links {
+            margin-top: 15px;
+        }
+
+        .links a {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .links a:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-F
     <main>
-        <div class="Featured-publications">
+        <div class="featured-publications">
             <h2>Featured Publications</h2>
             <div class="publication">
                 <img src="/images/publications/test.jpg" alt="Publication Image">
@@ -29,57 +118,11 @@ F
                     <p><strong>Published:</strong> Ranran</p>
                     <p><strong>Abstract:</strong> 这是一个测试pdf</p>
                     <div class="links">
-                        <a href="/publications/test.pdf">PDF</a>
-                        <!-- <a href="path/to/cite">Cite</a>
-                        <a href="path/to/code">Code</a>
-                        <a href="path/to/video">Video</a>
-                        <a href="path/to/doi">DOI</a> -->
+                        <a href="/publications/test.pdf" class="pdf-link">PDF</a>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-    <!-- Include any additional scripts or footer content here -->
 </body>
-
-
-<style>
-.featured-publications {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.publication {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.publication img {
-    max-width: 150px;
-    margin-right: 20px;
-    object-fit: cover;
-}
-
-.publication-details {
-    flex: 1;
-}
-
-.publication-details h3 {
-    margin-top: 0;
-}
-
-.links a {
-    margin-right: 10px;
-    text-decoration: none;
-    color: #007bff;
-}
-
-.links a:hover {
-    text-decoration: underline;
-}
-</style>
+</html>
