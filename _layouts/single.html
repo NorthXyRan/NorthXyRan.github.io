@@ -8,11 +8,7 @@ layout: default
   {% include page__hero.html %}
 {% endif %}
 
-{% if page.url != "/" and site.breadcrumbs %}
-  {% unless paginator %}
-    {% include breadcrumbs.html %}
-  {% endunless %}
-{% endif %}
+<!-- 面包屑导航已禁用 -->
 
 <div id="main" role="main">
   {% include sidebar.html %}
@@ -66,17 +62,15 @@ layout: default
         {% if site.data.ui-text[site.locale].meta_label %}
           <h4 class="page__meta-title">{{ site.data.ui-text[site.locale].meta_label }}</h4>
         {% endif %}
-        {% include page__taxonomy.html %}
+        <!-- page__taxonomy.html 已删除 -->
       </footer>
 
-      {% if page.share %}{% include social-share.html %}{% endif %}
+      <!-- 社交分享功能已禁用 -->
 
       {% include post_pagination.html %}
     </div>
 
-    {% if site.comments.provider and page.comments %}
-      {% include comments.html %}
-    {% endif %}
+    <!-- 评论功能已禁用 -->
   </article>
 
   {% comment %}<!-- only show related on a post page when not disabled -->{% endcomment %}
