@@ -6,14 +6,13 @@ redirect_from:
   - /about/
   - /about.html
 ---
-
 I'm a third year undergraduate student from [School of Software Engineering](https://www2.scut.edu.cn/sse/), [South China University of Technology](https://www.scut.edu.cn/new/).
 
 [Gmail](Daniellin040608@gmail.com)｜[Github](https://github.com/NorthXyRan)｜[Wechat](../images/wechat.jpg)
 
 # 🔥NEWS
 
-- 当前正在开展的一项研究：大模型与可视分析融合驱动的主观题阅卷方法 ————25/4/1
+- An ongoing research project currently underway：Subjective question Grading driven by the integration of LLMs and visual analytics 				————25/4/1
 
 # ❤️‍🔥Miscellaneous
 

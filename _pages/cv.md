@@ -6,7 +6,6 @@ author_profile: true
 redirect_from:
   - /resume
 ---
-
 {% include base_path %}
 
 ---
@@ -15,7 +14,7 @@ redirect_from:
 
 - Where am I going ???
 - South China University of Technology , 2022-2026(expected)
-- Sun Yat-sen Memorial Secondry School , 2016-2022
+- Sun Yat-sen Memorial Secondary School , 2016-2022
 
 # Work experience
 
