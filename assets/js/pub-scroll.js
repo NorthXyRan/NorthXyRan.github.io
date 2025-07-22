@@ -1,22 +1,38 @@
-/* publications 图片自适应滚动 */
+/* publications 图片自适应滚动 (增强版，含logo/文字缩放) */
 (function(){
-  const imgs = Array.from(document.querySelectorAll('.publication__main-image'));
+  const pubs = Array.from(document.querySelectorAll('.publication'));
+  const imgs = pubs.map(p=>p.querySelector('.publication__main-image'));
   if (!imgs.length) return;
 
-  // 初始化：首图 1200px，其余 900px
-  imgs.forEach((img,i)=> img.style.width = i ? '900px' : '1200px');
+  // 辅助函数：根据激活布尔设置尺寸
+  function setActive(pub, isActive){
+    const img   = pub.querySelector('.publication__main-image');
+    const logo  = pub.querySelector('.publication__conference-logo');
+    const author= pub.querySelector('.publication__authors');
+    const label = pub.querySelector('.publication__label');
+    const abs   = pub.querySelector('.publication__abstract');
 
-  // IntersectionObserver 监听
+    if(img)   img.style.width   = isActive ? '1200px' : '900px';
+    if(logo)  logo.style.height = isActive ? '150px'  : '90px';
+
+    const big = isActive ? 24 : 21; // active 基准24px, 否则-3
+    if(author) author.style.fontSize = big + 'px';
+    if(label)  label.style.fontSize  = big + 'px';
+    if(abs)    abs.style.fontSize    = big + 'px';
+  }
+
+  // 初始化：首条激活
+  pubs.forEach((p,i)=> setActive(p, i===0));
+
+  // IntersectionObserver
   const io = new IntersectionObserver(entries=>{
     entries.forEach(e=>{
       if(!e.isIntersecting) return;
-      imgs.forEach(img=>{
-        img.style.width = (img===e.target) ? '1200px' : '900px';
-      });
+      pubs.forEach(pub=> setActive(pub, pub.contains(e.target)));
     });
   },{
     root:null,
-    rootMargin:'-40% 0px', // 视口中心 20% 区域
+    rootMargin:'-40% 0px',
     threshold:0
   });
 
