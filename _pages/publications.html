@@ -31,10 +31,9 @@ redirect_from:
             color: #333;
         }
 
-        /* Jekyll主容器样式覆盖 - 移除宽度限制让图片能够完全放大 */
+        /* Jekyll主容器样式覆盖 - 保持原有限制以维持侧边栏布局 */
         #main {
-            max-width: none !important;
-            width: 100% !important;
+            max-width: 1500px !important;
             margin: 0 auto;
             padding: 0;
         }
@@ -91,13 +90,13 @@ redirect_from:
            布局容器与结构
            ========================================= */
         
-        /* 整个发表页面的容器 - 移除宽度限制，允许图片超出容器 */
+        /* 整个发表页面的容器 - 恢复容器限制但允许图片溢出 */
         .publications-container {
-            max-width: none;
+            max-width: 1500px;
             width: 100%;
-            margin: 40px 0;
+            margin: 40px auto;
             padding: 0;
-            overflow-x: visible;
+            overflow: visible;
         }
 
         /* 单个论文项目容器 */
@@ -122,32 +121,33 @@ redirect_from:
             height: auto;
             border-radius: 12px;
             display: block;
-            margin: 0 auto 24px auto;
+            margin: 0 0 24px 0;
             transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-origin: top left;
         }
 
-        /* 默认状态 - 非激活图片 (1200px) */
+        /* 默认状态 - 非激活图片 (900px) */
         .publication__main-image {
-            width: 1200px;
-            max-width: none;
+            width: 900px;
+            max-width: 100%;
         }
 
-        /* 激活状态 - 当前焦点图片 (1800px) */
+        /* 激活状态 - 当前焦点图片 (1500px) */
         .publication__main-image.active {
-            width: 1800px;
-            max-width: none;
-            transform: scale(1.01);
-            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.12);
+            width: 1500px;
+            max-width: 100%;
+            transform: scale(1.005);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
         }
 
         /* 悬停效果保持 - 更柔和的悬停动画 */
         .publication__main-image:hover {
-            transform: translateY(-3px) scale(1.005);
+            transform: translateY(-2px) scale(1.01);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .publication__main-image.active:hover {
-            transform: translateY(-3px) scale(1.015);
+            transform: translateY(-2px) scale(1.01);
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
@@ -322,7 +322,7 @@ redirect_from:
                 <div class="publication__details">
                     <!-- 元信息行：会议徽标 + 作者信息 -->
                     <div class="publication__meta-row">
-                        <img src="/image/publications/CHI25.jpg" 
+                        <img src="/images/publications/CHI25.jpg" 
                              alt="Conference logo" 
                              class="publication__conference-logo">
                         
@@ -353,7 +353,7 @@ redirect_from:
                 <div class="publication__details">
                     <!-- 元信息行：会议徽标 + 作者信息 -->
                     <div class="publication__meta-row">
-                        <img src="/image/publications/CHI25.jpg" 
+                        <img src="/images/publications/CHI25.jpg" 
                              alt="Conference logo" 
                              class="publication__conference-logo">
                         
