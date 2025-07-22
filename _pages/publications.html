@@ -42,13 +42,44 @@ redirect_from:
             padding: 20px;
         }
 
-        .featured-publications h2 {
-            text-align: center;
-            margin: 10px 0 20px;
-            font-size: 40px;
-            color: #333;
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Times New Roman', serif;
+        /* --- Meta row: conference logo | divider | authors --- */
+        .meta-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px; /* space before Abstract label */
+        }
+
+        /* Conference / journal logo */
+        .conf-logo {
+            height: 150px;   /* fixed height */
+            width: auto;    /* keep aspect ratio */
+        }
+
+        /* Vertical divider between logo and authors */
+        .meta-divider {
+            width: 1px;
+            height: 100px;
+            background-color: #d0d0d0;
+            margin: 0 24px;
+        }
+
+        /* --- Typography --- */
+        .label {
+            font-size: 22px;
+            color: #1d1d1f;
             font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .authors {
+            font-size: 22px;
+            color: #333;
+        }
+
+        .abstract {
+            font-size: 24px;   /* slightly larger for readability */
+            color: #6e6e73;
+            line-height: 1.6;
         }
 
         .publication {
@@ -114,7 +145,7 @@ redirect_from:
 
         .links a {
             padding: 8px 15px;
-            border-radius: 5px;
+            border-radius: 20px;
             background-color: #007bff;
             color: white;
             text-decoration: none;
@@ -131,42 +162,6 @@ redirect_from:
             font-weight: 600;
             color: #1d1d1f;
             margin: 0 0 16px 0;
-        }
-
-        .label {
-            font-size: 22px;
-            color: #1d1d1f;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .authors {
-            font-size: 22px;
-            color: #333;
-        }
-
-        .abstract {
-            font-size: 22px;
-            color: #6e6e73;
-            line-height: 1.6;
-        }
-
-        .meta-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .conf-logo {
-            width: 80px;
-            height: auto;
-        }
-
-        .meta-divider {
-            width: 1px;
-            height: 60px;
-            background-color: #d0d0d0;
-            margin: 0 32px;
         }
     </style>
 
