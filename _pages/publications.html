@@ -36,6 +36,29 @@ redirect_from:
             padding-right: 0;
         }
 
+        /* ------------ 布局对齐修正 ------------ */
+        /* 移除 Jekyll 布局带来的左右内边距/外边距，确保卡片左对齐 */
+        .archive,
+        .page,
+        #main {
+            padding-left: 0 !important;
+            margin-left: 0 !important;
+        }
+
+        /* ------------ 文字大小强制 ------------ */
+        .publication-details .label {
+            font-size: 24px !important; /* 强制标签文字大小 */
+        }
+
+        .publication-details .authors {
+            font-size: 22px !important;
+            color: #333;
+        }
+
+        .publication-details .abstract {
+            font-size: 24px !important; /* 摘要文字更大 */
+        }
+
         /* ---------------- 版面整体 ---------------- */
         .featured-publications {
             max-width: 1500px;  /* 页面最大宽度 */
