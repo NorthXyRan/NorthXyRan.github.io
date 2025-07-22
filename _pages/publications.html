@@ -36,10 +36,31 @@ redirect_from:
             padding-right: 0;
         }
 
+        /* ---------------- 版面整体 ---------------- */
         .featured-publications {
-            max-width: 1500px;
+            max-width: 1500px;  /* 页面最大宽度 */
             margin: 40px auto;
-            padding: 20px;
+            padding: 0;        /* 去掉左右内边距，保证图片与页面左对齐 */
+        }
+
+        /* --- Publication 卡片 --- */
+        .publication {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            background-color: transparent;
+            transition: background-color 0.3s ease-in-out;
+            overflow: hidden;
+            text-align: left;   /* 所有文字左对齐 */
+        }
+
+        /* --- Publication 主图片 --- */
+        .publication img {
+            width: 100%;  /* 宽度充满容器 */
+            height: auto; /* 高度按比例自动计算 */
+            border-radius: 8px 8px 0 0;
+            display: block; /* 取消行内元素间隙，贴左对齐 */
         }
 
         /* --- Meta row: conference logo | divider | authors --- */
@@ -51,8 +72,8 @@ redirect_from:
 
         /* Conference / journal logo */
         .conf-logo {
-            height: 150px;   /* fixed height */
-            width: auto;    /* keep aspect ratio */
+            height: 150px !important; /* 固定高度150，使用 !important 确保覆盖 */
+            width: auto !important;   /* 宽度自适应保持比例 */
         }
 
         /* Vertical divider between logo and authors */
@@ -82,17 +103,6 @@ redirect_from:
             line-height: 1.6;
         }
 
-        .publication {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            background-color: transparent;
-            transition: background-color 0.3s ease-in-out;
-            overflow: hidden;
-            text-align: left;
-        }
-
         .publication:hover {
             background-color: #f1f3f6;
         }
@@ -101,12 +111,6 @@ redirect_from:
         .publication:hover .publication-details h3,
         .publication:hover .publication-details p {
             color: #333;
-        }
-
-        .publication img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px 8px 0 0;
         }
 
         .publication-details {
