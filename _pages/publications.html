@@ -291,8 +291,10 @@ redirect_from:
         document.addEventListener('DOMContentLoaded', () => {
           const imgs = [...document.querySelectorAll('.publication__main-image')];
         
-          /* 默认把第一张设为大图 */
-          if (imgs.length) imgs[0].classList.add('big');
+          /* 初始化所有图片宽度 */
+          imgs.forEach((img,i)=>{
+            img.style.width = i===0 ? '1200px' : '900px';
+          });
         
           /* 观测元素进入视窗中心（阈值 0.6 可自行调） */
           const io = new IntersectionObserver(
