@@ -29,6 +29,13 @@ redirect_from:
             padding: 20px;
         }
 
+        #main {
+            max-width: 1500px !important;
+            margin: 0 auto;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
         .featured-publications {
             max-width: 1500px;
             margin: 40px auto;
@@ -52,6 +59,7 @@ redirect_from:
             background-color: transparent;
             transition: background-color 0.3s ease-in-out;
             overflow: hidden;
+            text-align: left;
         }
 
         .publication:hover {
@@ -118,7 +126,7 @@ redirect_from:
             background-color: #0056b3;
         }
 
-        .pub-title {
+        .paper-title {
             font-size: 28px;
             font-weight: 600;
             color: #1d1d1f;
@@ -127,7 +135,8 @@ redirect_from:
 
         .label {
             font-size: 15px;
-            color: #6e6e73;
+            color: #1d1d1f;
+            font-weight: 600;
             margin-bottom: 4px;
         }
 
@@ -151,11 +160,9 @@ redirect_from:
 
             <!-- 第一篇出版物 -->
             <div class="publication">
-                <h2 class="pub-title">Test. The chip that zips.</h2>
+                <p class="paper-title">Test. The chip that zips.</p>
                 <img src="/images/publications/test.jpg" alt="Publication Image">
                 <div class="publication-details">
-                    <p class="label">Authors</p>
-                    <p class="authors">Ranran</p>
                     <p class="label">Abstract</p>
                     <p class="abstract">这是一个测试pdf</p>
                     <div class="links">
@@ -166,11 +173,9 @@ redirect_from:
 
              <!-- 第二篇出版物 -->
             <div class="publication">
-                <h2 class="pub-title">Test. The chip that zips.</h2>
+                <p class="paper-title">Test. The chip that zips.</p>
                 <img src="/images/publications/test.jpg" alt="Publication Image">
                 <div class="publication-details">
-                    <p class="label">Authors</p>
-                    <p class="authors">Ranran</p>
                     <p class="label">Abstract</p>
                     <p class="abstract">这是一个测试pdf</p>
                     <div class="links">
