@@ -137,10 +137,15 @@ redirect_from:
             padding: 16px;
             object-fit: contain;
             /* 立体卡片阴影效果 */
-            box-shadow: 
-                0 4px 12px rgba(0, 0, 0, 0.08),
-                0 1px 3px rgba(0, 0, 0, 0.12),
-                0 0 0 0.5px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 12px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.12),0 0 0 0.5px rgba(0,0,0,.04);
+            transition: height .6s cubic-bezier(.25,.46,.45,.94); /* 与图片一致速率 */
+        }
+
+        /* 作者 / 标签 / 摘要 字号过渡 */
+        .publication__authors,
+        .publication__label,
+        .publication__abstract {
+            transition: font-size .6s cubic-bezier(.25,.46,.45,.94);
         }
 
         /* ===========================================
@@ -197,7 +202,7 @@ redirect_from:
 
         }
 
-        /* 用 !important 保证不被 Jekyll 覆盖 */
+        /* 用 !important 保证不被 Jekyll 覆盖（其余冗余规则已精简） */
 
     </style>
 </head>
