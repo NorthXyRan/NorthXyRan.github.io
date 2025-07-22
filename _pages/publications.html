@@ -300,7 +300,13 @@ redirect_from:
               entries.forEach(e => {
                 if (e.isIntersecting) {
                   /* 当前图 → big，其余去掉 */
-                  imgs.forEach(img => img.classList.toggle('big', img === e.target));
+                  imgs.forEach(img => {
+                    if(img === e.target){
+                      img.style.width = '1200px';
+                    }else{
+                      img.style.width = '900px';
+                    }
+                  });
                 }
               });
             },
