@@ -31,12 +31,12 @@ redirect_from:
         }
 
         .featured-publications {
-            max-width: 1000px; /* 卡片整体加宽 */
+            max-width: 1200px; /* 整体更宽 */
             margin: 40px auto;
             padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: transparent; /* 去除背景色，与页面背景融合 */
+            border-radius: 0; /* 去除圆角 */
+            box-shadow: none; /* 去除阴影 */
         }
 
         .featured-publications h2 {
@@ -52,27 +52,42 @@ redirect_from:
             flex-direction: column;
             align-items: flex-start;
             margin-bottom: 30px;
-            padding: 20px;
-            /* border: 1px solid #ddd; 去除边框 */
+            padding: 0; /* 去掉内边距让图片占满 */
             border-radius: 8px;
-            background-color: #f9f9f9;
-            transition: transform 0.2s ease-in-out;
+            background-color: #fff; /* 默认白色背景 */
+            transition: background-color 0.3s ease-in-out;
+            overflow: hidden; /* 确保图片不会溢出圆角 */
         }
 
         .publication:hover {
-            transform: scale(1.02);
+            background-color: #000; /* hover时变黑色 */
+        }
+
+        .publication:hover .publication-details {
+            color: #fff; /* hover时文字变白色 */
+        }
+
+        .publication:hover .publication-details h3 {
+            color: #fff;
+        }
+
+        .publication:hover .publication-details p {
+            color: #ccc;
         }
 
         .publication img {
             width: 100%;
-            height: auto;
-            max-width: 800px;
-            border-radius: 5px;
-            margin-bottom: -30px;
+            height: 300px; /* 固定高度让图片更突出 */
+            object-fit: cover; /* 保持比例裁剪 */
+            border-radius: 8px 8px 0 0; /* 只有上方圆角 */
+            margin-bottom: 0;
         }
 
         .publication-details {
+            padding: 20px; /* 文字区域的内边距 */
             text-align: left;
+            width: 100%;
+            transition: color 0.3s ease-in-out;
         }
 
         .publication-details h3 {
@@ -80,12 +95,14 @@ redirect_from:
             font-weight: bold;
             color: #333;
             margin-bottom: 10px;
+            transition: color 0.3s ease-in-out;
         }
 
         .publication-details p {
             font-size: 16px;
             color: #555;
             margin-bottom: 8px;
+            transition: color 0.3s ease-in-out;
         }
 
         .links {
