@@ -116,39 +116,39 @@ redirect_from:
            图像与媒体样式
            ========================================= */
         
-        /* 论文主图 - 基础样式 */
-        .publication__main-image {
-            height: auto;
-            border-radius: 12px;
-            display: block;
-            margin: 0 0 24px 0;
-            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            transform-origin: top left;
+        /* 论文主图 - 基础样式，使用更强的选择器权重 */
+        .publications-container .publication .publication__main-image {
+            height: auto !important;
+            border-radius: 12px !important;
+            display: block !important;
+            margin: 0 0 24px 0 !important;
+            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+            transform-origin: top left !important;
         }
 
-        /* 默认状态 - 非激活图片 (900px) */
-        .publication__main-image {
-            width: 900px;
-            max-width: 100%;
+        /* 默认状态 - 非激活图片 (900px) - 高权重 */
+        .publications-container .publication .publication__main-image {
+            width: 900px !important;
+            max-width: 100% !important;
         }
 
-        /* 激活状态 - 当前焦点图片 (1500px) */
-        .publication__main-image.active {
-            width: 1500px;
-            max-width: 100%;
-            transform: scale(1.005);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        /* 激活状态 - 当前焦点图片 (1200px) - 最高权重 */
+        .publications-container .publication .publication__main-image.active {
+            width: 1200px !important;
+            max-width: 100% !important;
+            transform: scale(1.005) !important;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12) !important;
         }
 
-        /* 悬停效果保持 - 更柔和的悬停动画 */
-        .publication__main-image:hover {
-            transform: translateY(-2px) scale(1.01);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        /* 悬停效果保持 - 更柔和的悬停动画，高权重 */
+        .publications-container .publication .publication__main-image:hover {
+            transform: translateY(-2px) scale(1.01) !important;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
         }
 
-        .publication__main-image.active:hover {
-            transform: translateY(-2px) scale(1.01);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        .publications-container .publication .publication__main-image.active:hover {
+            transform: translateY(-2px) scale(1.01) !important;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
         }
 
         /* 会议/期刊徽标 */
@@ -380,90 +380,116 @@ redirect_from:
     <script>
         /**
          * 滚动时动态调整图片大小的功能
-         * 当前激活论文的图片为1800px，其他为1200px
+         * 当前激活论文的图片为1200px，其他为900px
          */
         
-        // 获取所有论文项目和图片
-        const publications = document.querySelectorAll('.publication');
-        const images = document.querySelectorAll('.publication__main-image');
+        // 调试日志函数
+        function debugLog(message) {
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                console.log('[Publications Debug]', message);
+            }
+        }
         
-        // 防抖函数，优化滚动性能
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
+        // 确保DOM加载完成再执行
+        function initPublicationScroller() {
+            // 获取所有论文项目和图片
+            const publications = document.querySelectorAll('.publication');
+            const images = document.querySelectorAll('.publication__main-image');
+            
+            debugLog(`找到 ${publications.length} 个论文项目，${images.length} 张图片`);
+            
+            if (publications.length === 0 || images.length === 0) {
+                debugLog('未找到论文元素，脚本退出');
+                return;
+            }
+        
+            // 防抖函数，优化滚动性能
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
                     clearTimeout(timeout);
-                    func(...args);
+                    timeout = setTimeout(later, wait);
                 };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-        
-        // 计算当前激活的论文项目
-        function updateActivePublication() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const windowHeight = window.innerHeight;
-            const viewportCenter = scrollTop + windowHeight / 2;
+            }
             
-            let activeIndex = 0;
-            let minDistance = Infinity;
-            
-            // 找到距离视窗中心最近的论文项目
-            publications.forEach((publication, index) => {
-                const rect = publication.getBoundingClientRect();
-                const publicationTop = rect.top + scrollTop;
-                const publicationCenter = publicationTop + rect.height / 2;
-                const distance = Math.abs(viewportCenter - publicationCenter);
+            // 计算当前激活的论文项目
+            function updateActivePublication() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const viewportCenter = scrollTop + windowHeight / 2;
                 
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    activeIndex = index;
-                }
-            });
-            
-            // 更新图片状态
-            images.forEach((image, index) => {
-                if (index === activeIndex) {
-                    image.classList.add('active');
-                } else {
-                    image.classList.remove('active');
-                }
-            });
-        }
+                let activeIndex = 0;
+                let minDistance = Infinity;
+                
+                // 找到距离视窗中心最近的论文项目
+                publications.forEach((publication, index) => {
+                    const rect = publication.getBoundingClientRect();
+                    const publicationTop = rect.top + scrollTop;
+                    const publicationCenter = publicationTop + rect.height / 2;
+                    const distance = Math.abs(viewportCenter - publicationCenter);
+                    
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        activeIndex = index;
+                    }
+                });
+                
+                debugLog(`激活索引: ${activeIndex}`);
+                
+                // 更新图片状态
+                images.forEach((image, index) => {
+                    if (index === activeIndex) {
+                        image.classList.add('active');
+                        debugLog(`图片 ${index} 设为激活状态`);
+                    } else {
+                        image.classList.remove('active');
+                    }
+                });
+            }
         
-        // 页面加载完成后初始化
-        document.addEventListener('DOMContentLoaded', function() {
+            
             // 设置第一张图片为默认激活状态
             if (images.length > 0) {
                 images[0].classList.add('active');
+                debugLog('设置第一张图片为激活状态');
             }
             
             // 监听滚动事件（使用防抖优化性能）
             const debouncedUpdate = debounce(updateActivePublication, 16); // ~60fps
             
-            window.addEventListener('scroll', debouncedUpdate);
-            window.addEventListener('resize', debouncedUpdate);
+            window.addEventListener('scroll', debouncedUpdate, { passive: true });
+            window.addEventListener('resize', debouncedUpdate, { passive: true });
             
             // 初始更新一次
             updateActivePublication();
-        });
-        
-        // 平滑滚动到指定论文（可选功能）
-        function scrollToPublication(index) {
-            if (publications[index]) {
-                publications[index].scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                });
-            }
+            
+            // 平滑滚动到指定论文（可选功能）
+            window.scrollToPublication = function(index) {
+                if (publications[index]) {
+                    publications[index].scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            };
+            
+            debugLog('Publications滚动监听器初始化完成');
         }
         
-        // 导出函数供外部调用（如果需要的话）
-        window.publicationScroller = {
-            scrollToPublication,
-            updateActivePublication
-        };
+        // 多种初始化方式，确保兼容性
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initPublicationScroller);
+        } else if (document.readyState === 'interactive') {
+            // DOM已加载但资源可能还在加载
+            setTimeout(initPublicationScroller, 100);
+        } else {
+            // DOM和资源都已加载完成
+            initPublicationScroller();
+        }
     </script>
 </body>
 </html>
