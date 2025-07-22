@@ -63,18 +63,28 @@ redirect_from:
             display: block; /* 取消行内元素间隙，贴左对齐 */
         }
 
-        /* --- Meta row: conference logo | divider | authors --- */
+        /* --- Meta row: conference logo | authors --- */
         .meta-row {
             display: flex;
             align-items: center;
             margin-bottom: 24px; /* space before Abstract label */
         }
 
-        /* Conference / journal logo */
+        /* Conference / journal logo - 立体卡片效果 */
         .conf-logo {
             height: 150px !important; /* 固定高度150，使用 !important 确保覆盖 */
             width: auto !important;   /* 宽度自适应保持比例 */
+            /* 立体卡片样式 */
+            background: #ffffff;      /* 纯白背景 */
+            border-radius: 12px;      /* 圆角稍大一些，更现代 */
+            padding: 16px;           /* 内边距，logo不贴边 */
+            box-shadow: 
+                0 4px 12px rgba(0, 0, 0, 0.08),    /* 主阴影 - 柔和 */
+                0 1px 3px rgba(0, 0, 0, 0.12),     /* 近距离阴影 - 轻微 */
+                0 0 0 0.5px rgba(0, 0, 0, 0.04);   /* 边框阴影 - 极淡 */
+            object-fit: contain;                    /* 图片保持比例，不裁切 */
         }
+
 
         /* Vertical divider between logo and authors */
         .meta-divider {
