@@ -13,12 +13,12 @@
     const abs   = pub.querySelector('.publication__abstract');
 
     if(img)   img.style.width   = isActive ? '1200px' : '900px';
-    if(logo)  logo.style.height = isActive ? '150px'  : '90px';
+    if(logo)  logo.style.setProperty('height', isActive ? '150px' : '100px', 'important');
 
-    const big = isActive ? 24 : 21; // active 基准24px, 否则-3
-    if(author) author.style.fontSize = big + 'px';
-    if(label)  label.style.fontSize  = big + 'px';
-    if(abs)    abs.style.fontSize    = big + 'px';
+    const big = isActive ? 24 : 20; // active 基准24px, 否则-4
+    if(author) author.style.setProperty('font-size', big + 'px', 'important');
+    if(label)  label.style.setProperty('font-size', big + 'px', 'important');
+    if(abs)    abs.style.setProperty('font-size', big + 'px', 'important');
   }
 
   // 初始化：首条激活
