@@ -36,6 +36,46 @@ redirect_from:
             padding-right: 0;
         }
 
+        /* =============== 字体大小统一管理 =============== */
+        /* 论文标题 */
+        .paper-title {
+            font-size: 32px !important;
+        }
+        
+        /* 标签文字 (Abstract等) */
+        .label {
+            font-size: 24px !important;
+            color: #1d1d1f;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        /* 作者信息 */
+        .authors {
+            font-size: 24px !important;
+            color: #333;
+        }
+        
+        /* 摘要内容 */
+        .abstract {
+            font-size: 24px !important;
+            color: #6e6e73;
+            line-height: 1.6;
+        }
+        
+        /* 详情区域默认文字 */
+        .publication-details p {
+            font-size: 20px !important;
+            color: #6e6e73;
+            line-height: 1.6;
+        }
+        
+        /* PDF按钮文字 */
+        .links a {
+            font-size: 20px !important;
+            transition: background-color 0.3s ease;
+        }
+        /* =============== 字体大小管理结束 =============== */
 
         /* ---------------- 版面整体 ---------------- */
         .featured-publications {
@@ -95,25 +135,6 @@ redirect_from:
             margin: 0 24px;
         }
 
-        /* --- Typography --- */
-        .label {
-            font-size: 22px !important;
-            color: #1d1d1f;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .authors {
-            font-size: 22px !important;
-            color: #333;
-        }
-
-        .abstract {
-            font-size: 24px !important;   /* slightly larger for readability */
-            color: #6e6e73;
-            line-height: 1.6;
-        }
-
         .publication:hover {
             background-color: #f1f3f6;
         }
@@ -138,7 +159,6 @@ redirect_from:
         }
 
         .publication-details p {
-            font-size: 20px !important;
             color: #6e6e73;
             line-height: 1.6;
             margin-bottom: 18px;
@@ -164,7 +184,6 @@ redirect_from:
             background-color: #007bff;
             color: white;
             text-decoration: none;
-            font-size: 20px !important;
             transition: background-color 0.3s ease;
         }
 
@@ -173,7 +192,6 @@ redirect_from:
         }
 
         .paper-title {
-            font-size: 32px;
             font-weight: 600;
             color: #1d1d1f;
             margin: 0 0 16px 0;
