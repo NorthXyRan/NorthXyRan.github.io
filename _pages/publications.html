@@ -67,28 +67,35 @@ redirect_from:
         .publication img {
             width: 100%;
             height: auto;
-            max-height: 300px;
             border-radius: 8px 8px 0 0;
         }
 
         .publication-details {
-            padding: 20px;
+            padding: 28px 32px;
             transition: color 0.3s ease-in-out;
         }
 
         .publication-details h3 {
-            font-size: 26px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 16px;
             transition: color 0.3s ease-in-out;
         }
 
         .publication-details p {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 8px;
+            font-size: 15px;
+            color: #6e6e73;
+            line-height: 1.6;
+            margin-bottom: 18px;
             transition: color 0.3s ease-in-out;
+        }
+
+        .publication-details p strong {
+            display: block;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 4px;
         }
 
         .links {
@@ -110,6 +117,31 @@ redirect_from:
         .links a:hover {
             background-color: #0056b3;
         }
+
+        .pub-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 16px;
+        }
+
+        .label {
+            font-size: 15px;
+            color: #6e6e73;
+            margin-bottom: 4px;
+        }
+
+        .authors {
+            font-size: 15px;
+            color: #1d1d1f;
+            margin-bottom: 18px;
+        }
+
+        .abstract {
+            font-size: 15px;
+            color: #6e6e73;
+            line-height: 1.6;
+        }
     </style>
 
 </head>
@@ -119,12 +151,13 @@ redirect_from:
             <h2>Featured Publications</h2>
             <!-- 第一篇出版物 -->
             <div class="publication">
+                <h2 class="pub-title">Test. The chip that zips.</h2>
                 <img src="/images/publications/test.jpg" alt="Publication Image">
                 <div class="publication-details">
-                    <h3>Test</h3>
-                    <p><strong>Authors:</strong> Ranran</p>
-                    <p><strong>Published:</strong> Ranran</p>
-                    <p><strong>Abstract:</strong> 这是一个测试pdf</p>
+                    <p class="label">Authors</p>
+                    <p class="authors">Ranran</p>
+                    <p class="label">Abstract</p>
+                    <p class="abstract">这是一个测试pdf</p>
                     <div class="links">
                         <a href="/publications/test.pdf" class="pdf-link">PDF</a>
                     </div>
@@ -133,12 +166,13 @@ redirect_from:
 
              <!-- 第二篇出版物 -->
             <div class="publication">
+                <h2 class="pub-title">Test. The chip that zips.</h2>
                 <img src="/images/publications/test.jpg" alt="Publication Image">
                 <div class="publication-details">
-                    <h3>Test</h3>
-                    <p><strong>Authors:</strong> Ranran</p>
-                    <p><strong>Published:</strong> Ranran</p>
-                    <p><strong>Abstract:</strong> 这是一个测试pdf</p>
+                    <p class="label">Authors</p>
+                    <p class="authors">Ranran</p>
+                    <p class="label">Abstract</p>
+                    <p class="abstract">这是一个测试pdf</p>
                     <div class="links">
                         <a href="/publications/test.pdf" class="pdf-link">PDF</a>
                     </div>
