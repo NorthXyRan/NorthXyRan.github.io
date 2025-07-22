@@ -285,42 +285,7 @@ redirect_from:
         </div>
     </main>
 
-    <!-- 滚动监听脚本 -->
-    <script>
-        /* ---------- 简易 IntersectionObserver 版 ---------- */
-        document.addEventListener('DOMContentLoaded', () => {
-          const imgs = [...document.querySelectorAll('.publication__main-image')];
-        
-          /* 初始化所有图片宽度 */
-          imgs.forEach((img,i)=>{
-            img.style.width = i===0 ? '1200px' : '900px';
-          });
-        
-          /* 观测元素进入视窗中心（阈值 0.6 可自行调） */
-          const io = new IntersectionObserver(
-            entries => {
-              entries.forEach(e => {
-                if (e.isIntersecting) {
-                  /* 当前图 → big，其余去掉 */
-                  imgs.forEach(img => {
-                    if(img === e.target){
-                      img.style.width = '1200px';
-                    }else{
-                      img.style.width = '900px';
-                    }
-                  });
-                }
-              });
-            },
-            {
-              root: null,           // 视口
-              rootMargin: '-40% 0px', // 把视口中间 20% 作为“中心区域”
-              threshold: 0          // 进入中心区域即触发
-            }
-          );
-        
-          imgs.forEach(img => io.observe(img));
-        });
-        </script>
+    <!-- 引入外部滚动脚本 -->
+    <script src="{{ '/assets/js/pub-scroll.js' | relative_url }}"></script>
 </body>
 </html>
