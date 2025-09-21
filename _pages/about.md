@@ -6,13 +6,16 @@ redirect_from:
   - /about/
   - /about.html
 ---
+
 I'm a third year undergraduate student from [School of Software Engineering](https://www2.scut.edu.cn/sse/), [South China University of Technology](https://www.scut.edu.cn/new/).
 
 [Gmail](Daniellin040608@gmail.com)｜[Github](https://github.com/NorthXyRan)｜[Wechat](../images/wechat.jpg)
 
 # 🔥NEWS
 
-- An ongoing research project currently underway：Subjective question Grading driven by the integration of LLMs and visual analytics 				————25/4/1
+- The submission is completed：**Fengyan Lin**, Kai Cao, Zikun Deng, Yanna Lin, Prof. Yi Cai, _"Open-ended Structured Question Assessment with Human-LLM Collaboration"_, The ACM CHI Conference on Human Factors in Computing Systems (CHI 2026) (Under Review) ————25/9/12
+
+* An ongoing research project currently underway：Subjective question Grading driven by the integration of LLMs and visual analytics ————25/4/1
 
 # ❤️‍🔥Miscellaneous
 
