@@ -6,14 +6,14 @@ redirect_from:
   - /about/
   - /about.html
 ---
-I'm a third year undergraduate student from [School of Software Engineering](https://www2.scut.edu.cn/sse/), [South China University of Technology](https://www.scut.edu.cn/new/).
+I'm a forth year undergraduate student from [School of Software Engineering](https://www2.scut.edu.cn/sse/), [South China University of Technology](https://www.scut.edu.cn/new/).
 
 [Gmail](Daniellin040608@gmail.com)｜[Github](https://github.com/NorthXyRan)｜[Wechat](../images/wechat.jpg)
 
 # 🔥NEWS
 
-- A first-author paper was submitted to  The ACM CHI Conference on Human Factors in Computing Systems (CHI 2026) <span style="float:right; font-weight:bold; color:#555;">25/9/12</span>
-- An ongoing research project currently underway：Subjective question Grading driven by the integration of LLMs and visual analytics <span style="float:right; font-weight:bold; color:#555;">25/4/1</span>
+- A first-author paper was submitted to The ACM CHI Conference on Human Factors in Computing Systems (CHI 2026) `<span style="float:right; font-weight:bold; color:#555;">`25/9/12
+- An ongoing research project currently underway：Subjective question Grading driven by the integration of LLMs and visual analytics `<span style="float:right; font-weight:bold; color:#555;">`25/4/1
 
 # ❤️‍🔥Miscellaneous
 
