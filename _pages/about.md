@@ -12,9 +12,8 @@ I'm a third year undergraduate student from [School of Software Engineering](htt
 
 # 🔥NEWS
 
-- The submission is completed：**Fengyan Lin**, Kai Cao, Zikun Deng, Yanna Lin, Prof. Yi Cai, *"**Open-ended Structured Question Assessment with Human-LLM Collaboration**"*, The ACM CHI Conference on Human Factors in Computing Systems (CHI 2026) (Under Review) <span style="float:right; font-weight:bold; color:#555;">25/9/12</span>
-
-- An ongoing research project currently underway：Subjective question Grading driven by the integration of LLMs and visual analytics <span style="float:right; font-weight:bold; color:#555;">25/4/1</span>
+- A first-author paper was submitted to  The ACM CHI Conference on Human Factors in Computing Systems (CHI 2026) `<span style="float:right; font-weight:bold; color:#555;">`25/9/12
+- An ongoing research project currently underway：Subjective question Grading driven by the integration of LLMs and visual analytics `<span style="float:right; font-weight:bold; color:#555;">`25/4/1
 
 # ❤️‍🔥Miscellaneous
 
