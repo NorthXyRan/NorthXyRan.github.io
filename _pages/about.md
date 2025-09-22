@@ -19,4 +19,5 @@ I'm a third year undergraduate student from [School of Software Engineering](htt
 # ❤️‍🔥Miscellaneous
 
 - I am passionate about music and started learning the piano at the age of three. By the age of nine, I passed the China Musicians Association Level 10 exam, and at ten, I obtained the ABRSM Grade 8 Performance Diploma, demonstrating a high level of piano proficiency. During my undergraduate studies, I served as a piano accompanist for various events, including the conducting course at the South China University of Technology’s School of Arts, graduation concerts, and postgraduate entrance exams.
-- I am also enthusiastic about sports, particularly basketball, tennis, swimming, and fitness.
+- I am enthusiastic about sports, particularly basketball, tennis, swimming, and fitness.
+- I am also an amateur photographer, fond of film and drones.
