@@ -204,6 +204,108 @@ redirect_from:
 
         /* 用 !important 保证不被 Jekyll 覆盖（其余冗余规则已精简） */
 
+        /* ===========================================
+           响应式设计：平板和移动端布局
+           ========================================= */
+        
+        /* 平板样式 (768px及以下) */
+        @media (max-width: 768px) {
+            .publications-container {
+                max-width: 100%;
+                margin: 20px auto;
+                padding: 0 16px;
+            }
+            
+            .publication__title {
+                font-size: 24px !important;
+                margin-bottom: 16px;
+            }
+            
+            /* 隐藏会议徽标和整个meta-row */
+            .publication__meta-row {
+                display: none;
+            }
+            
+            .publication__authors {
+                font-size: 18px !important;
+                margin-bottom: 20px;
+            }
+            
+            .publication__label {
+                font-size: 20px !important;
+            }
+            
+            .publication__abstract {
+                font-size: 16px !important;
+                line-height: 1.5;
+            }
+            
+            .publication__links a {
+                font-size: 16px !important;
+                padding: 14px 24px;
+                min-height: 44px;
+            }
+            
+            /* 禁用图片的固定宽度，使用响应式 */
+            .publications-container .publication .publication__main-image {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+            }
+        }
+        
+        /* 手机样式 (600px及以下) */
+        @media (max-width: 600px) {
+            .publications-container {
+                padding: 0 12px;
+                margin: 12px auto;
+            }
+            
+            .publication {
+                margin-bottom: 24px;
+            }
+            
+            .publication__title {
+                font-size: 20px !important;
+                line-height: 1.3;
+                margin-bottom: 12px;
+            }
+            
+            /* 会议徽标已在768px断点隐藏，这里不需要重复 */
+            
+            .publication__authors {
+                font-size: 16px !important;
+                margin-bottom: 16px;
+            }
+            
+            .publication__label {
+                font-size: 18px !important;
+                margin-bottom: 6px;
+            }
+            
+            .publication__abstract {
+                font-size: 14px !important;
+                line-height: 1.4;
+                margin-bottom: 16px;
+            }
+            
+            .publication__details {
+                padding: 16px 0;
+            }
+            
+            .publication__links {
+                margin-top: 16px;
+            }
+            
+            .publication__links a {
+                font-size: 14px !important;
+                padding: 12px 20px;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 8px;
+            }
+        }
+
     </style>
 </head>
 

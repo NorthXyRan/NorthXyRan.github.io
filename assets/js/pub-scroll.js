@@ -4,8 +4,16 @@
   const imgs = pubs.map(p=>p.querySelector('.publication__main-image'));
   if (!imgs.length) return;
 
+  // 检查是否为大屏幕 (769px+)
+  function isDesktop() {
+    return window.matchMedia('(min-width: 769px)').matches;
+  }
+
   // 辅助函数：根据激活布尔设置尺寸
   function setActive(pub, isActive){
+    // 只在大屏幕时应用动画效果
+    if (!isDesktop()) return;
+    
     const img   = pub.querySelector('.publication__main-image');
     const logo  = pub.querySelector('.publication__conference-logo');
     const author= pub.querySelector('.publication__authors');
@@ -21,11 +29,48 @@
     if(abs)    abs.style.setProperty('font-size', big + 'px', 'important');
   }
 
-  // 初始化：首条激活
-  pubs.forEach((p,i)=> setActive(p, i===0));
+  // 重置移动端样式
+  function resetMobileStyles() {
+    if (isDesktop()) return;
+    
+    pubs.forEach(pub => {
+      const img   = pub.querySelector('.publication__main-image');
+      const logo  = pub.querySelector('.publication__conference-logo');
+      const author= pub.querySelector('.publication__authors');
+      const label = pub.querySelector('.publication__label');
+      const abs   = pub.querySelector('.publication__abstract');
 
-  // IntersectionObserver
+      // 清除动态设置的样式，让CSS媒体查询生效
+      if(img) img.style.width = '';
+      if(logo) logo.style.removeProperty('height');
+      if(author) author.style.removeProperty('font-size');
+      if(label) label.style.removeProperty('font-size');
+      if(abs) abs.style.removeProperty('font-size');
+    });
+  }
+
+  // 初始化
+  function init() {
+    if (isDesktop()) {
+      // 大屏幕：首条激活
+      pubs.forEach((p,i)=> setActive(p, i===0));
+    } else {
+      // 移动端：重置样式
+      resetMobileStyles();
+    }
+  }
+
+  // 监听屏幕尺寸变化
+  const mediaQuery = window.matchMedia('(min-width: 769px)');
+  mediaQuery.addListener(init);
+
+  // 初始化
+  init();
+
+  // IntersectionObserver (只在大屏幕时启用)
   const io = new IntersectionObserver(entries=>{
+    if (!isDesktop()) return;
+    
     entries.forEach(e=>{
       if(!e.isIntersecting) return;
       pubs.forEach(pub=> setActive(pub, pub.contains(e.target)));
