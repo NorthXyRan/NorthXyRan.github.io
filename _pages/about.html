@@ -92,7 +92,7 @@ redirect_from:
   .about-page {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 0;
   }
 
   .about-hero {
@@ -100,9 +100,9 @@ redirect_from:
   }
 
   .panel {
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.4rem;
     border-bottom: 1px solid var(--global-border-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
 
   .panel__title {
@@ -121,7 +121,7 @@ redirect_from:
 
   .about-hero__links a {
     font-weight: 600;
-    text-decoration: none;
+    text-decoration: underline;
   }
 
   .news-list {
@@ -165,7 +165,8 @@ redirect_from:
   .publication-text h3 {
     margin-top: 0;
     margin-bottom: 12px;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+    font-weight: 500;
     line-height: 1.3;
   }
 
@@ -195,6 +196,10 @@ redirect_from:
   .publication-authors {
     margin: 0;
     font-weight: 500;
+  }
+
+  .publication-authors a {
+    text-decoration: underline;
   }
 
   .misc-list {
