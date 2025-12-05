@@ -28,7 +28,11 @@ redirect_from:
     <h2 class="panel__title">🔥 NEWS</h2>
     <ul class="news-list">
       <li>
-        <span class="news-text">Congratulate🎉🎉 Our paper moves on to Revise &amp; Resubmit (round 2) for CHI 2026 Papers!</span>
+        <span class="news-text">An ongoing project: AI-Supported Learning Survey.</span>
+        <span class="news-date">25/12/5</span>
+      </li>
+      <li>
+        <span class="news-text">Congratulate🎉🎉! Our paper moves on to Revise &amp; Resubmit (round 2) for CHI 2026 Papers!</span>
         <span class="news-date">25/11/5</span>
       </li>
       <li>
@@ -36,7 +40,7 @@ redirect_from:
         <span class="news-date">25/9/12</span>
       </li>
       <li>
-        <span class="news-text">Ongoing project: subjective question grading driven by LLMs and visual analytics.</span>
+        <span class="news-text">An Ongoing project: subjective question grading driven by LLMs and visual analytics.</span>
         <span class="news-date">25/4/1</span>
       </li>
     </ul>
@@ -96,23 +100,14 @@ redirect_from:
     gap: 0;
   }
 
-  .about-hero {
-    padding-left: 0;
-  }
-
-  .about-heading {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.4rem;
-    font-weight: 700;
-  }
-
   .panel {
     padding-bottom: 0.25rem;
     border-bottom: 1px solid var(--global-border-color);
     margin-bottom: 0.25rem;
   }
 
-  .panel__title {
+  .panel__title,
+  .about-heading {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -126,8 +121,17 @@ redirect_from:
     margin-bottom: 0.5rem;
   }
 
-  .about-hero__links a {
+  .about-hero__links a,
+  .about-hero__bio a {
     font-weight: 600;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+  }
+
+  .about-hero__links a:hover,
+  .about-hero__bio a:hover {
+    color: #007bff;
     text-decoration: underline;
   }
 
