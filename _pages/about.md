@@ -10,11 +10,27 @@ I'm a forth year undergraduate student from [School of Software Engineering](htt
 
 [Gmail](Daniellin040608@gmail.com)｜[Github](https://github.com/NorthXyRan)｜[Wechat](../images/wechat.jpg)
 
+<style>
+.news-date {
+  float: right;
+  font-weight: 700;
+  color: #555;
+}
+@media (max-width: 600px) {
+  .news-date {
+    float: none;
+    display: block;
+    text-align: right;
+    margin-top: 4px;
+  }
+}
+</style>
+
 # 🔥NEWS
 
-- Congratulate! Our paper moves on to Revise & Resubmit (round 2) for CHI 2026 Papers!
-- A first-author paper was submitted to The ACM CHI Conference on Human Factors in Computing Systems (CHI 2026) `<span style="float:right; font-weight:bold; color:#555;">`25/9/12
-- An ongoing research project currently underway：Subjective question Grading driven by the integration of LLMs and visual analytics `<span style="float:right; font-weight:bold; color:#555;">`25/4/1
+- Congratulate! Our paper moves on to Revise & Resubmit (round 2) for CHI 2026 Papers! <span class="news-date">25/11/5</span>
+- A first-author paper was submitted to The ACM CHI Conference on Human Factors in Computing Systems (CHI 2026) <span class="news-date">25/9/12</span>
+- An ongoing research project currently underway：Subjective question Grading driven by the integration of LLMs and visual analytics <span class="news-date">25/4/1</span>
 
 # 🖊️PUBLICATIONS
 
@@ -40,17 +56,18 @@ I'm a forth year undergraduate student from [School of Software Engineering](htt
   margin-top: 0;
   margin-bottom: 12px;
 }
+.publication-text h3 a {
+  text-decoration: none;
+  color: inherit;
+}
+.publication-text h3 a:hover {
+  color: #007bff;
+}
 .publication-text p {
   margin-bottom: 12px;
 }
-.publication-links a {
-  display: inline-block;
-  padding: 10px 18px;
-  border-radius: 24px;
-  background: #007bff;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
+.publication-text p.description {
+  display: none;
 }
 .publication-figure {
   flex: 1;
@@ -69,27 +86,23 @@ I'm a forth year undergraduate student from [School of Software Engineering](htt
     flex-direction: column;
   }
   .publication-figure {
-    width: 100%;
+    display: none;
   }
 }
 </style>
 
 <div class="publications-section">
+  <!-- Copy this .publication-entry block to add another paper -->
   <div class="publication-entry">
     <div class="publication-text">
-      <h3>Open-ended Structured Question Assessment with Human-LLM Collaboration</h3>
-      <p>VeriGrader pairs instructor feedback and LLM reasoning to evaluate open-ended structured questions, segmenting scoring points, highlighting uncertain answers, and iteratively refining rubrics.</p>
+      <h3><a href="{{ '/PDF/1Open-ended Structured Question Assessment with Human-LLM Collaboration.pdf.pdf' | relative_url }}">Open-ended Structured Question Assessment with Human-LLM Collaboration</a></h3>
       <p><strong>Authors:</strong> Fengyan Lin, Kai Cao, Zikun Deng, Yanna Lin, Yi Cai</p>
-      <div class="publication-links">
-        <a href="{{ '/PDF/1Open-ended Structured Question Assessment with Human-LLM Collaboration.pdf.pdf' | relative_url }}">PDF</a>
-      </div>
     </div>
     <div class="publication-figure">
       <img src="/images/publications/chi26_interface.jpg" alt="VeriGrader interface overview">
     </div>
   </div>
 </div>
-
 
 # ❤️‍🔥Miscellaneous
 
