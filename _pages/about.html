@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "    👨‍🎓About me"
+title: ""
 author_profile: true
 redirect_from:
   - /about/
@@ -8,6 +8,7 @@ redirect_from:
 ---
 <section class="about-page">
   <header class="about-hero">
+    <h1 class="about-heading">👨‍🎓 About me</h1>
     <p class="about-hero__bio">
       I'm a fourth-year undergraduate student from the
       <a href="https://www2.scut.edu.cn/sse/" target="_blank" rel="noopener">School of Software Engineering</a>,
@@ -57,7 +58,7 @@ redirect_from:
             <a href="https://yannahhh.github.io/" target="_blank" rel="noopener">Yanna Lin</a>,
             <a href="https://zkdeng.org/" target="_blank" rel="noopener">Zikun Deng</a>,
             Kai Cao,
-            Yi Cai
+            <a href="https://www2.scut.edu.cn/sse/2018/0615/c16788a270751/page.htm" target="_blank" rel="noopener">Yi Cai</a>
           </p>
         </div>
         <div class="publication-figure">
@@ -97,6 +98,12 @@ redirect_from:
 
   .about-hero {
     padding-left: 0.5rem;
+  }
+
+  .about-heading {
+    margin: 0 0 0.5rem 0;
+    font-size: 2rem;
+    font-weight: 600;
   }
 
   .panel {
@@ -171,7 +178,7 @@ redirect_from:
   }
 
   .publication-text h3 a {
-    text-decoration: none;
+    text-decoration: underline !important;
     color: inherit;
   }
 
@@ -199,7 +206,8 @@ redirect_from:
   }
 
   .publication-authors a {
-    text-decoration: underline;
+    text-decoration: underline !important;
+    color: inherit;
   }
 
   .misc-list {
