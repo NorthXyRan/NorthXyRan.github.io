@@ -106,7 +106,7 @@
   padding-left: 15px;
   padding-right: 25px;
   line-height: 1;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.75em;
 
   @include breakpoint($large) {
     display: block;
@@ -127,7 +127,7 @@
 .sidebar .author__name {
   font-family: $sans-serif;
   font-size: $type-size-5;
-  margin-bottom: 0.35em;
+  margin-bottom: 0.75em;
 }
 
 .sidebar .author__desktop {
