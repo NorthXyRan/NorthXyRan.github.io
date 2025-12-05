@@ -22,7 +22,62 @@ redirect_from:
     </div>
   </header>
 
-  <style>
+  <section id="news" class="panel">
+    <h2 class="panel__title">🔥 NEWS</h2>
+    <ul class="news-list">
+      <li>
+        <span class="news-text">Congratulate🎉🎉 Our paper moves on to Revise &amp; Resubmit (round 2) for CHI 2026 Papers!</span>
+        <span class="news-date">25/11/5</span>
+      </li>
+      <li>
+        <span class="news-text">A first-author paper was submitted to The ACM CHI Conference on Human Factors in Computing Systems (CHI 2026).</span>
+        <span class="news-date">25/9/12</span>
+      </li>
+      <li>
+        <span class="news-text">Ongoing project: subjective question grading driven by LLMs and visual analytics.</span>
+        <span class="news-date">25/4/1</span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="publications" class="panel">
+    <h2 class="panel__title">🖊️ Publications</h2>
+    <div class="publications-section">
+      <!-- Copy this .publication-entry block to add another paper -->
+      <article class="publication-entry">
+        <div class="publication-text">
+          <h3>
+            <a href="{{ '/PDF/Open-ended Structured Question Assessment with Human-LLM Collaboration.pdf.pdf' | relative_url }}">
+              Open-ended Structured Question Assessment with Human-LLM Collaboration
+            </a>
+          </h3>
+          <p class="publication-authors">
+            <strong>Fengyan Lin</strong>,
+            <a href="https://yannahhh.github.io/" target="_blank" rel="noopener">Yanna Lin</a>,
+            <a href="https://zkdeng.org/" target="_blank" rel="noopener">Zikun Deng</a>,
+            Kai Cao,
+            Yi Cai
+          </p>
+        </div>
+        <div class="publication-figure">
+          <img src="/images/publications/chi26_interface.jpg" alt="VeriGrader interface overview">
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="misc" class="panel">
+    <h2 class="panel__title">❤️‍🔥 Miscellaneous</h2>
+    <ul class="misc-list">
+      <li>I have played piano since age three; by nine I passed the China Musicians Association Level 10 exam and later earned the ABRSM Grade 8 Performance Diploma. I still accompany university events ranging from conducting classes to graduation concerts.</li>
+      <li>I stay active through basketball, tennis, swimming, and fitness.</li>
+      <li>I'm also an amateur photographer who enjoys film cameras and drones.</li>
+    </ul>
+  </section>
+</section>
+
+
+<style>
   #main,
   .page__inner-wrap,
   .page__content {
@@ -36,21 +91,26 @@ redirect_from:
   .about-page {
     display: flex;
     flex-direction: column;
-    gap: 1.75rem;
+    gap: 1.25rem;
+  }
+
+  .about-hero {
+    padding-left: 0.5rem;
   }
 
   .panel {
-    padding-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--global-border-color);
+    margin-bottom: 0.5rem;
   }
 
   .panel__title {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   .about-hero__bio {
@@ -87,17 +147,14 @@ redirect_from:
     white-space: nowrap;
   }
 
-  .publications-section {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
   .publication-entry {
     display: flex;
-    gap: 18px;
-    padding: 16px 0;
+    gap: 16px;
+    padding: 12px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .publication-entry:last-child {
+    border-bottom: none;
   }
 
   .publication-text {
@@ -107,6 +164,8 @@ redirect_from:
   .publication-text h3 {
     margin-top: 0;
     margin-bottom: 12px;
+    font-size: 1.6rem;
+    line-height: 1.3;
   }
 
   .publication-text h3 a {
@@ -130,6 +189,11 @@ redirect_from:
     border-radius: 14px;
     object-fit: cover;
     box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  }
+
+  .publication-authors {
+    margin: 0;
+    font-weight: 500;
   }
 
   .misc-list {
@@ -163,51 +227,3 @@ redirect_from:
     }
   }
   </style>
-
-  <section id="news" class="panel">
-    <h2 class="panel__title">🔥 NEWS</h2>
-    <ul class="news-list">
-      <li>
-        <span class="news-text">Congratulate🎉🎉 Our paper moves on to Revise &amp; Resubmit (round 2) for CHI 2026 Papers!</span>
-        <span class="news-date">25/11/5</span>
-      </li>
-      <li>
-        <span class="news-text">A first-author paper was submitted to The ACM CHI Conference on Human Factors in Computing Systems (CHI 2026).</span>
-        <span class="news-date">25/9/12</span>
-      </li>
-      <li>
-        <span class="news-text">Ongoing project: subjective question grading driven by LLMs and visual analytics.</span>
-        <span class="news-date">25/4/1</span>
-      </li>
-    </ul>
-  </section>
-
-  <section id="publications" class="panel">
-    <h2 class="panel__title">🖊️ Publications</h2>
-    <div class="publications-section">
-      <!-- Copy this .publication-entry block to add another paper -->
-      <article class="publication-entry">
-        <div class="publication-text">
-          <h3>
-            <a href="{{ '/PDF/Open-ended Structured Question Assessment with Human-LLM Collaboration.pdf.pdf' | relative_url }}">
-              Open-ended Structured Question Assessment with Human-LLM Collaboration
-            </a>
-          </h3>
-          <p><strong>Authors:</strong> <strong>Fengyan Lin</strong>, Yanna Lin, Zikun Deng, Kai Cao, Yi Cai</p>
-        </div>
-        <div class="publication-figure">
-          <img src="/images/publications/chi26_interface.jpg" alt="VeriGrader interface overview">
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section id="misc" class="panel">
-    <h2 class="panel__title">❤️‍🔥 Miscellaneous</h2>
-    <ul class="misc-list">
-      <li>I have played piano since age three; by nine I passed the China Musicians Association Level 10 exam and later earned the ABRSM Grade 8 Performance Diploma. I still accompany university events ranging from conducting classes to graduation concerts.</li>
-      <li>I stay active through basketball, tennis, swimming, and fitness.</li>
-      <li>I'm also an amateur photographer who enjoys film cameras and drones.</li>
-    </ul>
-  </section>
-</section>
