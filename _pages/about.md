@@ -28,9 +28,9 @@ I'm a forth year undergraduate student from [School of Software Engineering](htt
 
 # 🔥NEWS
 
-- Congratulate! Our paper moves on to Revise & Resubmit (round 2) for CHI 2026 Papers! <span class="news-date">25/11/5</span>
-- A first-author paper was submitted to The ACM CHI Conference on Human Factors in Computing Systems (CHI 2026) <span class="news-date">25/9/12</span>
-- An ongoing research project currently underway：Subjective question Grading driven by the integration of LLMs and visual analytics <span class="news-date">25/4/1</span>
+- Congratulate! Our paper moves on to Revise & Resubmit (round 2) for CHI 2026 Papers! `<span class="news-date">`25/11/5
+- A first-author paper was submitted to The ACM CHI Conference on Human Factors in Computing Systems (CHI 2026) `<span class="news-date">`25/9/12
+- An ongoing research project currently underway：Subjective question Grading driven by the integration of LLMs and visual analytics `<span class="news-date">`25/4/1
 
 # 🖊️PUBLICATIONS
 
@@ -96,7 +96,7 @@ I'm a forth year undergraduate student from [School of Software Engineering](htt
   <div class="publication-entry">
     <div class="publication-text">
       <h3><a href="{{ '/PDF/1Open-ended Structured Question Assessment with Human-LLM Collaboration.pdf.pdf' | relative_url }}">Open-ended Structured Question Assessment with Human-LLM Collaboration</a></h3>
-      <p><strong>Authors:</strong> Fengyan Lin, Kai Cao, Zikun Deng, Yanna Lin, Yi Cai</p>
+      <p><strong>Authors:</strong> Fengyan Lin, Yanna Lin, Zikun Deng, Kai Cao, Yi Cai</p>
     </div>
     <div class="publication-figure">
       <img src="/images/publications/chi26_interface.jpg" alt="VeriGrader interface overview">
