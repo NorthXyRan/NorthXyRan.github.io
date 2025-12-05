@@ -1,0 +1,213 @@
+---
+permalink: /
+title: "👨‍🎓About me"
+author_profile: true
+redirect_from:
+  - /about/
+  - /about.html
+---
+<section class="about-page">
+  <header class="about-hero">
+    <p class="about-hero__bio">
+      I'm a fourth-year undergraduate student from the
+      <a href="https://www2.scut.edu.cn/sse/" target="_blank" rel="noopener">School of Software Engineering</a>,
+      <a href="https://www.scut.edu.cn/new/" target="_blank" rel="noopener">South China University of Technology</a>.
+    </p>
+    <div class="about-hero__links">
+      <a href="mailto:Daniellin040608@gmail.com">Gmail</a>
+      <span>｜</span>
+      <a href="https://github.com/NorthXyRan" target="_blank" rel="noopener">Github</a>
+      <span>｜</span>
+      <a href="{{ '/images/wechat.jpg' | relative_url }}" target="_blank" rel="noopener">Wechat</a>
+    </div>
+  </header>
+
+  <style>
+  #main,
+  .page__inner-wrap,
+  .page__content {
+    max-width: 1200px;
+  }
+
+  .about-page {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .panel {
+    padding: 1.5rem;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  .panel__title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .about-hero__bio {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .about-hero__links a {
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .news-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .news-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+  }
+
+  .news-text {
+    flex: 1;
+  }
+
+  .news-date {
+    font-weight: 700;
+    color: #555;
+    white-space: nowrap;
+  }
+
+  .publications-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .publication-entry {
+    display: flex;
+    gap: 24px;
+    padding: 24px;
+    border: 1px solid #ececec;
+    border-radius: 18px;
+    background: #fafafa;
+  }
+
+  .publication-text {
+    flex: 4;
+  }
+
+  .publication-text h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+
+  .publication-text h3 a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .publication-text h3 a:hover {
+    color: #007bff;
+  }
+
+  .publication-figure {
+    flex: 1;
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+  }
+
+  .publication-figure img {
+    width: 100%;
+    border-radius: 14px;
+    object-fit: cover;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  }
+
+  .misc-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .misc-list li {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .publication-entry {
+      flex-direction: column;
+    }
+    .publication-figure {
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .news-list li {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .news-date {
+      white-space: normal;
+      text-align: left;
+    }
+  }
+  </style>
+
+  <section id="news" class="panel">
+    <h2 class="panel__title">🔥 NEWS</h2>
+    <ul class="news-list">
+      <li>
+        <span class="news-text">Congratulate🎉🎉 Our paper moves on to Revise &amp; Resubmit (round 2) for CHI 2026 Papers!</span>
+        <span class="news-date">25/11/5</span>
+      </li>
+      <li>
+        <span class="news-text">A first-author paper was submitted to The ACM CHI Conference on Human Factors in Computing Systems (CHI 2026).</span>
+        <span class="news-date">25/9/12</span>
+      </li>
+      <li>
+        <span class="news-text">Ongoing project: subjective question grading driven by LLMs and visual analytics.</span>
+        <span class="news-date">25/4/1</span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="publications" class="panel">
+    <h2 class="panel__title">🖊️ Publications</h2>
+    <div class="publications-section">
+      <!-- Copy this .publication-entry block to add another paper -->
+      <article class="publication-entry">
+        <div class="publication-text">
+          <h3>
+            <a href="{{ '/PDF/Open-ended Structured Question Assessment with Human-LLM Collaboration.pdf.pdf' | relative_url }}">
+              Open-ended Structured Question Assessment with Human-LLM Collaboration
+            </a>
+          </h3>
+          <p><strong>Authors:</strong> <strong>Fengyan Lin</strong>, Yanna Lin, Zikun Deng, Kai Cao, Yi Cai</p>
+        </div>
+        <div class="publication-figure">
+          <img src="/images/publications/chi26_interface.jpg" alt="VeriGrader interface overview">
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="misc" class="panel">
+    <h2 class="panel__title">❤️‍🔥 Miscellaneous</h2>
+    <ul class="misc-list">
+      <li>I have played piano since age three; by nine I passed the China Musicians Association Level 10 exam and later earned the ABRSM Grade 8 Performance Diploma. I still accompany university events ranging from conducting classes to graduation concerts.</li>
+      <li>I stay active through basketball, tennis, swimming, and fitness.</li>
+      <li>I'm also an amateur photographer who enjoys film cameras and drones.</li>
+    </ul>
+  </section>
+</section>
