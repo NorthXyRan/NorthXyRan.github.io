@@ -126,6 +126,13 @@
 .sidebar .author__name {
   font-family: $sans-serif;
   font-size: $type-size-5;
+
+  .author__title {
+    display: block;
+    font-size: $type-size-6;
+    color: var(--global-text-color-light);
+    margin-top: 4px;
+  }
 }
 
 .sidebar .author__desktop {
