@@ -178,12 +178,14 @@ redirect_from:
   }
 
   .publication-text h3 a {
-    text-decoration: underline !important;
+    text-decoration: none;
     color: inherit;
+    transition: color 0.2s ease;
   }
 
   .publication-text h3 a:hover {
     color: #007bff;
+    text-decoration: underline;
   }
 
   .publication-figure {
@@ -206,9 +208,14 @@ redirect_from:
   }
 
   .publication-authors a {
-    text-decoration: underline !important;
-    text-decoration-thickness: from-font;
+    text-decoration: none;
     color: inherit;
+    transition: color 0.2s ease;
+  }
+
+  .publication-authors a:hover {
+    color: #007bff;
+    text-decoration: underline;
   }
 
   .misc-list {
