@@ -147,12 +147,24 @@ redirect_from:
   #main,
   .page__inner-wrap,
   .page__content {
-    max-width: 1440px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
+    max-width: 100%;
+    margin: 0;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
     margin-top: 0.75rem;
+  }
+
+  /* Desktop: make room for fixed sidebar and let theme handle widths */
+  @media screen and (min-width: 925px) {
+    #main {
+      padding-left: 260px; /* space for sidebar (~250px + gutter) */
+      padding-right: 2rem;
+    }
+    .page__inner-wrap,
+    .page__content {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
   /* mobile profile (only when sidebar is hidden) */
@@ -184,6 +196,9 @@ redirect_from:
     gap: 0.75rem 1rem;
     width: 100%;
     max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-items: center;
   }
 
   .mobile-profile__link {
