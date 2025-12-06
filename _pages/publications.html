@@ -61,7 +61,7 @@ redirect_from:
         }
         
         .publication__authors {
-            font-size: 18px;
+            font-size: 16px;
             color: #333;
         }
         
@@ -74,10 +74,42 @@ redirect_from:
         }
         
         .publication__abstract {
-            font-size: 17px;
+            font-size: 15px;
             color: #6e6e73;
             line-height: 1.6;
             margin-bottom: 20px;
+        }
+
+        .publication__abstract-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .publication__abstract-wrapper.collapsed .publication__abstract {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            overflow: hidden;
+        }
+
+        .publication__abstract-toggle {
+            align-self: flex-start;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid #d0d0d0;
+            background: #fff;
+            color: #1d1d1f;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .publication__abstract-toggle:hover {
+            background-color: #f2f2f2;
+            border-color: #b8b8b8;
         }
         
         .publication__details p {
@@ -89,6 +121,18 @@ redirect_from:
         
         .publication__links a {
             font-size: 16px;
+        }
+
+        /* 链接 hover 与 about 一致 */
+        .publication a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease, text-decoration 0.2s ease;
+        }
+
+        .publication a:hover {
+            color: #007bff;
+            text-decoration: underline;
         }
 
         .publications-container {
@@ -120,12 +164,13 @@ redirect_from:
         }
 
         .publication__conference-logo {
-            height: 150px;
-            width: auto;
             background: #ffffff;
             border-radius: 12px;
-            padding: 16px;
+            padding: 12px;
             object-fit: contain;
+            max-height: 110px;
+            width: 100%;
+            height: auto;
         }
 
         .publication__details {
@@ -135,14 +180,17 @@ redirect_from:
         .publication__meta-row {
             display: flex;
             align-items: center;
-            margin-bottom: 32px;
+            gap: 16px;
+            margin-bottom: 16px;
         }
 
         .publication__meta-divider {
-            width: 1px;
-            height: 100px;
-            background-color: #d0d0d0;
-            margin: 0 24px;
+            display: none;
+        }
+
+        .publication__meta-logo {
+            flex: 0 0 20%;
+            max-width: 20%;
         }
 
         .publication__links {
@@ -163,6 +211,8 @@ redirect_from:
 
         .publication__links a:hover {
             background-color: #0056b3;
+            color: #fff;
+            text-decoration: none;
         }
 
         @media (max-width: 768px) {
@@ -192,6 +242,10 @@ redirect_from:
             .publication__abstract {
                 font-size: 15px;
                 line-height: 1.5;
+            }
+
+            .publication__abstract-toggle {
+                font-size: 14px;
             }
             
             .publication__links a {
@@ -282,13 +336,15 @@ redirect_from:
                   {% if pub.conference_logo or pub.conference or pub.authors %}
                   <div class="publication__meta-row">
                     {% if pub.conference_logo %}
-                      {% if pub.conference_url %}
-                        <a href="{{ pub.conference_url }}" target="_blank" rel="noopener">
+                      <div class="publication__meta-logo">
+                        {% if pub.conference_url %}
+                          <a href="{{ pub.conference_url }}" target="_blank" rel="noopener">
+                            <img src="{{ pub.conference_logo | relative_url }}" alt="{{ pub.conference | default: 'Conference logo' }}" class="publication__conference-logo">
+                          </a>
+                        {% else %}
                           <img src="{{ pub.conference_logo | relative_url }}" alt="{{ pub.conference | default: 'Conference logo' }}" class="publication__conference-logo">
-                        </a>
-                      {% else %}
-                        <img src="{{ pub.conference_logo | relative_url }}" alt="{{ pub.conference | default: 'Conference logo' }}" class="publication__conference-logo">
-                      {% endif %}
+                        {% endif %}
+                      </div>
                     {% endif %}
 
                     {% if pub.conference_logo and (pub.conference or pub.authors) %}
@@ -296,10 +352,7 @@ redirect_from:
                     {% endif %}
 
                     {% if pub.conference or pub.authors %}
-                    <div>
-                      {% if pub.conference %}
-                        <p class="publication__authors">{{ pub.conference }}</p>
-                      {% endif %}
+                    <div class="publication__meta-text" style="flex: 1;">
                       {% if pub.authors %}
                         <p class="publication__authors">
                           {% for author in pub.authors %}
@@ -320,8 +373,11 @@ redirect_from:
                   {% endif %}
 
                   {% if pub.abstract %}
-                    <span class="publication__label">Abstract</span>
-                    <p class="publication__abstract">{{ pub.abstract }}</p>
+                    <div class="publication__abstract-wrapper collapsed" data-abstract-collapsible>
+                      <span class="publication__label">Abstract</span>
+                      <p class="publication__abstract">{{ pub.abstract }}</p>
+                      <button type="button" class="publication__abstract-toggle" aria-expanded="false">展开</button>
+                    </div>
                   {% endif %}
 
                   {% if pub.href or pub.conference_url %}
@@ -346,5 +402,22 @@ redirect_from:
 
     <!-- 引入外部滚动脚本 -->
     <script src="{{ '/assets/js/pub-scroll.js' | relative_url }}"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const wrappers = document.querySelectorAll('[data-abstract-collapsible]');
+        wrappers.forEach(function(wrapper) {
+          const button = wrapper.querySelector('.publication__abstract-toggle');
+          const abstract = wrapper.querySelector('.publication__abstract');
+          if (!button || !abstract) return;
+
+          button.addEventListener('click', function() {
+            const isCollapsed = wrapper.classList.toggle('collapsed');
+            const expanded = !isCollapsed;
+            button.setAttribute('aria-expanded', expanded);
+            button.textContent = expanded ? '收起' : '展开';
+          });
+        });
+      });
+    </script>
 </body>
 </html>
