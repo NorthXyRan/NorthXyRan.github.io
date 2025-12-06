@@ -157,8 +157,11 @@ redirect_from:
   /* Desktop: make room for fixed sidebar and let theme handle widths */
   @media screen and (min-width: 1024px) {
     #main {
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
       padding-left: 280px; /* space for sidebar (~250px + gutter) */
-      padding-right: 2rem;
+      padding-right: 2rem; /* mirror the sidebar gutter on the right */
     }
     .page__inner-wrap,
     .page__content {
