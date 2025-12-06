@@ -35,7 +35,17 @@ redirect_from:
         #main {
             max-width: 1500px !important;
             margin: 0 auto;
-            padding: 0;
+            padding: 0 !important;
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+
+        /* 去除默认页面容器在本页的顶部空隙，确保与侧边栏对齐 */
+        .page,
+        .page__inner-wrap,
+        .page__content {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
         }
 
         /* ===========================================
@@ -94,9 +104,12 @@ redirect_from:
         .publications-container {
             max-width: 1500px;
             width: 100%;
-            margin: 40px auto;
-            padding: 0;
+            margin: 0 auto 40px;
+            padding: 24px 0;
             overflow: visible;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
         }
 
         /* 单个论文项目容器 */
