@@ -9,7 +9,7 @@
 .sidebar {
   -webkit-transform: translate3d(0, 0 , 0);
           transform: translate3d(0, 0 , 0);
-  display: none; // hide on mobile
+  display: none !important; // hide on mobile by default
   @include clearfix();
   margin-bottom: 1em;
   width: 100%;
@@ -22,7 +22,7 @@
   }
 
   @include breakpoint($large) {
-    display: block; // show from large screens
+    display: block !important; // show from large screens
     @include span(2 of 12);
     opacity: 1;
     -webkit-transition: opacity 0.2s ease-in-out;
