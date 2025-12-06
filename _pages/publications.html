@@ -78,6 +78,7 @@ redirect_from:
             color: #6e6e73;
             line-height: 1.6;
             margin-bottom: 12px;
+            padding-right: 44px;
         }
 
         .publication__abstract-wrapper {
@@ -93,13 +94,12 @@ redirect_from:
             -webkit-line-clamp: 3;
             line-clamp: 3;
             overflow: hidden;
-            padding-right: 44px;
         }
 
         .publication__abstract-toggle {
             position: absolute;
             right: 0;
-            bottom: 2px;
+            top: 0;
             padding: 6px 10px;
             border-radius: 999px;
             border: 1px solid #d0d0d0;
@@ -116,11 +116,7 @@ redirect_from:
             border-color: #b8b8b8;
         }
 
-        .publication__abstract-wrapper:not(.collapsed) .publication__abstract-toggle {
-            position: static;
-            padding: 6px 10px;
-            margin-top: 4px;
-        }
+        /* 展开/收起图标固定在摘要区域右上角 */
         
         .publication__details p {
             font-size: 16px;
@@ -143,6 +139,12 @@ redirect_from:
         .publication a:hover {
             color: #007bff;
             text-decoration: underline;
+        }
+
+        /* 关闭默认图片 hover 阴影/动画（会议徽章、主图均适用） */
+        .publication a:hover img {
+            box-shadow: none !important;
+            transform: none !important;
         }
 
         .publications-container {
@@ -201,6 +203,22 @@ redirect_from:
         .publication__meta-logo {
             flex: 0 0 20%;
             max-width: 20%;
+            a {
+                text-decoration: none !important;
+                transition: none !important;
+            }
+            img {
+                transition: none !important;
+                transform: none !important;
+                box-shadow: none !important;
+            }
+            a:hover {
+                text-decoration: none !important;
+            }
+            a:hover img {
+                transform: none !important;
+                box-shadow: none !important;
+            }
         }
 
         .publication__links {
@@ -390,14 +408,9 @@ redirect_from:
                     </div>
                   {% endif %}
 
-                  {% if pub.href or pub.conference_url %}
+                  {% if pub.href %}
                   <div class="publication__links">
-                    {% if pub.href %}
-                      <a href="{{ pub.href | relative_url }}" class="publication__pdf-link">PDF</a>
-                    {% endif %}
-                    {% if pub.conference_url %}
-                      <a href="{{ pub.conference_url }}" target="_blank" rel="noopener">Conference</a>
-                    {% endif %}
+                    <a href="{{ pub.href | relative_url }}" class="publication__pdf-link">PDF</a>
                   </div>
                   {% endif %}
                 </div>
