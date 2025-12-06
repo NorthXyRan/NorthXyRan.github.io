@@ -175,16 +175,27 @@
   align-items: center;
   gap: 12px;
   width: 100%;
+
+  @include breakpoint($large) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
 }
 
 .sidebar-card__avatar {
   flex-shrink: 0;
 
   img {
-    width: 72px;
-    height: 72px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     object-fit: cover;
+
+    @include breakpoint($large) {
+      width: 160px;
+      height: 200px;
+    }
   }
 }
 
