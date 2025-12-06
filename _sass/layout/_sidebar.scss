@@ -133,7 +133,15 @@
 .sidebar .author__desktop {
   display: none;
   @media screen and (min-width: 1024px) {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    a {
+      display: inline;
+      padding: 0;
+      margin: 0;
+    }
   }
 }
 
