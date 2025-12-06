@@ -172,7 +172,7 @@ redirect_from:
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
     padding: 1rem 0;
   }
 
@@ -192,13 +192,14 @@ redirect_from:
 
   .mobile-profile__links {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, auto);
     gap: 0.75rem 1rem;
     width: 100%;
     max-width: 360px;
     margin-left: auto;
     margin-right: auto;
-    justify-items: center;
+    justify-content: center;
+    justify-items: start;
   }
 
   .mobile-profile__link {
@@ -207,9 +208,10 @@ redirect_from:
     gap: 0.5rem;
     font-size: 0.95rem;
     justify-content: flex-start;
-    width: 100%;
+    width: auto;
     max-width: 140px;
     text-align: left;
+    margin: 0 auto;
   }
 
   .mobile-profile__link i {
