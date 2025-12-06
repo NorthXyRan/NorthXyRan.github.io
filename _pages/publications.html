@@ -295,6 +295,14 @@ redirect_from:
             .publication__meta-row {
                 display: flex;
             }
+            /* 确保内容不受侧边栏宽度限制，主区域可撑满 */
+            .page,
+            .page__inner-wrap,
+            .page__content {
+                width: 100% !important;
+                max-width: none !important;
+                float: none !important;
+            }
         }
         
     </style>
