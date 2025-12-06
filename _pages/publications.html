@@ -101,16 +101,8 @@ redirect_from:
             font-size: var(--pub-label);
             color: #1d1d1f;
             font-weight: 600;
-            margin-bottom: 0;
-            display: block;
-        }
-
-        .publication__label-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
             margin-bottom: 4px;
+            display: block;
         }
         
         .publication__abstract {
@@ -140,12 +132,12 @@ redirect_from:
         .publication__abstract-toggle {
             position: absolute;
             right: 0;
-            top: 2px;
+            bottom: 0;
             padding: 0;
             border: none;
             background: transparent;
             color: #6e6e73;
-            font-size: 12px;
+            font-size: 14px;
             line-height: 1;
             cursor: pointer;
             transition: color 0.2s ease;
@@ -153,17 +145,6 @@ redirect_from:
 
         .publication__abstract-toggle:hover {
             color: #1d1d1f;
-        }
-
-        .publication__pdf-inline {
-            font-size: var(--pub-button);
-            color: #007bff;
-            text-decoration: none;
-            white-space: nowrap;
-        }
-
-        .publication__pdf-inline:hover {
-            text-decoration: underline;
         }
 
         /* 展开/收起图标固定在摘要区域右上角 */
@@ -339,7 +320,13 @@ redirect_from:
                 </h2>
 
                 {% if pub.image %}
-                <img src="{{ pub.image | relative_url }}" alt="{{ pub.title }}" class="publication__main-image">
+                  {% if pub.href %}
+                    <a href="{{ pub.href | relative_url }}">
+                      <img src="{{ pub.image | relative_url }}" alt="{{ pub.title }}" class="publication__main-image">
+                    </a>
+                  {% else %}
+                    <img src="{{ pub.image | relative_url }}" alt="{{ pub.title }}" class="publication__main-image">
+                  {% endif %}
                 {% endif %}
 
                 <div class="publication__details">
@@ -384,12 +371,7 @@ redirect_from:
 
                   {% if pub.abstract %}
                     <div class="publication__abstract-wrapper collapsed" data-abstract-collapsible>
-                      <div class="publication__label-row">
-                        <span class="publication__label">Abstract</span>
-                        {% if pub.href %}
-                          <a href="{{ pub.href | relative_url }}" class="publication__pdf-inline">PDF</a>
-                        {% endif %}
-                      </div>
+                      <span class="publication__label">Abstract</span>
                       <p class="publication__abstract">{{ pub.abstract }}<span class="publication__abstract-toggle" aria-expanded="false" aria-label="展开摘要">▼</span></p>
                     </div>
                   {% endif %}
