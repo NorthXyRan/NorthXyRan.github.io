@@ -262,37 +262,84 @@ redirect_from:
 <body>
     <main>
         <div class="publications-container">
-            
-            <!-- 论文项目 1 -->
-            <article class="publication">
-                <h2 class="publication__title">Open-ended Structured Question Assessment with Human-LLM Collaboration</h2>
-                
-                <img src="/images/publications/chi26_interface.jpg" 
-                     alt="Publication main image" 
-                     class="publication__main-image">
-                
+            {% assign publications = site.data.publications | default: [] %}
+            {% if publications.size > 0 %}
+              {% for pub in publications %}
+              <article class="publication">
+                <h2 class="publication__title">
+                  {% if pub.href %}
+                    <a href="{{ pub.href | relative_url }}">{{ pub.title }}</a>
+                  {% else %}
+                    {{ pub.title }}
+                  {% endif %}
+                </h2>
+
+                {% if pub.image %}
+                <img src="{{ pub.image | relative_url }}" alt="{{ pub.title }}" class="publication__main-image">
+                {% endif %}
+
                 <div class="publication__details">
-                    <!-- 元信息行：会议徽标 + 作者信息 -->
-                    <div class="publication__meta-row">
-                        <img src="/images/publications/CHI26.jpg" 
-                             alt="Conference logo" 
-                             class="publication__conference-logo">
-                        
-                        <div class="publication__meta-divider"></div>
-                        
-                        <p class="publication__authors">Fengyan Lin, Yanna Lin, Zikun Deng, Kai Cao, Prof. Yi Cai</p>
+                  {% if pub.conference_logo or pub.conference or pub.authors %}
+                  <div class="publication__meta-row">
+                    {% if pub.conference_logo %}
+                      {% if pub.conference_url %}
+                        <a href="{{ pub.conference_url }}" target="_blank" rel="noopener">
+                          <img src="{{ pub.conference_logo | relative_url }}" alt="{{ pub.conference | default: 'Conference logo' }}" class="publication__conference-logo">
+                        </a>
+                      {% else %}
+                        <img src="{{ pub.conference_logo | relative_url }}" alt="{{ pub.conference | default: 'Conference logo' }}" class="publication__conference-logo">
+                      {% endif %}
+                    {% endif %}
+
+                    {% if pub.conference_logo and (pub.conference or pub.authors) %}
+                    <div class="publication__meta-divider"></div>
+                    {% endif %}
+
+                    {% if pub.conference or pub.authors %}
+                    <div>
+                      {% if pub.conference %}
+                        <p class="publication__authors">{{ pub.conference }}</p>
+                      {% endif %}
+                      {% if pub.authors %}
+                        <p class="publication__authors">
+                          {% for author in pub.authors %}
+                            {% capture sep %}{% if forloop.last %}{% else %}, {% endif %}{% endcapture %}
+                            {% if author.url %}
+                              <a href="{{ author.url }}" target="_blank" rel="noopener">{{ author.name }}</a>{{ sep }}
+                            {% elsif author.emphasis %}
+                              <strong>{{ author.name }}</strong>{{ sep }}
+                            {% else %}
+                              {{ author.name }}{{ sep }}
+                            {% endif %}
+                          {% endfor %}
+                        </p>
+                      {% endif %}
                     </div>
-                    
-                    <!-- 摘要部分 -->
+                    {% endif %}
+                  </div>
+                  {% endif %}
+
+                  {% if pub.abstract %}
                     <span class="publication__label">Abstract</span>
-                    <p class="publication__abstract">Open-ended Structured Questions (OSQ) assess not only students' knowledge but also their reasoning and expression. However, grading OSQ requires fine-grained, scoring point-level analysis, which is labor-intensive and difficult to scale. Although recent LLM-based and human-AI collaborative grading systems improve efficiency, they mainly operate at the whole-response level and lack support for point-level inspection, correction, and feedback integration. We present VeriGrader, a novel human-Al collaborative system for OSQ grading. It combines chain-of-thought prompting with scoring point- and response-level in-context learning to enable interpretable LLM grading and iterative refinement from instructor feedback. A coordinated multi-view interface supports efficient verification of response segments, matched scoring points, and rationales. We evaluate VeriGrader using real course data and a user study with 12 participants. Results show that VeriGrader improves both grading efficiency, accuracy, and consistency over the baselines, demonstrating the effectiveness of VeriGrader and promoting human-Al collaboration in educational assessment</p>
-                    
-                    <!-- 相关链接 -->
-                    <div class="publication__links">
-                        <a href="{{ '/PDF/Open-ended Structured Question Assessment with Human-LLM Collaboration.pdf' | relative_url }}" class="publication__pdf-link">PDF</a>
-                    </div>
+                    <p class="publication__abstract">{{ pub.abstract }}</p>
+                  {% endif %}
+
+                  {% if pub.href or pub.conference_url %}
+                  <div class="publication__links">
+                    {% if pub.href %}
+                      <a href="{{ pub.href | relative_url }}" class="publication__pdf-link">PDF</a>
+                    {% endif %}
+                    {% if pub.conference_url %}
+                      <a href="{{ pub.conference_url }}" target="_blank" rel="noopener">Conference</a>
+                    {% endif %}
+                  </div>
+                  {% endif %}
                 </div>
-            </article>
+              </article>
+              {% endfor %}
+            {% else %}
+              <p class="publication__abstract">Add entries to <code>_data/publications.yml</code> to show publications.</p>
+            {% endif %}
 
         </div>
     </main>
