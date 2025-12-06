@@ -258,7 +258,7 @@ redirect_from:
             text-decoration: none;
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: 1023px) {
             .publications-container {
                 margin: 20px auto;
                 padding: 0 16px;
@@ -280,30 +280,6 @@ redirect_from:
             }
         }
 
-        /* 中屏：768-1023，保持单列，主图全宽，显示 meta-row */
-        @media (min-width: 768px) and (max-width: 1023px) {
-            .publications-container {
-                margin: 20px auto;
-                padding: 0 18px;
-            }
-            .publications-container .publication .publication__main-image {
-                width: 100% !important;
-                max-width: 100% !important;
-                height: auto !important;
-                margin: 0 0 20px 0 !important;
-            }
-            .publication__meta-row {
-                display: flex;
-            }
-            /* 确保内容不受侧边栏宽度限制，主区域可撑满 */
-            .page,
-            .page__inner-wrap,
-            .page__content {
-                width: 100% !important;
-                max-width: none !important;
-                float: none !important;
-            }
-        }
         
     </style>
 </head>
