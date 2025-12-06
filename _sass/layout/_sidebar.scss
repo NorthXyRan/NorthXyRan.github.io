@@ -16,14 +16,14 @@
 
   @media screen and (min-width: $sidebar-screen-min-width) {
     display: block !important;
-    width: 250px;
-    min-width: 250px;
+    width: 260px;
+    min-width: 260px;
+    max-width: 260px;
     box-sizing: border-box;
     position: static;
     height: auto;
     overflow: visible;
-    padding-top: 0;
-    padding-right: 0;
+    padding: 0;
   }
 
   @include breakpoint($large) {
