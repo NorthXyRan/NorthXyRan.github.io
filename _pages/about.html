@@ -7,15 +7,15 @@ redirect_from:
   - /about.html
 ---
 <section class="about-page">
-  <header class="about-hero">
-    <h1 class="about-heading">👨‍🎓 About me</h1>
+  <section id="about-intro" class="panel about-hero">
+    <h2 class="panel__title about-heading">👨‍🎓 About me</h2>
     <p class="about-hero__bio section-copy">
       I'm a fourth-year undergraduate student from the
-      <a href="https://www2.scut.edu.cn/sse/" target="_blank" rel="noopener">School of Software Engineering</a>,
-      <a href="https://www.scut.edu.cn/new/" target="_blank" rel="noopener">South China University of Technology</a>.
+      <a href="https://www2.scut.edu.cn/sse/" target="_blank" rel="noopener" class="section-link">School of Software Engineering</a>,
+      <a href="https://www.scut.edu.cn/new/" target="_blank" rel="noopener" class="section-link">South China University of Technology</a>.
       My research interests include Human-Computer Interaction (HCI), Data Visualization, Human-AI Collaboration, LLMs, AI in music, AI in Education, and E-learning.
     </p>
-  </header>
+  </section>
 
   <section id="news" class="panel">
     <h2 class="panel__title">🔥 NEWS</h2>
@@ -122,14 +122,14 @@ redirect_from:
     padding-bottom: 0.25rem;
   }
 
-  .about-hero__bio a {
+  .section-link {
     font-weight: 600;
     text-decoration: none;
     color: inherit;
     transition: color 0.2s ease;
   }
 
-  .about-hero__bio a:hover {
+  .section-link:hover {
     color: #007bff;
     text-decoration: underline;
   }
