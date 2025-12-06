@@ -239,7 +239,13 @@ redirect_from:
       flex-direction: column;
     }
     .publication-figure {
-      display: none;
+      display: block;
+      order: 1;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+    .publication-text {
+      order: 2;
     }
   }
 
@@ -251,6 +257,12 @@ redirect_from:
     .news-date {
       white-space: normal;
       text-align: left;
+    }
+    #main,
+    .page__inner-wrap,
+    .page__content {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
   }
   </style>
