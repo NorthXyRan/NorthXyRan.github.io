@@ -81,10 +81,13 @@
    Author profile and links
    ========================================================================== */
 
+$sidebar-gap: 12px;
+$sidebar-info-gap: 4px;
+
 .sidebar-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: $sidebar-gap;
   align-items: flex-start;
   width: 100%;
   padding: 0;
@@ -96,13 +99,13 @@
 .sidebar-card__header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: $sidebar-gap;
   width: 100%;
 
   @include breakpoint($large) {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: $sidebar-gap;
   }
 }
 
@@ -125,7 +128,7 @@
 .sidebar-card__info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: $sidebar-info-gap;
   min-width: 0;
 }
 
@@ -145,7 +148,7 @@
 .author__urls {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: $sidebar-gap;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -155,7 +158,7 @@
 .author__urls li {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: $sidebar-gap;
   padding: 0;
   list-style: none;
 }
