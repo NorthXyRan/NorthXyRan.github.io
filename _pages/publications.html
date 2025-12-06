@@ -15,6 +15,38 @@ redirect_from:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Featured Publications</title>
     <style>
+        /* 简化排版变量 */
+        :root {
+            --pub-title: 28px;
+            --pub-label: 18px;
+            --pub-body: 16px;
+            --pub-meta: 15px;
+            --pub-abstract: 15px;
+            --pub-button: 16px;
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --pub-title: 24px;
+                --pub-label: 17px;
+                --pub-body: 15px;
+                --pub-meta: 15px;
+                --pub-abstract: 14px;
+                --pub-button: 15px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            :root {
+                --pub-title: 20px;
+                --pub-label: 16px;
+                --pub-body: 14px;
+                --pub-meta: 14px;
+                --pub-abstract: 13px;
+                --pub-button: 14px;
+            }
+        }
+
         /* 容器与布局 */
         #main {
             width: 100%;
@@ -54,27 +86,36 @@ redirect_from:
         }
 
         .publication__title {
-            font-size: 28px;
+            font-size: var(--pub-title);
             font-weight: 600;
             color: #1d1d1f;
             margin: 0 0 16px 0;
         }
         
         .publication__authors {
-            font-size: 16px;
+            font-size: var(--pub-meta);
             color: #333;
         }
         
         .publication__label {
-            font-size: 18px;
+            font-size: var(--pub-label);
             color: #1d1d1f;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 0;
             display: block;
+        }
+
+        .publication__label-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 4px;
         }
         
         .publication__abstract {
-            font-size: 15px;
+            position: relative;
+            font-size: var(--pub-abstract);
             color: #6e6e73;
             line-height: 1.6;
             margin-bottom: 12px;
@@ -99,34 +140,43 @@ redirect_from:
         .publication__abstract-toggle {
             position: absolute;
             right: 0;
-            top: 0;
-            padding: 6px 10px;
-            border-radius: 999px;
-            border: 1px solid #d0d0d0;
-            background: rgba(255, 255, 255, 0.95);
-            color: #1d1d1f;
+            top: 2px;
+            padding: 0;
+            border: none;
+            background: transparent;
+            color: #6e6e73;
             font-size: 12px;
             line-height: 1;
             cursor: pointer;
-            transition: background-color 0.2s ease, border-color 0.2s ease;
+            transition: color 0.2s ease;
         }
 
         .publication__abstract-toggle:hover {
-            background-color: #f2f2f2;
-            border-color: #b8b8b8;
+            color: #1d1d1f;
+        }
+
+        .publication__pdf-inline {
+            font-size: var(--pub-button);
+            color: #007bff;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .publication__pdf-inline:hover {
+            text-decoration: underline;
         }
 
         /* 展开/收起图标固定在摘要区域右上角 */
         
         .publication__details p {
-            font-size: 16px;
+            font-size: var(--pub-body);
             color: #6e6e73;
             line-height: 1.6;
             margin-bottom: 16px;
         }
         
         .publication__links a {
-            font-size: 16px;
+            font-size: var(--pub-button);
         }
 
         /* 链接 hover 与 about 一致 */
@@ -232,40 +282,11 @@ redirect_from:
                 margin: 20px auto;
                 padding: 0 16px;
             }
-            
-            .publication__title {
-                font-size: 22px;
-                margin-bottom: 16px;
-            }
-            
+
             .publication__meta-row {
                 display: none;
             }
-            
-            .publication__authors {
-                font-size: 17px;
-                margin-bottom: 20px;
-            }
-            
-            .publication__label {
-                font-size: 18px;
-            }
-            
-            .publication__abstract {
-                font-size: 15px;
-                line-height: 1.5;
-            }
 
-            .publication__abstract-toggle {
-                font-size: 14px;
-            }
-            
-            .publication__links a {
-                font-size: 15px;
-                padding: 14px 24px;
-                min-height: 44px;
-            }
-            
             .publications-container .publication .publication__main-image {
                 width: 100% !important;
                 max-width: 100% !important;
@@ -278,43 +299,20 @@ redirect_from:
                 padding: 0 12px;
                 margin: 12px auto;
             }
-            
+
             .publication {
                 margin-bottom: 24px;
             }
-            
-            .publication__title {
-                font-size: 18px;
-                line-height: 1.3;
-                margin-bottom: 12px;
-            }
-            
-            .publication__authors {
-                font-size: 15px;
-                margin-bottom: 16px;
-            }
-            
-            .publication__label {
-                font-size: 16px;
-                margin-bottom: 6px;
-            }
-            
-            .publication__abstract {
-                font-size: 14px;
-                line-height: 1.4;
-                margin-bottom: 16px;
-            }
-            
+
             .publication__details {
                 padding: 16px 0;
             }
-            
+
             .publication__links {
                 margin-top: 16px;
             }
-            
+
             .publication__links a {
-                font-size: 14px !important;
                 padding: 12px 20px;
                 width: 100%;
                 text-align: center;
@@ -386,16 +384,14 @@ redirect_from:
 
                   {% if pub.abstract %}
                     <div class="publication__abstract-wrapper collapsed" data-abstract-collapsible>
-                      <span class="publication__label">Abstract</span>
-                      <p class="publication__abstract">{{ pub.abstract }}</p>
-                      <button type="button" class="publication__abstract-toggle" aria-expanded="false" aria-label="展开摘要">▼</button>
+                      <div class="publication__label-row">
+                        <span class="publication__label">Abstract</span>
+                        {% if pub.href %}
+                          <a href="{{ pub.href | relative_url }}" class="publication__pdf-inline">PDF</a>
+                        {% endif %}
+                      </div>
+                      <p class="publication__abstract">{{ pub.abstract }}<span class="publication__abstract-toggle" aria-expanded="false" aria-label="展开摘要">▼</span></p>
                     </div>
-                  {% endif %}
-
-                  {% if pub.href %}
-                  <div class="publication__links">
-                    <a href="{{ pub.href | relative_url }}" class="publication__pdf-link">PDF</a>
-                  </div>
                   {% endif %}
                 </div>
               </article>
