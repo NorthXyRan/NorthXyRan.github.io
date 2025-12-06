@@ -158,10 +158,14 @@ redirect_from:
   @media screen and (min-width: 1024px) {
     #main {
       max-width: 1440px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 290px; /* 250px sidebar + 40px gap */
-      padding-right: 2rem;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      gap: 40px; /* space between sidebar and content */
+    }
+    .page {
+      flex: 1;
+      min-width: 0;
     }
     .page__inner-wrap,
     .page__content {
