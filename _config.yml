@@ -28,6 +28,7 @@ author:
   bio              : # "Short biography for the left-hand sidebar"
   location         : "China"
   employer         : "SCUT"
+  employer_url     : "https://www.scut.edu.cn/new/"
   uri              : # URL
   email            : "Daniellin040608@gmail.com" 
 
