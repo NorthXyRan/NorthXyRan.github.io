@@ -145,21 +145,22 @@ redirect_from:
 
 <style>
   #main {
-    padding: 0 1.5rem;
+    padding: 0 2.5rem;
+    margin: 0 auto;
     margin-top: 0.75rem;
   }
 
   @media screen and (min-width: 1024px) {
     #main {
       max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 2rem;
       display: grid;
-      grid-template-columns: 280px 1fr;
-      column-gap: 32px;
+      grid-template-columns: 260px minmax(0, 1fr);
+      column-gap: 48px;
       align-items: start;
+      padding: 0 3rem;
     }
     .page {
+      width: 100%;
       min-width: 0;
     }
     .page__inner-wrap,
