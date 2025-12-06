@@ -15,33 +15,13 @@ redirect_from:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Featured Publications</title>
     <style>
-        /* ===========================================
-           全局样式重置与基础设置
-           ========================================= */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-
-        /* Jekyll主容器样式覆盖 - 保持原有限制以维持侧边栏布局 */
+        /* 容器与布局 */
         #main {
-            max-width: 1500px !important;
+            width: 100%;
             margin: 0 auto;
-            padding: 0 !important;
+            padding: 0.75rem !important;
             margin-top: 0.75rem !important;
             padding-top: 0 !important;
-            width: 100%;
-            max-width: none;
-            padding-left: 0.75rem !important;
-            padding-right: 0.75rem !important;
         }
 
         /* 去除默认页面容器在本页的顶部空隙，确保与侧边栏对齐 */
@@ -57,7 +37,7 @@ redirect_from:
             #main {
                 max-width: 1280px !important;
                 display: grid;
-                grid-template-columns: 260px minmax(0, 1fr);
+                grid-template-columns: 160px minmax(0, 1fr);
                 column-gap: 48px;
                 align-items: start;
                 padding-left: 3rem !important;
@@ -73,71 +53,54 @@ redirect_from:
             }
         }
 
-        /* ===========================================
-           字体大小管理系统
-           ========================================= */
-        
-        /* 论文标题 - 最重要的文字，使用最大字号 */
         .publication__title {
-            font-size: 32px !important;
+            font-size: 28px;
             font-weight: 600;
             color: #1d1d1f;
             margin: 0 0 16px 0;
         }
         
-        /* 作者信息 - 重要但次要的信息 */
         .publication__authors {
-            font-size: 24px !important;
+            font-size: 18px;
             color: #333;
         }
         
-        /* 标签文字 (Abstract等) - 区块标识 */
         .publication__label {
-            font-size: 24px !important;
+            font-size: 18px;
             color: #1d1d1f;
             font-weight: 600;
             margin-bottom: 8px;
             display: block;
         }
         
-        /* 摘要内容 - 主要阅读内容 */
         .publication__abstract {
-            font-size: 24px !important;
+            font-size: 17px;
             color: #6e6e73;
             line-height: 1.6;
             margin-bottom: 20px;
         }
         
-        /* 详情区域其他文字 - 补充信息 */
         .publication__details p {
-            font-size: 20px !important;
+            font-size: 16px;
             color: #6e6e73;
             line-height: 1.6;
             margin-bottom: 16px;
         }
         
-        /* 链接按钮文字 - 操作按钮 */
         .publication__links a {
-            font-size: 20px !important;
+            font-size: 16px;
         }
 
-        /* ===========================================
-           布局容器与结构
-           ========================================= */
-        
-        /* 整个发表页面的容器 - 恢复容器限制但允许图片溢出 */
         .publications-container {
-            max-width: 1500px;
             width: 100%;
             margin: 0 auto 40px;
-            padding: 24px 0;
+            padding: 0;
             overflow: visible;
             display: flex;
             flex-direction: column;
-            gap: 32px;
+            gap: 24px;
         }
 
-        /* 单个论文项目容器 */
         .publication {
             display: flex;
             flex-direction: column;
@@ -146,27 +109,16 @@ redirect_from:
             background-color: transparent;
             overflow: hidden;
             text-align: left;
-            transition: all 0.3s ease-in-out;
         }
 
 
-        /* ===========================================
-           图像与媒体样式
-           ========================================= */
-        
-        /* 论文主图 - 基础样式，使用更强的选择器权重 */
         .publications-container .publication .publication__main-image {
             height: auto !important;
             border-radius: 12px !important;
             display: block !important;
             margin: 0 0 24px 0 !important;
-            transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-            transform-origin: top left !important;
         }
 
-        /* 移除固定宽度规则，宽度由行内 style 动态控制 */
-
-        /* 会议/期刊徽标 */
         .publication__conference-logo {
             height: 150px;
             width: auto;
@@ -174,36 +126,18 @@ redirect_from:
             border-radius: 12px;
             padding: 16px;
             object-fit: contain;
-            /* 立体卡片阴影效果 */
-            box-shadow: 0 4px 12px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.12),0 0 0 0.5px rgba(0,0,0,.04);
-            transition: height .6s cubic-bezier(.25,.46,.45,.94); /* 与图片一致速率 */
         }
 
-        /* 作者 / 标签 / 摘要 字号过渡 */
-        .publication__authors,
-        .publication__label,
-        .publication__abstract {
-            transition: font-size .6s cubic-bezier(.25,.46,.45,.94);
-        }
-
-        /* ===========================================
-           内容详情区域
-           ========================================= */
-        
-        /* 详情主容器 */
         .publication__details {
             padding: 28px 0;
-            transition: all 0.3s ease-in-out;
         }
 
-        /* 元信息行：包含徽标、分隔线、作者 */
         .publication__meta-row {
             display: flex;
             align-items: center;
             margin-bottom: 32px;
         }
 
-        /* 徽标和作者之间的垂直分隔线 */
         .publication__meta-divider {
             width: 1px;
             height: 100px;
@@ -211,11 +145,6 @@ redirect_from:
             margin: 0 24px;
         }
 
-        /* ===========================================
-           交互元素：链接和按钮
-           ========================================= */
-        
-        /* 链接容器 */
         .publication__links {
             margin-top: 24px;
             display: flex;
@@ -223,68 +152,54 @@ redirect_from:
             flex-wrap: wrap;
         }
 
-        /* 链接按钮样式 */
         .publication__links a {
             padding: 12px 20px;
             border-radius: 25px;
             background-color: #007bff;
             color: white;
             text-decoration: none;
-            transition: all 0.3s ease;
             font-weight: 500;
         }
 
         .publication__links a:hover {
             background-color: #0056b3;
-            transform: translateY(-1px);
-
         }
 
-        /* 用 !important 保证不被 Jekyll 覆盖（其余冗余规则已精简） */
-
-        /* ===========================================
-           响应式设计：平板和移动端布局
-           ========================================= */
-        
-        /* 平板样式 (768px及以下) */
         @media (max-width: 768px) {
             .publications-container {
-                max-width: 100%;
                 margin: 20px auto;
                 padding: 0 16px;
             }
             
             .publication__title {
-                font-size: 24px !important;
+                font-size: 22px;
                 margin-bottom: 16px;
             }
             
-            /* 隐藏会议徽标和整个meta-row */
             .publication__meta-row {
                 display: none;
             }
             
             .publication__authors {
-                font-size: 18px !important;
+                font-size: 17px;
                 margin-bottom: 20px;
             }
             
             .publication__label {
-                font-size: 20px !important;
+                font-size: 18px;
             }
             
             .publication__abstract {
-                font-size: 16px !important;
+                font-size: 15px;
                 line-height: 1.5;
             }
             
             .publication__links a {
-                font-size: 16px !important;
+                font-size: 15px;
                 padding: 14px 24px;
                 min-height: 44px;
             }
             
-            /* 禁用图片的固定宽度，使用响应式 */
             .publications-container .publication .publication__main-image {
                 width: 100% !important;
                 max-width: 100% !important;
@@ -292,7 +207,6 @@ redirect_from:
             }
         }
         
-        /* 手机样式 (600px及以下) */
         @media (max-width: 600px) {
             .publications-container {
                 padding: 0 12px;
@@ -304,25 +218,23 @@ redirect_from:
             }
             
             .publication__title {
-                font-size: 20px !important;
+                font-size: 18px;
                 line-height: 1.3;
                 margin-bottom: 12px;
             }
             
-            /* 会议徽标已在768px断点隐藏，这里不需要重复 */
-            
             .publication__authors {
-                font-size: 16px !important;
+                font-size: 15px;
                 margin-bottom: 16px;
             }
             
             .publication__label {
-                font-size: 18px !important;
+                font-size: 16px;
                 margin-bottom: 6px;
             }
             
             .publication__abstract {
-                font-size: 14px !important;
+                font-size: 14px;
                 line-height: 1.4;
                 margin-bottom: 16px;
             }
