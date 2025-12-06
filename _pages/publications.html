@@ -306,7 +306,26 @@ redirect_from:
             }
 
             .publication__meta-row {
-                display: none;
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+
+            .publication__meta-logo {
+                flex: 0 0 140px;
+                max-width: 140px;
+            }
+
+            .publication__meta-logo img {
+                width: 100%;
+                max-height: 80px;
+                object-fit: contain;
+            }
+
+            .publication__meta-text {
+                flex: 1 1 200px;
+                min-width: 0;
             }
 
             .publications-container .publication .publication__main-image {
