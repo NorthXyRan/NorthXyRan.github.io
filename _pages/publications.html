@@ -50,6 +50,7 @@ redirect_from:
         /* 容器与布局 */
         #main {
             width: 100%;
+            max-width: none;
             margin: 0 auto;
             padding: 0.75rem !important;
             margin-top: 0.75rem !important;
@@ -82,6 +83,32 @@ redirect_from:
             .page__inner-wrap,
             .page__content {
                 padding: 0 !important;
+            }
+        }
+
+        /* 中屏（与 about 一致）：移除侧边栏占位导致的内边距 */
+        @media screen and (min-width: 925px) and (max-width: 1023px) {
+            #main {
+                max-width: none;
+            }
+            .page {
+                width: 100% !important;
+                max-width: none;
+                margin: 0 !important;
+                float: none;
+                padding: 0;
+            }
+            .page__inner-wrap {
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 1023px) {
+            #main,
+            .page__inner-wrap,
+            .page__content {
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
             }
         }
 
