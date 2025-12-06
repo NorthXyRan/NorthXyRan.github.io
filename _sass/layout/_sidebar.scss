@@ -102,7 +102,7 @@
   @include breakpoint($large) {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 12px;
   }
 }
 
@@ -145,7 +145,7 @@
 .author__urls {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 12px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -156,7 +156,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 4px 0;
+  padding: 0;
   list-style: none;
 }
 
