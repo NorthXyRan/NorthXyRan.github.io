@@ -38,6 +38,10 @@ redirect_from:
             padding: 0 !important;
             margin-top: 0.75rem !important;
             padding-top: 0 !important;
+            width: 100%;
+            max-width: none;
+            padding-left: 0.75rem !important;
+            padding-right: 0.75rem !important;
         }
 
         /* 去除默认页面容器在本页的顶部空隙，确保与侧边栏对齐 */
@@ -46,6 +50,27 @@ redirect_from:
         .page__content {
             margin-top: 0 !important;
             padding-top: 0 !important;
+        }
+
+        /* 大屏时复用 about 页的 grid 布局，保持侧边栏与正文顶端对齐 */
+        @media screen and (min-width: 1024px) {
+            #main {
+                max-width: 1280px !important;
+                display: grid;
+                grid-template-columns: 260px minmax(0, 1fr);
+                column-gap: 48px;
+                align-items: start;
+                padding-left: 3rem !important;
+                padding-right: 3rem !important;
+            }
+            .page {
+                width: 100%;
+                min-width: 0;
+            }
+            .page__inner-wrap,
+            .page__content {
+                padding: 0 !important;
+            }
         }
 
         /* ===========================================
