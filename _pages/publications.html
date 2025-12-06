@@ -112,6 +112,15 @@ redirect_from:
             }
         }
 
+        /* 覆盖 archive 布局的左右留白，避免 sidebar 占位残留 */
+        .archive {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            float: none !important;
+        }
+
         .publication__title {
             font-size: var(--pub-title);
             font-weight: 600;
