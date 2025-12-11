@@ -79,8 +79,8 @@ redirect_from:
     <p class="about-hero__bio section-copy">
       I'm a fourth-year undergraduate student from the
       <a href="https://www2.scut.edu.cn/sse/" target="_blank" rel="noopener" class="section-link">School of Software Engineering</a>,
-      <a href="https://www.scut.edu.cn/new/" target="_blank" rel="noopener" class="section-link">South China University of Technology</a>.
-      My research interests include Human-Computer Interaction (HCI), Data Visualization, Human-AI Collaboration, LLMs, AI in music, AI in Education, and E-learning.
+      <a href="https://www.scut.edu.cn/new/" target="_blank" rel="noopener" class="section-link">South China University of Technology</a>.<br>
+      My research interests include Human-Computer Interaction (HCI), Data Visualization, Human-AI Collaboration, LLMs, AI in music, AI for Education, and E-learning.
     </p>
   </section>
 
@@ -286,13 +286,14 @@ redirect_from:
   }
 
   .about-page {
+    --panel-stack-spacing: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: var(--panel-stack-spacing);
   }
 
   .panel {
-    padding-bottom: 0.75rem;
+    padding-bottom: 0;
     margin-bottom: 0;
   }
 
@@ -322,6 +323,7 @@ redirect_from:
 
   .section-copy,
   .section-copy li {
+    margin: 0;
     font-size: 1.05rem;
     line-height: 1.6;
   }
