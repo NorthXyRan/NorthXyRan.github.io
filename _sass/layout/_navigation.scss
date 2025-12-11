@@ -191,6 +191,7 @@
 
   button {
     position: absolute;
+    width: 2.5rem;
     height: 2.5rem;
     right: 0;
     padding: 0 0.5rem;
@@ -206,10 +207,13 @@
   }
 
   button .navicon-image {
-    width: 24px;
-    height: 24px;
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
     -webkit-transition: transform 0.2s ease;
     transition: transform 0.2s ease;
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
   }
 
   button.close .navicon-image {
