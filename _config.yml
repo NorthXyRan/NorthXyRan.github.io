@@ -9,7 +9,7 @@
 # Basic Site Settings
 locale: "en-US"
 site_theme: "default"
-title: "Fengyan Lin / Personal Homepage"
+title: "Fengyan Lin"
 title_separator: "-"
 name: "Fengyan Lin"
 description: &description "personal description"

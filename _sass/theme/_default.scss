@@ -42,4 +42,10 @@ $sidebar-screen-min-width   : 1024px;
     --global-text-color                 : #{$dark-gray};
     --global-text-color-light           : #{$light-gray};
     --global-thead-color                : #{$lighter-gray};
+
+    /* Header defaults (fallback for masthead/navigation) */
+    --header-bg-color                   : #fff;
+    --header-border-color               : #{$lighter-gray};
+    --header-link-color                 : #{$dark-gray};
+    --header-link-color-hover           : mix(#000, #{$gray}, 25%);
 }

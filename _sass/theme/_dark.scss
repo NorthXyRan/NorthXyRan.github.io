@@ -8,7 +8,7 @@ $dark-gray                  : mix(#000, $gray, 40%);
 $darker-gray                : mix(#000, $gray, 60%);
 $light-gray                 : mix(#fff, $gray, 50%);
 
-$background                 : #474747;
+$background                 : #232430;
 $background-light           : mix(#fff, $background, 80%);
 $background-lighter         : mix(#fff, $background, 90%);
 $text                       : #ffffff;
@@ -34,7 +34,7 @@ $sidebar-link-max-width     : 250px;
 $sidebar-screen-min-width   : 1024px;
 
 /* Dark theme for the site */
-:root {
+[data-theme="dark"] {
     --global-base-color                 : #{$background};
     --global-bg-color                   : #{$background};
     --global-border-color               : #{$background-light};
@@ -49,4 +49,25 @@ $sidebar-screen-min-width   : 1024px;
     --global-text-color                 : #{$text};
     --global-text-color-light           : #{$light-gray};
     --global-thead-color                : #{$background-lighter};
+
+    /* Keep header light while rest is dark */
+    --header-bg-color                   : #fff;
+    --header-border-color               : #e6e6e6;
+    --header-link-color                 : #4a4a4a;
+    --header-link-color-hover           : #2f7f93;
+}
+
+[data-theme="dark"] .news-date {
+    color: #fff;
+}
+
+[data-theme="dark"] .publication__title,
+[data-theme="dark"] .publication__title a,
+[data-theme="dark"] .publication__authors,
+[data-theme="dark"] .publication__authors a,
+[data-theme="dark"] .publication__label,
+[data-theme="dark"] .publication__abstract,
+[data-theme="dark"] .publication__abstract-toggle,
+[data-theme="dark"] .publication__details p {
+    color: #fff;
 }
