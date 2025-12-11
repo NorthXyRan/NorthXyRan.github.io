@@ -200,8 +200,8 @@
     justify-content: center;
     border: 0;
     outline: none;
-    background-color: var(--global-base-color);
-    color: #fff;
+    background: transparent;
+    color: inherit;
     cursor: pointer;
     z-index: 100;
   }
