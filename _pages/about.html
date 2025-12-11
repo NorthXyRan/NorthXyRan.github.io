@@ -56,9 +56,19 @@ redirect_from:
       </div>
       {% endif %}
       {% if author.wechat %}
-      <div class="mobile-profile__link">
-        <i class="fab fa-weixin" aria-hidden="true"></i>
-        <a href="{{ author.wechat }}" target="_blank" rel="noopener">WeChat</a>
+      <div class="mobile-profile__link wechat-card wechat-card--mobile">
+        <button type="button" class="wechat-card__trigger" aria-haspopup="true" aria-expanded="false">
+          <i class="fab fa-weixin" aria-hidden="true"></i>
+          <span class="wechat-card__text-link">WeChat</span>
+        </button>
+        <div class="wechat-card__popover wechat-card__popover--mobile" role="dialog" aria-label="WeChat ID">
+          <div class="wechat-card__value" data-wechat="{{ author.wechat }}">
+            <span class="wechat-card__text">{{ author.wechat }}</span>
+            <button type="button" class="wechat-card__copy" data-wechat="{{ author.wechat }}" aria-label="Copy WeChat ID">
+              <i class="far fa-copy" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
       </div>
       {% endif %}
     </div>
@@ -235,6 +245,38 @@ redirect_from:
   .mobile-profile__link a {
     color: inherit;
     text-decoration: none;
+  }
+
+  .mobile-profile__link.wechat-card {
+    width: 100%;
+    max-width: 220px;
+  }
+
+  .mobile-profile__link.wechat-card .wechat-card__trigger {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding: 0;
+  }
+
+  .mobile-profile__link.wechat-card .wechat-card__text-link {
+    font-weight: inherit;
+  }
+
+  .mobile-profile__link.wechat-card .wechat-card__popover {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    margin-top: 0;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 48px);
+    max-width: 320px;
+    z-index: 20;
+  }
+
+  .wechat-card--mobile .wechat-card__value {
+    font-size: 1rem;
   }
 
   @media screen and (min-width: 1024px) {

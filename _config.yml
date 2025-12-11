@@ -3,132 +3,128 @@
 # This config file is meant for settings that affect your entire site, values
 # which you are expected to set up once and rarely need to edit after that.
 # For technical reasons, this file is *NOT* reloaded automatically when you use
-# `jekyll serve -l -H localhost`. If you change this file, please restart the 
+# `jekyll serve -l -H localhost`. If you change this file, please restart the
 # server process.
 
 # Basic Site Settings
-locale                   : "en-US"
-site_theme               : "default"
-title                    : "Fengyan Lin / Personal Homepage"
-title_separator          : "-"
-name                     : "Fengyan Lin"
-description              : &description "personal description"
-url                      : https://northxyran.github.io 
-baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "NorthXyRan/NorthXyRan.github.io"
+locale: "en-US"
+site_theme: "default"
+title: "Fengyan Lin / Personal Homepage"
+title_separator: "-"
+name: "Fengyan Lin"
+description: &description "personal description"
+url: https://northxyran.github.io
+baseurl: "" # the subpath of your site, e.g. "/blog"
+repository: "NorthXyRan/NorthXyRan.github.io"
 
 # 网站作者 - 以下控制侧边栏上显示作者内容的内容。
 # 如果字段为空，则不会显示图标和链接，否则将显示。
 # 可以通过编辑 /_includes/author-profile.html 进行其他自定义
 author:
   # Biographic information
-  avatar           : "profile.png" # 记得要png格式!!!
-  name             : "Fengyan Lin 林丰衍"
-  pronouns         : # "he/his"  
-  bio              : # "Short biography for the left-hand sidebar"
-  location         : "China"
-  employer         : "SCUT"
-  employer_url     : "https://www.scut.edu.cn/new/"
-  uri              : # URL
-  email            : "Daniellin040608@gmail.com" 
+  avatar: "profile.png" # 记得要png格式!!!
+  name: "Fengyan Lin 林丰衍"
+  pronouns: # "he/his"
+  bio: # "Short biography for the left-hand sidebar"
+  location: "China"
+  employer: "SCUT"
+  employer_url: "https://www.scut.edu.cn/new/"
+  uri: # URL
+  email: "Daniellin040608@gmail.com"
 
   # Academic websites
-  arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    : # "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
-  impactstory      : # URL
-  orcid            : # "http://orcid.org/yourorcidurl"
-  semantic         : # URL
-  pubmed           : # "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
-  researchgate     : # URL
-  scopus           : # URL
+  arxiv: # URL - Update with the correct link to your profile
+  googlescholar: # "https://scholar.google.com/citations?user=PS_CX0AAAAAJ"
+  impactstory: # URL
+  orcid: # "http://orcid.org/yourorcidurl"
+  semantic: # URL
+  pubmed: # "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
+  researchgate: # URL
+  scopus: # URL
 
   # Repositories and software development
-  bitbucket        : # Username - Update with your username on the site
-  codepen          : # Username
-  dribbble         : # Username
-  github           : "NorthXyRan"
-  kaggle           : # Username  
-  stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
+  bitbucket: # Username - Update with your username on the site
+  codepen: # Username
+  dribbble: # Username
+  github: "NorthXyRan"
+  kaggle: # Username
+  stackoverflow: # User number or user number and name (i.e., use "1" or "1/jeff-atwood")
 
   # Social media
-  bluesky          : # "bsky.app"  Replace this with you Bluesky username
-  facebook         : # Username
-  flickr           : # Username
-  foursquare       : # Username
-  goodreads        : # Username
-  google_plus      : # Username
-  keybase          : # Username
-  instagram        : imdaniel_0608
-  wechat           : "https://northxyran.github.io/images/wechat.jpg"
-  lastfm           : # Username
-  linkedin         : # Username
-  mastodon         : # URL
-  medium           : # URL
-  pinterest        : # Username
-  soundcloud       : # Username
-  steam            : # Username
-  telegram         : # URL
-  tumblr           : # Username
-  twitter          : # Username for X / Twitter
-  vine             : # Username
-  weibo            : # Username
-  wikipedia        : # Username
-  xing             : # Username
-  youtube          : # Username
-  zhihu            : # Username
+  bluesky: # "bsky.app"  Replace this with you Bluesky username
+  facebook: # Username
+  flickr: # Username
+  foursquare: # Username
+  goodreads: # Username
+  google_plus: # Username
+  keybase: # Username
+  instagram: imdaniel_0608
+  wechat: "Fengyan_0608"
+  lastfm: # Username
+  linkedin: # Username
+  mastodon: # URL
+  medium: # URL
+  pinterest: # Username
+  soundcloud: # Username
+  steam: # Username
+  telegram: # URL
+  tumblr: # Username
+  twitter: # Username for X / Twitter
+  vine: # Username
+  weibo: # Username
+  wikipedia: # Username
+  xing: # Username
+  youtube: # Username
+  zhihu: # Username
 
 # Publication Category - 暂时不使用分类功能
 # publication_category:
 #   books:
 #     title: 'Books'
 #   manuscripts:
-#     title: 'Journal Articles'    
+#     title: 'Journal Articles'
 #   conferences:
 #     title: 'Conference Papers'
 
 # Site Settings
-teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
-breadcrumbs              : false # true, false (default)
-words_per_minute         : 160
-future                   : true
-read_more                : "disabled" # if enabled, adds "Read more" links to excerpts
-talkmap_link             : false      #change to true to add link to talkmap on talks page
+teaser: # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
+breadcrumbs: false # true, false (default)
+words_per_minute: 160
+future: true
+read_more: "disabled" # if enabled, adds "Read more" links to excerpts
+talkmap_link: false #change to true to add link to talkmap on talks page
 comments:
-  provider               : false # 禁用评论功能
+  provider: false # 禁用评论功能
 atom_feed:
-  hide                   : false     # change to true to hide the RSS feed in the footer
-  path                   : # blank (default) uses feed.xml
-
+  hide: false # change to true to hide the RSS feed in the footer
+  path: # blank (default) uses feed.xml
 
 # SEO Related
-google_site_verification :
-bing_site_verification   :
-alexa_site_verification  :
-yandex_site_verification :
-
+google_site_verification:
+bing_site_verification:
+alexa_site_verification:
+yandex_site_verification:
 
 # Social Sharing
 twitter:
-  username               : &twitter
+  username: &twitter
 facebook:
-  username               :
-  app_id                 :
-  publisher              :
-og_image                 :  # Open Graph/Twitter default site image
+  username:
+  app_id:
+  publisher:
+og_image: # Open Graph/Twitter default site image
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
-  type                   : # Person or Organization (defaults to Person)
-  name                   : # If the user or organization name differs from the site's name
+  type: # Person or Organization (defaults to Person)
+  name: # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
-
 
 # Analytics
 analytics:
-  provider               :  "false" # false (default), "google", "google-universal", "google-analytics-4", "custom"
+  provider: "false" # false (default), "google", "google-universal", "google-analytics-4", "custom"
   google:
-    tracking_id          :
-
+    tracking_id:
 
 # Reading Files
 include:
@@ -168,14 +164,12 @@ keep_files:
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
-
 # Conversion
 markdown: kramdown
 highlighter: rouge
 lsi: false
 excerpt_separator: "\n\n"
 incremental: false
-
 
 # Markdown Processing
 kramdown:
@@ -188,7 +182,6 @@ kramdown:
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
 
-
 # These settings control how pages and collections are included in the site
 defaults:
   # _pages
@@ -199,19 +192,16 @@ defaults:
       layout: single
       author_profile: true
 
-
 # Sass/SCSS
 sass:
   sass_dir: _sass
   style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
-
 
 # Outputting
 permalink: /:categories/:title/
 # paginate: 5 # amount of posts to show
 # paginate_path: /page:num/
 timezone: Etc/UTC # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-
 
 # Plugins
 plugins:
@@ -231,7 +221,6 @@ whitelist:
   - jekyll-redirect-from
   - jemoji
 
-
 # Archives - 禁用归档功能
 # category_archive:
 #   type: liquid
@@ -239,7 +228,6 @@ whitelist:
 # tag_archive:
 #   type: liquid
 #   path: /tags/
-
 
 # HTML Compression
 # - http://jch.penibelst.de/
