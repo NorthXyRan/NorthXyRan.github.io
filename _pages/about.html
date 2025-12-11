@@ -86,8 +86,8 @@ redirect_from:
 
   <section id="news" class="panel">
     <h2 class="panel__title">🔥 NEWS</h2>
-    {% assign news_items = site.data.news | default: [] %}
-    {% if news_items.size > 0 %}
+    {% assign news_items = site.data.news %}
+    {% if news_items and news_items.size > 0 %}
     <ul class="news-list section-copy stacked-list">
       {% for item in news_items %}
       <li>
@@ -103,8 +103,8 @@ redirect_from:
 
   <section id="publications" class="panel">
     <h2 class="panel__title">🖊️ Publications</h2>
-    {% assign publications = site.data.publications | default: [] %}
-    {% if publications.size > 0 %}
+    {% assign publications = site.data.publications %}
+    {% if publications and publications.size > 0 %}
     <div class="publications-section">
       {% for pub in publications %}
       <article class="publication-entry">

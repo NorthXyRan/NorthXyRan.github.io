@@ -342,8 +342,8 @@ redirect_from:
 <body>
     <main>
         <div class="publications-container">
-            {% assign publications = site.data.publications | default: [] %}
-            {% if publications.size > 0 %}
+            {% assign publications = site.data.publications %}
+            {% if publications and publications.size > 0 %}
               {% for pub in publications %}
               <article class="publication">
                 <h2 class="publication__title">
@@ -379,8 +379,10 @@ redirect_from:
                       </div>
                     {% endif %}
 
-                    {% if pub.conference_logo and (pub.conference or pub.authors) %}
-                    <div class="publication__meta-divider"></div>
+                    {% if pub.conference_logo %}
+                      {% if pub.conference or pub.authors %}
+                        <div class="publication__meta-divider"></div>
+                      {% endif %}
                     {% endif %}
 
                     {% if pub.conference or pub.authors %}
