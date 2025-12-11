@@ -175,7 +175,7 @@
 .greedy-nav {
   position: relative;
   min-width: 250px;
-  background: var(--header-bg-color, var(--global-bg-color));
+  background: transparent;
 
   a {
     display: block;
