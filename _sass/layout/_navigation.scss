@@ -194,12 +194,27 @@
     height: 2.5rem;
     right: 0;
     padding: 0 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 0;
     outline: none;
     background-color: var(--global-base-color);
     color: #fff;
     cursor: pointer;
     z-index: 100;
+  }
+
+  button .navicon-image {
+    width: 24px;
+    height: 24px;
+    -webkit-transition: transform 0.2s ease;
+    transition: transform 0.2s ease;
+  }
+
+  button.close .navicon-image {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
   }
 
   .visible-links {
