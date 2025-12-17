@@ -47,12 +47,14 @@
   }
 
   h3, h4 {
-    font-size: $type-size-5;
+    font-size: $type-size-4;
+    margin-top: 0.5em;  
+    margin-bottom: 0.5em;
   }
 
   p, li {
     font-family: $sans-serif;
-    font-size: $type-size-6;
+    font-size: $type-size-5;
     line-height: 1.5;
   }
 
@@ -205,7 +207,18 @@ $sidebar-info-gap: 4px;
   text-decoration: none;
 }
 
+.wechat-card__text-link {
+  color: var(--link-color, var(--global-link-color));
+  transition: color 0.2s ease;
+}
+
 .wechat-card__trigger:hover .wechat-card__text-link {
+  color: var(--link-hover-color, var(--global-link-color-hover));
+  text-decoration: underline;
+}
+
+.wechat-card__trigger:focus .wechat-card__text-link {
+  color: var(--link-hover-color, var(--global-link-color-hover));
   text-decoration: underline;
 }
 
@@ -261,7 +274,7 @@ $sidebar-info-gap: 4px;
   justify-content: space-between;
   gap: 12px;
   font-weight: 600;
-  font-size: $type-size-4;
+  font-size: $type-size-5;
   letter-spacing: 0.1px;
   color: #111;
   word-break: break-all;

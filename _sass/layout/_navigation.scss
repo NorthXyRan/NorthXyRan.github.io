@@ -187,8 +187,9 @@
     color: var(--header-link-color, var(--global-masthead-link-color));
     text-decoration: none;
 
-    &:hover {
-      color: var(--header-link-color-hover, var(--global-masthead-link-color-hover));
+    &:hover,
+    &:focus {
+      color: var(--header-link-color, var(--global-masthead-link-color));
     }
   }
 
@@ -246,9 +247,20 @@
         content: "";
         position: absolute;
         left: 0;
-        bottom: 0;
+        bottom: 0.2rem; // 更贴近文字
         height: 4px;
-        background: var(--global-border-color);
+
+        background: linear-gradient(
+          90deg,
+          #ff5f6d,
+          #ffc371,
+          #ffd700,
+          #a0ff9f,
+          #70cfff,
+          #a18cd1,
+          #ff7eb3
+        );
+        background-size: 200% 100%;
         width: 100%;
         -webkit-transition: $global-transition;
         transition: $global-transition;
@@ -258,6 +270,8 @@
       }
 
       &:hover:before {
+        -webkit-animation: nav-gold-shimmer 1.5s linear infinite;
+                animation: nav-gold-shimmer 1.5s linear infinite;
         -webkit-transform: scaleX(1);
             -ms-transform: scaleX(1);
                 transform: scaleX(1); /* reveal*/
@@ -281,8 +295,9 @@
       padding: 10px 20px;
       font-size: $type-size-5;
 
-      &:hover {
-        color: var(--header-link-color-hover, var(--global-masthead-link-color-hover));
+      &:hover,
+      &:focus {
+        color: var(--header-link-color, var(--global-masthead-link-color));
         background: var(--header-border-color, var(--global-border-color));
       }
     }
@@ -445,5 +460,23 @@
     @include breakpoint($medium) {
       display: block;
     }
+  }
+}
+
+@-webkit-keyframes nav-gold-shimmer {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes nav-gold-shimmer {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }
