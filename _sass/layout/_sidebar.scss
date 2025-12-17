@@ -243,17 +243,6 @@ $sidebar-info-gap: 4px;
   }
 }
 
-[data-theme="dark"] .wechat-card__popover {
-  background: rgba(35, 36, 48, 0.95);
-  color: #ffb360;
-
-  .wechat-card__row,
-  .wechat-card__value,
-  .wechat-card__text {
-    color: inherit;
-  }
-}
-
 .wechat-card.is-open .wechat-card__popover {
   display: block;
 }
@@ -276,7 +265,6 @@ $sidebar-info-gap: 4px;
   font-weight: 600;
   font-size: $type-size-5;
   letter-spacing: 0.1px;
-  color: #111;
   word-break: break-all;
 }
 
@@ -306,4 +294,14 @@ $sidebar-info-gap: 4px;
   &:active {
     transform: scale(0.98);
   }
+}
+
+[data-theme="dark"] .wechat-card__popover {
+  background: rgba(35, 36, 48, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+[data-theme="dark"] .wechat-card__copy,
+[data-theme="dark"] .wechat-card__copy i {
+  color: #fff !important;
 }

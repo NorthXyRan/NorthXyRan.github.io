@@ -96,6 +96,12 @@
   width: calc(100% - 64px);
   max-width: 260px;
   z-index: 20;
+  color: var(--global-text-color);
+}
+
+.mobile-profile__icon.wechat-card .wechat-card__value,
+.mobile-profile__icon.wechat-card .wechat-card__text {
+  color: var(--global-text-color);
 }
 
 .wechat-card--mobile .wechat-card__value {
