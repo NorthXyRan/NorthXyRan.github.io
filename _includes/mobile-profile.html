@@ -1,0 +1,70 @@
+{% assign profile_author = site.author %}
+{% if page.author and site.data.authors[page.author] %}
+  {% assign profile_author = site.data.authors[page.author] %}
+{% elsif site.data.authors[site.author] %}
+  {% assign profile_author = site.data.authors[site.author] %}
+{% endif %}
+
+{% if profile_author %}
+  <section class="mobile-profile">
+    <img
+      class="mobile-profile__avatar"
+      src="{% if profile_author.avatar contains '://' %}{{ profile_author.avatar }}{% else %}{{ profile_author.avatar | prepend: '/images/' | relative_url }}{% endif %}"
+      alt="{{ profile_author.name }}"
+    >
+    <h3 class="mobile-profile__name">{{ profile_author.name }}</h3>
+    <div class="mobile-profile__links" role="navigation" aria-label="Quick links">
+      {% if profile_author.location %}
+        <span class="mobile-profile__icon" title="{{ profile_author.location }}" aria-label="{{ profile_author.location }}">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+        </span>
+      {% endif %}
+
+      {% if profile_author.employer %}
+        {% if profile_author.employer_url %}
+          <a class="mobile-profile__icon" href="{{ profile_author.employer_url }}" target="_blank" rel="noopener" aria-label="{{ profile_author.employer }}" title="{{ profile_author.employer }}">
+            <i class="fas fa-building-columns" aria-hidden="true"></i>
+          </a>
+        {% else %}
+          <span class="mobile-profile__icon" title="{{ profile_author.employer }}" aria-label="{{ profile_author.employer }}">
+            <i class="fas fa-building-columns" aria-hidden="true"></i>
+          </span>
+        {% endif %}
+      {% endif %}
+
+      {% if profile_author.email %}
+        <a class="mobile-profile__icon" href="mailto:{{ profile_author.email }}" aria-label="Email {{ profile_author.name }}" title="{{ profile_author.email }}">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+        </a>
+      {% endif %}
+
+      {% if profile_author.github %}
+        <a class="mobile-profile__icon" href="https://github.com/{{ profile_author.github }}" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <i class="fab fa-github" aria-hidden="true"></i>
+        </a>
+      {% endif %}
+
+      {% if profile_author.instagram %}
+        <a class="mobile-profile__icon" href="https://instagram.com/{{ profile_author.instagram }}" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+          <i class="fab fa-instagram" aria-hidden="true"></i>
+        </a>
+      {% endif %}
+
+      {% if profile_author.wechat %}
+        <div class="mobile-profile__icon wechat-card wechat-card--mobile">
+          <button type="button" class="mobile-profile__icon-button wechat-card__trigger" aria-haspopup="true" aria-expanded="false" aria-label="WeChat" title="WeChat">
+            <i class="fab fa-weixin" aria-hidden="true"></i>
+          </button>
+          <div class="wechat-card__popover wechat-card__popover--mobile" role="dialog" aria-label="WeChat ID">
+            <div class="wechat-card__value" data-wechat="{{ profile_author.wechat }}">
+              <span class="wechat-card__text">{{ profile_author.wechat }}</span>
+              <button type="button" class="wechat-card__copy" data-wechat="{{ profile_author.wechat }}" aria-label="Copy WeChat ID">
+                <i class="far fa-copy" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}

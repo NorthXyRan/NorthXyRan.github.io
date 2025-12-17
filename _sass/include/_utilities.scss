@@ -318,6 +318,13 @@ body:hover .visually-hidden button {
   }
 }
 
+[data-theme="dark"] .social-icons {
+  [class*="fa-"],
+  [class*="ai-"] {
+    color: #ffb360;
+  }
+}
+
 
 /*
    Navicons

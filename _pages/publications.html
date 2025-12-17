@@ -3,6 +3,7 @@ layout: archive
 title: ""
 permalink: /publications/
 author_profile: true
+hide_mobile_profile: true
 redirect_from:
   - /resume
 ---
@@ -15,39 +16,31 @@ redirect_from:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Featured Publications</title>
     <style>
-        /* 简化排版变量 */
         :root {
             --pub-title: 28px;
-            --pub-label: 18px;
-            --pub-body: 16px;
-            --pub-meta: 15px;
-            --pub-abstract: 15px;
+            --pub-label: 22px;
+            --pub-body: 17px;
+            --pub-meta: 22px;
+            --pub-abstract: 20px;
             --pub-button: 16px;
+            --publication-abstract-color: #6e6e73;
         }
 
-        @media (max-width: 768px) {
-            :root {
-                --pub-title: 24px;
-                --pub-label: 17px;
-                --pub-body: 15px;
-                --pub-meta: 15px;
-                --pub-abstract: 14px;
-                --pub-button: 15px;
-            }
+        [data-theme="dark"] {
+            --publication-abstract-color: #d6d7db;
         }
 
         @media (max-width: 600px) {
             :root {
                 --pub-title: 20px;
-                --pub-label: 16px;
-                --pub-body: 14px;
-                --pub-meta: 14px;
-                --pub-abstract: 13px;
+                --pub-label: 18px;
+                --pub-body: 15px;
+                --pub-meta: 16px;
+                --pub-abstract: 16px;
                 --pub-button: 14px;
             }
-        }
+        } 
 
-        /* 容器与布局 */
         #main {
             width: 100%;
             max-width: none;
@@ -57,7 +50,6 @@ redirect_from:
             padding-top: 0 !important;
         }
 
-        /* 去除默认页面容器在本页的顶部空隙，确保与侧边栏对齐 */
         .page,
         .page__inner-wrap,
         .page__content {
@@ -65,7 +57,6 @@ redirect_from:
             padding-top: 0 !important;
         }
 
-        /* 大屏时复用 about 页的 grid 布局，保持侧边栏与正文顶端对齐 */
         @media screen and (min-width: 1024px) {
             #main {
                 max-width: 1600px !important;
@@ -73,8 +64,7 @@ redirect_from:
                 grid-template-columns: 260px minmax(0, 1fr);
                 column-gap: 48px;
                 align-items: start;
-                padding-left: 3rem !important;
-                padding-right: 3rem !important;
+                padding: 0 3rem !important;
             }
             .page {
                 width: 100%;
@@ -86,7 +76,6 @@ redirect_from:
             }
         }
 
-        /* 中屏（与 about 一致）：移除侧边栏占位导致的内边距 */
         @media screen and (min-width: 925px) and (max-width: 1023px) {
             #main {
                 max-width: none;
@@ -112,7 +101,6 @@ redirect_from:
             }
         }
 
-        /* 覆盖 archive 布局的左右留白，避免 sidebar 占位残留 */
         .archive {
             width: 100% !important;
             max-width: none !important;
@@ -130,12 +118,11 @@ redirect_from:
         
         .publication__authors {
             font-size: var(--pub-meta);
-            color: #333;
         }
         
         .publication__label {
             font-size: var(--pub-label);
-            color: #1d1d1f;
+            color: var(--global-text-color);
             font-weight: 600;
             margin-bottom: 2px;
             display: block;
@@ -144,7 +131,7 @@ redirect_from:
         .publication__abstract {
             position: relative;
             font-size: var(--pub-abstract);
-            color: #6e6e73;
+            color: var(--publication-abstract-color, var(--global-text-color));
             line-height: 1.6;
             margin-bottom: 12px;
             padding-right: 44px;
@@ -172,7 +159,7 @@ redirect_from:
             padding: 0;
             border: none;
             background: transparent;
-            color: #6e6e73;
+            color: var(--publication-abstract-color, var(--global-text-color));
             font-size: 15px;
             line-height: 1;
             cursor: pointer;
@@ -180,35 +167,18 @@ redirect_from:
         }
 
         .publication__abstract-toggle:hover {
-            color: #1d1d1f;
+            color: var(--global-text-color);
         }
 
-        /* 展开/收起图标固定在摘要区域右上角 */
-        
-        .publication__details p {
-            font-size: var(--pub-body);
-            color: #6e6e73;
-            line-height: 1.6;
-            margin-bottom: 16px;
-        }
-        
         .publication__links a {
             font-size: var(--pub-button);
         }
 
-        /* 链接 hover 与 about 一致 */
         .publication a {
-            color: inherit;
+            --link-color: inherit;
             text-decoration: none;
-            transition: color 0.2s ease, text-decoration 0.2s ease;
         }
 
-        .publication a:hover {
-            color: #007bff;
-            text-decoration: underline;
-        }
-
-        /* 关闭默认图片 hover 阴影/动画（会议徽章、主图均适用） */
         .publication a:hover img {
             box-shadow: none !important;
             transform: none !important;
@@ -233,7 +203,6 @@ redirect_from:
             overflow: hidden;
             text-align: left;
         }
-
 
         .publications-container .publication .publication__main-image {
             height: auto !important;
@@ -334,11 +303,8 @@ redirect_from:
                 height: auto !important;
             }
         }
-
-        
     </style>
 </head>
-
 <body>
     <main>
         <div class="publications-container">
@@ -422,15 +388,12 @@ redirect_from:
         </div>
     </main>
 
-    <!-- 引入外部滚动脚本 -->
-    <script src="{{ '/assets/js/pub-scroll.js' | relative_url }}"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const wrappers = document.querySelectorAll('[data-abstract-collapsible]');
         wrappers.forEach(function(wrapper) {
           const button = wrapper.querySelector('.publication__abstract-toggle');
-          const abstract = wrapper.querySelector('.publication__abstract');
-          if (!button || !abstract) return;
+          if (!button) return;
 
           button.addEventListener('click', function() {
             const isCollapsed = wrapper.classList.toggle('collapsed');

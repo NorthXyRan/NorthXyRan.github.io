@@ -41,9 +41,9 @@ $sidebar-screen-min-width   : 1024px;
     --global-code-background-color      : #fafafa;
     --global-code-text-color            : #{$darker-gray};
     --global-fig-caption-color          : #{$dark-gray};
-    --global-link-color                 : #{$link};
-    --global-link-color-hover           : #{$link-dark};
-    --global-link-color-visited         : #{$link-light};    
+    --global-link-color                 : #{$text};
+    --global-link-color-hover           : #ffb360;
+    --global-link-color-visited         : #{$light-gray};    
     --global-masthead-link-color        : #{$text};
     --global-masthead-link-color-hover  : #{$background-light};    
     --global-text-color                 : #{$text};
@@ -58,16 +58,5 @@ $sidebar-screen-min-width   : 1024px;
 }
 
 [data-theme="dark"] .news-date {
-    color: #fff;
-}
-
-[data-theme="dark"] .publication__title,
-[data-theme="dark"] .publication__title a,
-[data-theme="dark"] .publication__authors,
-[data-theme="dark"] .publication__authors a,
-[data-theme="dark"] .publication__label,
-[data-theme="dark"] .publication__abstract,
-[data-theme="dark"] .publication__abstract-toggle,
-[data-theme="dark"] .publication__details p {
     color: #fff;
 }

@@ -177,9 +177,9 @@ $sidebar-info-gap: 4px;
   width: 100%;
   margin: 0;
   padding: 0;
-  color: inherit;
   font-size: $type-size-5;
   text-decoration: none;
+  --link-color: inherit;
 
   &:hover {
     text-decoration: underline;
@@ -227,6 +227,17 @@ $sidebar-info-gap: 4px;
   @include breakpoint($large) {
     left: auto;
     right: 0;
+  }
+}
+
+[data-theme="dark"] .wechat-card__popover {
+  background: rgba(35, 36, 48, 0.95);
+  color: #ffb360;
+
+  .wechat-card__row,
+  .wechat-card__value,
+  .wechat-card__text {
+    color: inherit;
   }
 }
 

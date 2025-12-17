@@ -67,20 +67,22 @@ audio:not([controls]) {
 }
 
 a {
-  color: var(--global-link-color);
-}
+  color: var(--link-color, var(--global-link-color));
+  text-decoration: none;
+  transition: color 0.2s ease;
 
-/* Apply focus state */
+  &:focus {
+    @extend %tab-focus;
+    color: var(--link-hover-color, var(--global-link-color-hover));
+    text-decoration: underline;
+  }
 
-a:focus {
-  @extend %tab-focus;
-}
-
-/* Remove outline from links */
-
-a:hover,
-a:active {
-  outline: 0;
+  &:hover,
+  &:active {
+    outline: 0;
+    color: var(--link-hover-color, var(--global-link-color-hover));
+    text-decoration: underline;
+  }
 }
 
 /* Prevent sub and sup affecting line-height in all browsers */

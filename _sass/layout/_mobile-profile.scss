@@ -1,0 +1,103 @@
+/* ==========================================================================
+   MOBILE PROFILE (sidebar replacement on small screens)
+   ========================================================================== */
+
+.mobile-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1rem 0;
+  max-width: 420px;
+  margin: 0 auto 1rem;
+
+  @media screen and (min-width: $sidebar-screen-min-width) {
+    display: none;
+  }
+}
+
+.mobile-profile__avatar {
+  width: 160px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.mobile-profile__name {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.mobile-profile__links {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: auto;
+}
+
+.mobile-profile__icon,
+.mobile-profile__icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  font-size: 1.5rem;
+  color: var(--global-text-color);
+  border-radius: 50%;
+  text-decoration: none !important;
+  transition: color 0.2s ease, background 0.2s ease;
+  --link-hover-color: var(--global-link-color-hover);
+}
+
+.mobile-profile__icon:hover,
+.mobile-profile__icon-button:hover {
+  color: var(--global-link-color-hover);
+  text-decoration: none !important;
+}
+
+.mobile-profile__icon-button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+[data-theme="dark"] .mobile-profile__icon,
+[data-theme="dark"] .mobile-profile__icon-button {
+  color: #ffb360;
+}
+
+.mobile-profile__icon.wechat-card {
+  width: auto;
+  height: auto;
+}
+
+.mobile-profile__icon.wechat-card .wechat-card__trigger {
+  width: 52px;
+  height: 52px;
+  padding: 0;
+}
+
+.mobile-profile__icon.wechat-card .wechat-card__popover {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  margin-top: 0;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 64px);
+  max-width: 260px;
+  z-index: 20;
+}
+
+.wechat-card--mobile .wechat-card__value {
+  font-size: 1rem;
+}
