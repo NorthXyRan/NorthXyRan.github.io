@@ -23,7 +23,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1em 1em 1em;
+
     font-family: $sans-serif-narrow;
 
     @include breakpoint($x-large) {
@@ -110,7 +110,6 @@
   white-space: nowrap;
 
   &--lg {
-    padding-right: 2em;
     font-weight: 700;
   }
 }

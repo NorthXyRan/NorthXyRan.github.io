@@ -173,14 +173,17 @@
    ========================================================================== */
 
 .greedy-nav {
+
+  font-size: 1.15em;
+
   position: relative;
   min-width: 250px;
   background: transparent;
 
   a {
     display: block;
-    margin: 0 1rem;
-    padding: 0.5rem 0;
+    margin: 0 2rem;
+    padding: 0.6rem 0;
     color: var(--header-link-color, var(--global-masthead-link-color));
     text-decoration: none;
 
@@ -228,15 +231,6 @@
     li {
       display: table-cell;
       vertical-align: middle;
-
-      &:first-child {
-        font-weight: bold;
-        text-wrap: wrap;
-
-        a {
-          margin-left: 0;
-        }
-      }
 
       &:last-child {
         a {
