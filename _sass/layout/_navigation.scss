@@ -269,12 +269,34 @@
                 transform: scaleX(0); /* hide*/
       }
 
-      &:hover:before {
+      // 悬停时：隐藏下划线，将七彩渐变应用到文字本身
+      &:hover,
+      &:focus {
+        color: transparent;
+        background: linear-gradient(
+          90deg,
+          #ff5f6d,
+          #ffc371,
+          #ffd700,
+          #a0ff9f,
+          #70cfff,
+          #a18cd1,
+          #ff7eb3
+        );
+        background-size: 200% 100%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         -webkit-animation: nav-gold-shimmer 1.5s linear infinite;
                 animation: nav-gold-shimmer 1.5s linear infinite;
-        -webkit-transform: scaleX(1);
-            -ms-transform: scaleX(1);
-                transform: scaleX(1); /* reveal*/
+      }
+
+      &:hover:before {
+        -webkit-animation: none;
+                animation: none;
+        -webkit-transform: scaleX(0);
+            -ms-transform: scaleX(0);
+                transform: scaleX(0); /* keep hidden*/
       }
     }
   }
