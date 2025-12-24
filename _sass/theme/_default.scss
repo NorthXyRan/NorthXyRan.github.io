@@ -47,4 +47,8 @@ $sidebar-screen-min-width   : 1024px;
     --header-border-color               : #{$lighter-gray};
     --header-link-color                 : #{$dark-gray};
     --header-link-color-hover           : mix(#000, #{$gray}, 25%);
+
+    /* Whale background controls */
+    --whale-opacity                     : 0.08;
+    --whale-filter                      : none;
 }

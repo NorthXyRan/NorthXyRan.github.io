@@ -54,6 +54,10 @@ $sidebar-screen-min-width   : 1024px;
     --header-border-color               : #e6e6e6;
     --header-link-color                 : #4a4a4a;
     --header-link-color-hover           : #2f7f93;
+
+    /* Whale background controls */
+    --whale-opacity                     : 0.12;
+    --whale-filter                      : invert(1);
 }
 
 [data-theme="dark"] .news-date {
