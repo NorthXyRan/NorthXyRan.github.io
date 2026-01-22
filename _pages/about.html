@@ -14,7 +14,7 @@ redirect_from:
   {% endif %}
 
   <section id="about-intro" class="panel">
-    <h2 class="panel__title">👨‍🎓 About me</h2>
+    <h2 class="panel__title">Hi! Here is Daniel!</h2>
     <p class="about-hero__bio section-copy">
       I'm a fourth-year undergraduate student from the
       <a href="https://www2.scut.edu.cn/sse/" target="_blank" rel="noopener" class="section-link">School of Software Engineering</a>,
@@ -41,15 +41,20 @@ redirect_from:
   </section>
 
   <section id="publications" class="panel">
-    <h2 class="panel__title">🖊️ Publications</h2>
+    <h2 class="panel__title">PUBLICATIONS</h2>
     {% assign publications = site.data.publications %}
     {% if publications and publications.size > 0 %}
     <div class="publications-section">
       {% for pub in publications %}
       <article class="publication-entry">
         <div class="publication-text">
-          {% if pub.href %}
-          <h3><a href="{{ pub.href | relative_url }}">{{ pub.title }}</a></h3>
+          {% if pub.url %}
+            {% if pub.url contains '://' %}
+              {% assign publication_href = pub.url %}
+            {% else %}
+              {% assign publication_href = pub.url | relative_url %}
+            {% endif %}
+          <h3><a href="{{ publication_href }}" target="_blank" rel="noopener">{{ pub.title }}</a></h3>
           {% else %}
           <h3>{{ pub.title }}</h3>
           {% endif %}
@@ -76,6 +81,26 @@ redirect_from:
             {% endif %}
           </p>
           {% endif %}
+          {% if pub.pdf or pub.video %}
+          <div class="publication-actions">
+            {% if pub.pdf %}
+              {% if pub.pdf contains '://' %}
+                {% assign pdf_href = pub.pdf %}
+              {% else %}
+                {% assign pdf_href = pub.pdf | relative_url %}
+              {% endif %}
+            <a class="publication-btn" href="{{ pdf_href }}" target="_blank" rel="noopener">PDF</a>
+            {% endif %}
+            {% if pub.video %}
+              {% if pub.video contains '://' %}
+                {% assign video_href = pub.video %}
+              {% else %}
+                {% assign video_href = pub.video | relative_url %}
+              {% endif %}
+            <a class="publication-btn" href="{{ video_href }}" target="_blank" rel="noopener">Video</a>
+            {% endif %}
+          </div>
+          {% endif %}
         </div>
         {% if pub.image %}
         <div class="publication-figure">
@@ -91,7 +116,7 @@ redirect_from:
   </section>
 
   <section id="misc" class="panel">
-    <h2 class="panel__title">❤️‍🔥 Miscellaneous</h2>
+    <h2 class="panel__title">❤️‍🔥 MISCELLANEOUS</h2>
     <ul class="misc-list section-copy">
       <li>I have played piano since age three; by nine I passed the China Musicians Association Level 10 exam and later earned the ABRSM Grade 8 Performance Diploma. I still accompany university events ranging from conducting classes to graduation concerts.</li>
       <li>I stay active through basketball, tennis, swimming, and fitness.</li>
@@ -102,6 +127,15 @@ redirect_from:
 
 
 <style>
+  @font-face {
+    font-family: "ComicCustom";
+    src: url("/assets/fonts/ComicSansMS.woff") format("woff"),
+         url("/assets/fonts/ComicSansMS.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
   #main {
     width: 100%;
     max-width: none;
@@ -131,9 +165,32 @@ redirect_from:
 
   .about-page {
     --panel-stack-spacing: 1rem;
+    --news-scroll-track-color: rgba(0, 0, 0, 0.08);
+    --news-scroll-thumb-solid: #5a48f8;
+    --news-scroll-thumb-gradient: linear-gradient(180deg, #7d5efc, #3f89ff);
+    --news-scroll-thumb-gradient-hover: linear-gradient(180deg, #6c7dff, #36b4ff);
+    --publication-btn-text-color: #2744ff;
+    --publication-btn-text-hover: #0e24d9;
+    --publication-btn-bg: transparent;
+    --publication-btn-bg-hover: rgba(93, 117, 255, 0.08);
+    --publication-btn-border: rgba(41, 73, 255, 0.55);
+    --publication-btn-border-hover: #214dff;
     display: flex;
     flex-direction: column;
     gap: var(--panel-stack-spacing);
+  }
+
+  [data-theme="dark"] .about-page {
+    --news-scroll-track-color: rgba(255, 255, 255, 0.2);
+    --news-scroll-thumb-solid: #b7ccff;
+    --news-scroll-thumb-gradient: linear-gradient(180deg, #bc80ff, #59ddff);
+    --news-scroll-thumb-gradient-hover: linear-gradient(180deg, #dba1ff, #7ff6ff);
+    --publication-btn-text-color: #ccd6ff;
+    --publication-btn-text-hover: #fff;
+    --publication-btn-bg: rgba(255, 255, 255, 0.05);
+    --publication-btn-bg-hover: rgba(255, 255, 255, 0.15);
+    --publication-btn-border: rgba(206, 216, 255, 0.6);
+    --publication-btn-border-hover: #fff;
   }
 
   .panel {
@@ -147,6 +204,7 @@ redirect_from:
     gap: 0.5rem;
     font-size: 1.4rem;
     font-weight: 700;
+    font-family: "ComicCustom", "Comic Sans MS", "Comic Sans", cursive;
     margin-top: 0;
     margin-bottom: 0.5rem;
     border-bottom: 1px solid var(--global-border-color);
@@ -196,6 +254,34 @@ redirect_from:
     margin-bottom: 0.75rem;
   }
 
+  .news-list {
+    max-height: clamp(16rem, 45vh, 24rem);
+    overflow-y: auto;
+    padding-right: 0.35rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--news-scroll-thumb-solid) var(--news-scroll-track-color);
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+  }
+
+  .news-list::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .news-list::-webkit-scrollbar-track {
+    background: var(--news-scroll-track-color);
+    border-radius: 999px;
+  }
+
+  .news-list::-webkit-scrollbar-thumb {
+    background-image: var(--news-scroll-thumb-gradient);
+    border-radius: 999px;
+  }
+
+  .news-list::-webkit-scrollbar-thumb:hover {
+    background-image: var(--news-scroll-thumb-gradient-hover);
+  }
+
   .news-text {
     flex: 1;
   }
@@ -233,6 +319,36 @@ redirect_from:
 
   .publication-text h3 a {
     --link-color: inherit;
+  }
+
+  .publication-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 0.35rem;
+  }
+
+  .publication-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0rem 0.5rem;
+    border-radius: 10px;
+    color: var(--publication-btn-text-color);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    background-color: var(--publication-btn-bg);
+    border: 1.5px solid var(--publication-btn-border);
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .publication-btn:hover,
+  .publication-btn:focus-visible {
+    color: var(--publication-btn-text-hover);
+    border-color: var(--publication-btn-border-hover);
+    background-color: var(--publication-btn-bg-hover);
   }
 
   .publication-figure {
@@ -297,6 +413,9 @@ redirect_from:
   }
 
   @media (max-width: 1023px) {
+    .news-list {
+      max-height: min(60vh, 22rem);
+    }
     .news-list li {
       flex-direction: column;
       align-items: flex-start;
