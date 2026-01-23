@@ -24,10 +24,22 @@ redirect_from:
             --pub-abstract: 20px;
             --pub-button: 16px;
             --publication-abstract-color: #6e6e73;
+            --publication-btn-text-color: #2744ff;
+            --publication-btn-text-hover: #0e24d9;
+            --publication-btn-bg: transparent;
+            --publication-btn-bg-hover: rgba(93, 117, 255, 0.08);
+            --publication-btn-border: rgba(41, 73, 255, 0.55);
+            --publication-btn-border-hover: #214dff;
         }
 
         [data-theme="dark"] {
             --publication-abstract-color: #d6d7db;
+            --publication-btn-text-color: #ccd6ff;
+            --publication-btn-text-hover: #fff;
+            --publication-btn-bg: rgba(255, 255, 255, 0.05);
+            --publication-btn-bg-hover: rgba(255, 255, 255, 0.15);
+            --publication-btn-border: rgba(206, 216, 255, 0.6);
+            --publication-btn-border-hover: #fff;
         }
 
         @media (max-width: 600px) {
@@ -263,6 +275,36 @@ redirect_from:
             text-decoration: none;
         }
 
+        .publication-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.35rem;
+        }
+
+        .publication-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0rem 0.5rem;
+            border-radius: 10px;
+            color: var(--publication-btn-text-color);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.01em;
+            text-decoration: none;
+            background-color: var(--publication-btn-bg);
+            border: 1.5px solid var(--publication-btn-border);
+            transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .publication-btn:hover,
+        .publication-btn:focus-visible {
+            color: var(--publication-btn-text-hover);
+            border-color: var(--publication-btn-border-hover);
+            background-color: var(--publication-btn-bg-hover);
+        }
+
         @media (max-width: 1023px) {
             .publications-container {
                 margin: 20px auto;
@@ -376,6 +418,27 @@ redirect_from:
                     <div class="publication__abstract-wrapper collapsed" data-abstract-collapsible>
                       <span class="publication__label">Abstract</span>
                       <p class="publication__abstract">{{ pub.abstract }}<span class="publication__abstract-toggle" aria-expanded="false" aria-label="展开摘要">▼</span></p>
+                    </div>
+                  {% endif %}
+
+                  {% if pub.pdf or pub.video %}
+                    <div class="publication-actions">
+                      {% if pub.pdf %}
+                        {% if pub.pdf contains '://' %}
+                          {% assign pdf_href = pub.pdf %}
+                        {% else %}
+                          {% assign pdf_href = pub.pdf | relative_url %}
+                        {% endif %}
+                        <a class="publication-btn" href="{{ pdf_href }}" target="_blank" rel="noopener">PDF</a>
+                      {% endif %}
+                      {% if pub.video %}
+                        {% if pub.video contains '://' %}
+                          {% assign video_href = pub.video %}
+                        {% else %}
+                          {% assign video_href = pub.video | relative_url %}
+                        {% endif %}
+                        <a class="publication-btn" href="{{ video_href }}" target="_blank" rel="noopener">Video</a>
+                      {% endif %}
                     </div>
                   {% endif %}
                 </div>
