@@ -159,7 +159,6 @@ a:hover {
 
 .bio-right p {
   margin: 0 0 20px;
-  font-size: 18px;
   line-height: 1.55;
   max-width: 760px;
 }
@@ -175,6 +174,28 @@ h2 {
   margin: 0;
   font-size: 42px;
   color: #555;
+}
+
+.bio-right p {
+  font-size: 20px;
+}
+
+.news-date {
+  font-size: 18px;
+}
+
+.education-meta,
+.education-main,
+.news-text,
+.pub-meta,
+.pub-authors,
+.pub-links {
+  font-size: 16px;
+}
+
+.pub-note,
+.pub-abstract {
+  font-size: 14px;
 }
 
 .section-heading {
@@ -196,7 +217,6 @@ h2 {
 
 .education-meta {
   text-align: right;
-  font-size: 16px;
   color: #555;
   line-height: 1.5;
 }
@@ -206,7 +226,6 @@ h2 {
 }
 
 .education-main {
-  font-size: 16px;
   color: #444;
 }
 
@@ -256,18 +275,15 @@ h2 {
 }
 
 .news-date {
-  font-size: 18px;
   color: #3f3f3f;
   text-align: right;
 }
 
 .news-text {
-  font-size: 16px;
 }
 
 .pub-note {
   color: #666;
-  font-size: 14px;
 }
 
 .pub-tabs {
@@ -339,7 +355,6 @@ h2 {
 .pub-meta,
 .pub-authors {
   margin: 0;
-  font-size: 16px;
   color: #595959;
 }
 
@@ -357,7 +372,6 @@ h2 {
   margin-top: 12px;
   display: flex;
   gap: 22px;
-  font-size: 16px;
 }
 
 .pub-links-row {
@@ -391,7 +405,6 @@ h2 {
 .pub-abstract {
   display: none;
   margin-top: 8px;
-  font-size: 14px;
   color: #555;
 }
 
@@ -401,12 +414,14 @@ h2 {
 
 @media (max-width: 1200px) {
   .name { font-size: 58px; }
-  .name-cn { font-size: 34px; }
-  .bio-right p { font-size: 17px; }
+  .name-cn { font-size: 27px; }
+  .bio-right p { font-size: 18px; }
   h2 { font-size: 34px; }
   .news-date { font-size: 17px; }
-  .news-text { font-size: 15px; }
-  .tab { font-size: 15px; }
+  .news-text,
+  .tab {
+    font-size: 15px;
+  }
   .pub-title { font-size: 24px; }
   .cv-link { font-size: 34px; }
   .bio-tip { font-size: 13px; }
