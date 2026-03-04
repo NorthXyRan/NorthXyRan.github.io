@@ -62,6 +62,10 @@ function updatePager() {
   if (!pager) return;
 
   const maxPage = Math.max(1, Math.ceil(NEWS.length / newsPerPage));
+  const isMobile =
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(max-width: 820px)").matches;
 
   if (maxPage <= 1) {
     pager.style.display = "none";
@@ -72,8 +76,21 @@ function updatePager() {
   pager.style.display = "flex";
 
   let pagesHtml = "";
-  for (let i = 1; i <= maxPage; i += 1) {
-    pagesHtml += `<button class="pager-num${i === newsPage ? " is-active" : ""}" data-news-page="${i}">${i}</button>`;
+
+  if (isMobile) {
+    // 在移动端最多只显示两个页码，如：
+    // 当前在第 1 页：1, 2
+    // 当前在第 2 页：2, 3
+    // 当前在第 3 页：3, 4 ...
+    let start = Math.min(newsPage, Math.max(1, maxPage - 1));
+    let end = Math.min(maxPage, start + 1);
+    for (let i = start; i <= end; i += 1) {
+      pagesHtml += `<button class="pager-num${i === newsPage ? " is-active" : ""}" data-news-page="${i}">${i}</button>`;
+    }
+  } else {
+    for (let i = 1; i <= maxPage; i += 1) {
+      pagesHtml += `<button class="pager-num${i === newsPage ? " is-active" : ""}" data-news-page="${i}">${i}</button>`;
+    }
   }
 
   pager.innerHTML = `

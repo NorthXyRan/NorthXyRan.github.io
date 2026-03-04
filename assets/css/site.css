@@ -454,22 +454,45 @@ h2 {
     font-size: 12px;
   }
   .education-item {
-    grid-template-columns: 1fr;
-    row-gap: 6px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "meta logo"
+      "main logo";
+    column-gap: 12px;
+    row-gap: 4px;
+    align-items: center;
   }
   .education-meta {
+    grid-area: meta;
     text-align: left;
     font-size: 14px;
     display: flex;
     column-gap: 12px;
     align-items: center;
   }
+  .education-main {
+    grid-area: main;
+  }
   .education-time,
   .education-place {
     white-space: nowrap;
   }
   .education-logo {
-    margin-top: 4px;
+    grid-area: logo;
+    margin-top: 0;
+    justify-self: flex-end;
+  }
+  .education-logo img {
+    content: url("/images/logo/SCUT_2.png");
+  }
+  #news .section-title-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+  #news .pager {
+    margin-left: auto;
   }
   .mobile-nav {
     width: 160px;
