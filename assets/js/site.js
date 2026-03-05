@@ -241,10 +241,10 @@ function renderPubs() {
           <div class="pub-links-row">
             <div class="pub-links">
               <a href="${p.pdf}" target="_blank" rel="noopener">
-                <i class="fa-solid fa-file-pdf"></i>&nbsp;pdf
+                <i class="fa-solid fa-file-pdf"></i>&nbsp;PDF
               </a>
               <a href="${p.video}" target="_blank" rel="noopener">
-                <i class="fa-solid fa-circle-play"></i>&nbsp;video
+                <i class="fa-solid fa-circle-play"></i>&nbsp;VIDEO
               </a>
             </div>
             ${
