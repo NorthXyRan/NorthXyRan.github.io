@@ -5,6 +5,62 @@ let newsPage = 1;
 const newsPerPage = 3;
 let currentFilter = "all";
 
+const THEME_KEY = "nx_theme";
+
+function getStoredTheme() {
+  try {
+    const t = localStorage.getItem(THEME_KEY);
+    return t === "dark" || t === "light" ? t : null;
+  } catch {
+    return null;
+  }
+}
+
+function getSystemTheme() {
+  return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  document.documentElement.style.colorScheme = theme;
+
+  const btn = document.querySelector(".theme-btn");
+  if (!btn) return;
+
+  const next = theme === "dark" ? "light" : "dark";
+  btn.setAttribute("aria-label", `Switch to ${next} mode`);
+  btn.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+  btn.classList.toggle("is-dark", theme === "dark");
+}
+
+function setupThemeToggle() {
+  const btn = document.querySelector(".theme-btn");
+  if (!btn) return;
+
+  const initial = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+  applyTheme(initial);
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const current = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+    const next = current === "dark" ? "light" : "dark";
+    applyTheme(next);
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch {}
+  });
+
+  // Follow system changes only when user hasn't set an explicit preference.
+  const mq = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+  if (!mq) return;
+  const onChange = () => {
+    if (getStoredTheme() !== null) return;
+    applyTheme(getSystemTheme());
+  };
+  if (typeof mq.addEventListener === "function") mq.addEventListener("change", onChange);
+  else if (typeof mq.addListener === "function") mq.addListener(onChange);
+}
+
 function setupMenuNav() {
   const nav = document.querySelector(".mobile-nav");
   const btn = document.querySelector(".menu-btn");
@@ -51,7 +107,7 @@ function setupMenuNav() {
     if (!nav.classList.contains("is-open")) return;
     const target = e.target;
     if (!(target instanceof HTMLElement)) return;
-    if (!target.closest(".mobile-nav") && !target.closest(".menu-btn")) {
+    if (!target.closest(".mobile-nav") && !target.closest(".menu-btn") && !target.closest(".theme-btn")) {
       closeNav();
     }
   });
@@ -307,6 +363,7 @@ document.addEventListener("click", (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", async () => {
+  setupThemeToggle();
   setupMenuNav();
   await loadNewsFromYaml();
   await loadPubsFromYaml();

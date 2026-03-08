@@ -1,9 +1,49 @@
 :root {
+  color-scheme: light;
   --bg: #ececec;
+  --bg-tint: rgba(143, 77, 77, 0.08);
   --text: #272727;
-  --muted: #7d7d7d;
+  --text-soft: #444;
+  --text-mid: #595959;
+  --heading: #555;
+  --muted: #666;
+  --subtle: #7d7d7d;
   --accent: #8f4d4d;
+  --accent-strong: #6d3b3b;
+  --accent-underline: #7d4545;
+  --focus-ring: rgba(143, 77, 77, 0.45);
   --line: #d7d7d7;
+  --control-fg: #333;
+  --control-hover-bg: rgba(0, 0, 0, 0.06);
+  --pill-bg: #d9d9d9;
+  --nav-bg: #707070;
+  --nav-fg: #f3f3f3;
+  --nav-link: #e6e6e6;
+  --nav-link-hover: #ffffff;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111114;
+  --bg-tint: rgba(220, 168, 168, 0.12);
+  --text: #ececf2;
+  --text-soft: #c9c9d3;
+  --text-mid: #c8c8d2;
+  --heading: #d7d7e0;
+  --muted: #b2b2bd;
+  --subtle: #9a9aa6;
+  --accent: #e2b0b0;
+  --accent-strong: #f0c3c3;
+  --accent-underline: #c97f7f;
+  --focus-ring: rgba(240, 195, 195, 0.38);
+  --line: #2a2a33;
+  --control-fg: #ececf2;
+  --control-hover-bg: rgba(255, 255, 255, 0.1);
+  --pill-bg: #2a2a33;
+  --nav-bg: #1f1f25;
+  --nav-fg: #f0f0f6;
+  --nav-link: #dadbe5;
+  --nav-link-hover: #ffffff;
 }
 
 * {
@@ -12,7 +52,7 @@
 
 body {
   margin: 0;
-  background: var(--bg);
+  background: radial-gradient(900px circle at 18% 0%, var(--bg-tint), transparent 60%), var(--bg);
   color: var(--text);
   font-family: "Avenir Next", "Helvetica Neue", "Segoe UI", sans-serif;
   line-height: 1.45;
@@ -39,6 +79,76 @@ a:hover {
   align-items: flex-start;
 }
 
+.topbar-actions {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 1100;
+}
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  color: var(--control-fg);
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background: var(--control-hover-bg);
+}
+
+.icon-btn:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.theme-glyph {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.theme-icon {
+  position: absolute;
+  inset: 0;
+  font-size: 18px;
+  line-height: 20px;
+  text-align: center;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.theme-icon-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.theme-icon-moon {
+  opacity: 0;
+  transform: rotate(24deg) scale(0.78);
+}
+
+.theme-btn.is-dark .theme-icon-sun {
+  opacity: 0;
+  transform: rotate(-20deg) scale(0.78);
+}
+
+.theme-btn.is-dark .theme-icon-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
 .name {
   margin: 0;
   font-size: 60px;
@@ -47,21 +157,13 @@ a:hover {
 }
 
 .name-cn {
-  color: #a1a1a1;
+  color: var(--subtle);
   font-size: 24px;
   font-weight: 500;
 }
 
 .menu-btn {
-  background: transparent;
-  border: none;
   font-size: 26px;
-  color: #333;
-  cursor: pointer;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1100;
 }
 
 .mobile-nav {
@@ -71,8 +173,8 @@ a:hover {
   height: auto;
   width: 260px;
   max-width: 75%;
-  background: #707070;
-  color: #f3f3f3;
+  background: var(--nav-bg);
+  color: var(--nav-fg);
   padding: 16px 24px;
   display: none;
   z-index: 1000;
@@ -93,13 +195,13 @@ a:hover {
 }
 
 .mobile-nav-list a {
-  color: #e6e6e6;
+  color: var(--nav-link);
   text-decoration: none;
 }
 
 .mobile-nav-list a:hover,
 .mobile-nav-link:hover {
-  color: #ffffff;
+  color: var(--nav-link-hover);
 }
 
 .mobile-nav-link {
@@ -107,7 +209,7 @@ a:hover {
   border: none;
   padding: 0;
   margin: 0;
-  color: #e6e6e6;
+  color: var(--nav-link);
   font: inherit;
   cursor: pointer;
   text-align: left;
@@ -154,7 +256,7 @@ a:hover {
 .bio-tip {
   margin-top: 26px;
   font-size: 13px;
-  color: #5e5e5e;
+  color: var(--subtle);
 }
 
 .bio-right p {
@@ -173,7 +275,7 @@ a:hover {
 h2 {
   margin: 0;
   font-size: 42px;
-  color: #555;
+  color: var(--heading);
 }
 
 .bio-right p {
@@ -217,7 +319,7 @@ h2 {
 
 .education-meta {
   text-align: right;
-  color: #555;
+  color: var(--heading);
   line-height: 1.5;
 }
 
@@ -226,7 +328,7 @@ h2 {
 }
 
 .education-main {
-  color: #444;
+  color: var(--text-soft);
 }
 
 .education-degree {
@@ -255,7 +357,7 @@ h2 {
 .tab {
   border: none;
   background: transparent;
-  color: #333;
+  color: var(--control-fg);
   font-size: 14px;
   cursor: pointer;
 }
@@ -264,7 +366,7 @@ h2 {
   width: 24px;
   height: 24px;
   border-radius: 999px;
-  background: #d9d9d9;
+  background: var(--pill-bg);
 }
 
 .news-row {
@@ -275,7 +377,7 @@ h2 {
 }
 
 .news-date {
-  color: #3f3f3f;
+  color: var(--text-soft);
   text-align: right;
 }
 
@@ -283,7 +385,7 @@ h2 {
 }
 
 .pub-note {
-  color: #666;
+  color: var(--muted);
 }
 
 .pub-tabs {
@@ -296,12 +398,12 @@ h2 {
 
 .tab {
   font-size: 16px;
-  color: #666;
+  color: var(--muted);
 }
 
 .tab.is-active {
-  color: #4d2a2a;
-  border-bottom: 4px solid #7d4545;
+  color: var(--accent-strong);
+  border-bottom: 4px solid var(--accent-underline);
   padding-bottom: 8px;
 }
 
@@ -349,17 +451,17 @@ h2 {
   margin: 0 0 6px;
   font-size: 24px;
   font-weight: 600;
-  color: #6d3b3b;
+  color: var(--accent-strong);
 }
 
 .pub-meta,
 .pub-authors {
   margin: 0;
-  color: #595959;
+  color: var(--text-mid);
 }
 
 .pub-authors a {
-  color: #595959;
+  color: inherit;
   text-decoration: none;
 }
 
@@ -385,7 +487,7 @@ h2 {
 .pub-abstract-toggle {
   border: none;
   background: transparent;
-  color: #666;
+  color: var(--muted);
   font-size: 14px;
   cursor: pointer;
   display: inline-flex;
@@ -405,7 +507,7 @@ h2 {
 .pub-abstract {
   display: none;
   margin-top: 8px;
-  color: #555;
+  color: var(--heading);
 }
 
 .pub-abstract.is-open {
@@ -502,5 +604,18 @@ h2 {
   .mobile-nav-list {
     gap: 12px;
     font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body,
+  .mobile-nav,
+  .icon-btn,
+  .pager-num.is-active,
+  .tab.is-active {
+    transition:
+      background-color 0.18s ease,
+      color 0.18s ease,
+      border-color 0.18s ease;
   }
 }

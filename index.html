@@ -4,8 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Fengyan's personal homepage" />
+    <meta name="color-scheme" content="light dark" />
     <title>Fengyan Lin</title>
     <link rel="icon" href="/favicon.ico" />
+    <script>
+      // Apply theme before first paint to avoid a flash when user/system prefers dark.
+      (() => {
+        const KEY = "nx_theme";
+        let stored = null;
+        try {
+          stored = localStorage.getItem(KEY);
+        } catch {}
+        const prefersDark =
+          typeof window !== "undefined" &&
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = stored === "dark" || stored === "light" ? stored : prefersDark ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
     <link rel="stylesheet" href="/assets/css/site.css" />
     <link
       rel="stylesheet"
@@ -19,7 +37,15 @@
     <div class="page">
       <header class="topbar">
         <h1 class="name">Fengyan Lin <span class="name-cn">(林丰衍)</span></h1>
-        <button class="menu-btn" aria-label="Open menu">☰</button>
+        <div class="topbar-actions" aria-label="Page actions">
+          <button type="button" class="theme-btn icon-btn" aria-label="Toggle dark mode" aria-pressed="false">
+            <span class="theme-glyph" aria-hidden="true">
+              <i class="fa-regular fa-sun theme-icon theme-icon-sun"></i>
+              <i class="fa-regular fa-moon theme-icon theme-icon-moon"></i>
+            </span>
+          </button>
+          <button type="button" class="menu-btn icon-btn" aria-label="Open menu">☰</button>
+        </div>
       </header>
 
       <nav class="mobile-nav" aria-label="Site navigation">
