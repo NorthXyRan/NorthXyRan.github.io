@@ -68,11 +68,13 @@ function setupMenuNav() {
 
   function openNav() {
     nav.classList.add("is-open");
+    btn.classList.add("is-open");
     btn.setAttribute("aria-expanded", "true");
   }
 
   function closeNav() {
     nav.classList.remove("is-open");
+    btn.classList.remove("is-open");
     btn.setAttribute("aria-expanded", "false");
   }
 
