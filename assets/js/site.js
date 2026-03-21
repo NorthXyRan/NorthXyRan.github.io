@@ -178,7 +178,7 @@ function renderNews() {
 
 async function loadNewsFromYaml() {
   try {
-    const res = await fetch("/data/news.yml");
+    const res = await fetch("/data/news.yml?v=2");
     if (!res.ok) throw new Error("Failed to load news.yml");
     const text = await res.text();
     const parsed = window.jsyaml ? window.jsyaml.load(text) : jsyaml.load(text);
@@ -196,7 +196,7 @@ async function loadNewsFromYaml() {
 
 async function loadPubsFromYaml() {
   try {
-    const res = await fetch("/data/publications.yml");
+    const res = await fetch("/data/publications.yml?v=2");
     if (!res.ok) throw new Error("Failed to load publications.yml");
     const text = await res.text();
     const parsed = window.jsyaml ? window.jsyaml.load(text) : jsyaml.load(text);
@@ -244,6 +244,7 @@ async function loadPubsFromYaml() {
         return {
           title: p.title || "",
           venue: p.conference || p.venue || "",
+          venueShort: p.conference_short || p.venue_short || "",
           authors: authorsHtml,
           image: p.image || "",
           pdf: p.pdf || p.href || "",
@@ -279,7 +280,15 @@ function renderPubs() {
           </h3>
           <div class="pub-header">
             <div class="pub-header-main">
-              <p class="pub-meta"><em>${p.venue}</em></p>
+              <div class="pub-meta">
+                ${
+                  p.venue
+                    ? `<span class="venue-tag ${
+                        p.venueShort ? `tag-${p.venueShort.toLowerCase()}` : "tag-default"
+                      }">${p.venue}</span>`
+                    : ""
+                }
+              </div>
               <p class="pub-authors">${p.authors}</p>
             </div>
             ${

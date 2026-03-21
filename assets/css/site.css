@@ -67,6 +67,14 @@ a:hover {
   text-decoration: underline;
 }
 
+.blue-link {
+  color: #0056b3 !important;
+}
+
+html[data-theme="dark"] .blue-link {
+  color: #7ab4ff !important;
+}
+
 .page {
   max-width: 1220px;
   margin: 0 auto;
@@ -474,6 +482,48 @@ h2 {
   color: var(--text-mid);
 }
 
+.pub-meta {
+  margin-bottom: 4px;
+}
+
+/* Venue Tag Base */
+.venue-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 16px;
+  font-weight: 720;
+  border-radius: 4px;
+  color: var(--tag-color, var(--text-mid));
+  background: var(--tag-bg, transparent);
+  line-height: 1.4;
+}
+
+/* --- Specific Conference Colors --- */
+
+/* CHI */
+.venue-tag.tag-chi {
+  --tag-color: #0066cc;
+  --tag-border: #4da6ff;
+  --tag-bg: rgba(77, 166, 255, 0.1);
+}
+html[data-theme="dark"] .venue-tag.tag-chi {
+  --tag-color: #66b3ff;
+  --tag-border: #3399ff;
+  --tag-bg: rgba(102, 179, 255, 0.15);
+}
+
+/* Example for future venues (you can add more like this) */
+.venue-tag.tag-uist {
+  --tag-color: #0066cc;
+  --tag-border: #4da6ff;
+  --tag-bg: rgba(77, 166, 255, 0.1);
+}
+html[data-theme="dark"] .venue-tag.tag-uist {
+  --tag-color: #66b3ff;
+  --tag-border: #3399ff;
+  --tag-bg: rgba(102, 179, 255, 0.15);
+}
+
 .pub-authors a {
   color: inherit;
   text-decoration: none;
@@ -558,6 +608,11 @@ h2 {
     justify-content: center;
   }
   .pub-card { grid-template-columns: 1fr; }
+  .pub-title { font-size: 20px; }
+  .pub-meta, .pub-authors { font-size: 14px; }
+  .venue-tag { font-size: 14px; padding: 2px 6px; }
+  .pub-header-logo img { max-height: 32px; }
+  .pub-links { font-size: 14px; gap: 14px; }
   .news-row { grid-template-columns: 1fr; gap: 4px; }
   .news-date { text-align: left; }
   .pub-tabs { flex-wrap: wrap; }
