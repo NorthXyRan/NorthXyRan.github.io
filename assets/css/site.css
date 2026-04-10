@@ -491,7 +491,7 @@ h2 {
   display: inline-block;
   padding: 2px 8px;
   font-size: 16px;
-  font-weight: 720;
+  font-weight: 650;
   border-radius: 4px;
   color: var(--tag-color, var(--text-mid));
   background: var(--tag-bg, transparent);
@@ -610,7 +610,6 @@ html[data-theme="dark"] .venue-tag.tag-uist {
   .pub-card { grid-template-columns: 1fr; }
   .pub-title { font-size: 20px; }
   .pub-meta, .pub-authors { font-size: 14px; }
-  .venue-tag { font-size: 14px; padding: 2px 6px; }
   .pub-header-logo img { max-height: 32px; }
   .pub-links { font-size: 14px; gap: 14px; }
   .news-row { grid-template-columns: 1fr; gap: 4px; }
