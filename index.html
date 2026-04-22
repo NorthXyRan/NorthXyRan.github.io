@@ -24,7 +24,7 @@
         document.documentElement.style.colorScheme = theme;
       })();
     </script>
-    <link rel="stylesheet" href="/assets/css/site.css?v=3" />
+    <link rel="stylesheet" href="/assets/css/site.css?v=5" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -59,6 +59,7 @@
           <li><a href="#news">News</a></li>
           <li><a href="#publications">Publications</a></li>
           <li><a href="#misc">Miscellaneous</a></li>
+          <li><a href="#gallery">Gallery</a></li>
         </ul>
       </nav>
 
@@ -169,9 +170,27 @@
           I stay active through basketball, tennis, swimming, and fitness. I'm also an amateur photographer who enjoys film cameras and drones.
         </p>
       </section>
+
+      <section id="gallery" class="section-gap">
+        <div class="section-title-row">
+          <h2 class="section-heading"># Gallery</h2>
+        </div>
+        <div class="gallery" aria-roledescription="carousel" aria-label="Photography" tabindex="0">
+          <div class="gallery-viewport">
+            <div class="gallery-track" id="gallery-track"></div>
+            <button type="button" class="gallery-nav gallery-prev" aria-label="Previous photo">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button type="button" class="gallery-nav gallery-next" aria-label="Next photo">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+          <div class="gallery-dots" id="gallery-dots" role="tablist" aria-label="Select photo"></div>
+        </div>
+      </section>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
-    <script src="/assets/js/site.js?v=2"></script>
+    <script src="/assets/js/site.js?v=4"></script>
   </body>
 </html>

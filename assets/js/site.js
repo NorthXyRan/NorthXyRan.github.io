@@ -1,9 +1,14 @@
 let NEWS = [];
 let PUBS = [];
+let PHOTOS = [];
 
 let newsPage = 1;
 const newsPerPage = 3;
 let currentFilter = "all";
+
+let galleryIndex = 0;
+let galleryTimer = null;
+const GALLERY_INTERVAL = 3000;
 
 const THEME_KEY = "nx_theme";
 
@@ -334,6 +339,198 @@ function renderPubs() {
     .join("");
 }
 
+async function loadPhotosFromYaml() {
+  try {
+    const res = await fetch("/data/photograph.yml?v=2");
+    if (!res.ok) throw new Error("Failed to load photograph.yml");
+    const text = await res.text();
+    const parsed = window.jsyaml ? window.jsyaml.load(text) : jsyaml.load(text);
+    if (Array.isArray(parsed)) {
+      PHOTOS = parsed
+        .map((p) => ({ src: p.src || "", alt: p.alt || "" }))
+        .filter((p) => p.src);
+    }
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+function setupGallery() {
+  const gallery = document.querySelector(".gallery");
+  const track = document.getElementById("gallery-track");
+  const dotsBox = document.getElementById("gallery-dots");
+  if (!gallery || !track || !dotsBox || PHOTOS.length === 0) return;
+
+  const N = PHOTOS.length;
+  const useLoop = N >= 2;
+  const CLONE_COUNT = useLoop ? 2 : 0;
+  const INITIAL_POS = CLONE_COUNT;
+
+  function renderSlide(photo, realIdx, pos, isClone) {
+    const eager = Math.abs(pos - INITIAL_POS) <= 2;
+    return `
+      <div class="gallery-slide${isClone ? " is-clone" : ""}" data-idx="${realIdx}" data-pos="${pos}" role="group" aria-label="Photo ${realIdx + 1} of ${N}" aria-hidden="true">
+        <img src="${photo.src}" alt="${photo.alt}" loading="${eager ? "eager" : "lazy"}" decoding="async" draggable="false" />
+      </div>
+    `;
+  }
+
+  let html = "";
+  if (useLoop) {
+    html += renderSlide(PHOTOS[N - 2 < 0 ? 0 : N - 2], (N - 2 + N) % N, 0, true);
+    html += renderSlide(PHOTOS[N - 1], N - 1, 1, true);
+  }
+  for (let i = 0; i < N; i++) {
+    html += renderSlide(PHOTOS[i], i, i + CLONE_COUNT, false);
+  }
+  if (useLoop) {
+    html += renderSlide(PHOTOS[0], 0, N + CLONE_COUNT, true);
+    html += renderSlide(PHOTOS[1 % N], 1 % N, N + CLONE_COUNT + 1, true);
+  }
+  track.innerHTML = html;
+
+  dotsBox.innerHTML = PHOTOS.map(
+    (_, i) =>
+      `<button type="button" class="gallery-dot${i === 0 ? " is-active" : ""}" data-idx="${i}" aria-label="Go to photo ${i + 1}"></button>`
+  ).join("");
+
+  const slides = track.querySelectorAll(".gallery-slide");
+  const dots = dotsBox.querySelectorAll(".gallery-dot");
+  const reduceMotion =
+    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let trackPos = INITIAL_POS;
+
+  function updateVisual() {
+    slides.forEach((s) => {
+      const active = Number(s.dataset.pos) === trackPos;
+      s.classList.toggle("is-active", active);
+      s.setAttribute("aria-hidden", active ? "false" : "true");
+    });
+    dots.forEach((d) => {
+      d.classList.toggle("is-active", Number(d.dataset.idx) === galleryIndex);
+    });
+  }
+
+  function animateTo(newPos) {
+    trackPos = newPos;
+    galleryIndex = useLoop ? ((newPos - CLONE_COUNT) % N + N) % N : 0;
+    track.style.setProperty("--i", String(newPos));
+    updateVisual();
+  }
+
+  function snapTo(pos) {
+    track.style.transition = "none";
+    track.style.setProperty("--i", String(pos));
+    trackPos = pos;
+    updateVisual();
+    void track.offsetHeight;
+    track.style.transition = "";
+  }
+
+  function next() {
+    animateTo(trackPos + 1);
+  }
+  function prev() {
+    animateTo(trackPos - 1);
+  }
+
+  function stopTimer() {
+    if (galleryTimer) {
+      window.clearInterval(galleryTimer);
+      galleryTimer = null;
+    }
+  }
+
+  function startTimer() {
+    stopTimer();
+    if (reduceMotion || N <= 1) return;
+    galleryTimer = window.setInterval(next, GALLERY_INTERVAL);
+  }
+
+  track.style.setProperty("--i", String(trackPos));
+  updateVisual();
+
+  track.addEventListener("transitionend", (e) => {
+    if (!useLoop) return;
+    if (e.propertyName !== "transform") return;
+    if (e.target !== track) return;
+    if (trackPos < CLONE_COUNT) snapTo(trackPos + N);
+    else if (trackPos >= N + CLONE_COUNT) snapTo(trackPos - N);
+  });
+
+  gallery.querySelector(".gallery-prev").addEventListener("click", () => {
+    prev();
+    startTimer();
+  });
+  gallery.querySelector(".gallery-next").addEventListener("click", () => {
+    next();
+    startTimer();
+  });
+
+  dotsBox.addEventListener("click", (e) => {
+    const t = e.target;
+    if (!(t instanceof HTMLElement) || !t.classList.contains("gallery-dot")) return;
+    const idx = Number(t.dataset.idx) || 0;
+    animateTo(idx + CLONE_COUNT);
+    startTimer();
+  });
+
+  track.addEventListener("click", (e) => {
+    const slide = e.target instanceof HTMLElement ? e.target.closest(".gallery-slide") : null;
+    if (!slide) return;
+    const pos = Number(slide.dataset.pos);
+    if (Number.isNaN(pos) || pos === trackPos) return;
+    const diff = pos - trackPos;
+    if (diff === 1) next();
+    else if (diff === -1) prev();
+    else animateTo(pos);
+    startTimer();
+  });
+
+  gallery.addEventListener("mouseenter", stopTimer);
+  gallery.addEventListener("mouseleave", startTimer);
+  gallery.addEventListener("focusin", stopTimer);
+  gallery.addEventListener("focusout", startTimer);
+
+  gallery.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") {
+      prev();
+      startTimer();
+    } else if (e.key === "ArrowRight") {
+      next();
+      startTimer();
+    }
+  });
+
+  let touchStartX = null;
+  gallery.addEventListener(
+    "touchstart",
+    (e) => {
+      touchStartX = e.touches[0].clientX;
+      stopTimer();
+    },
+    { passive: true }
+  );
+  gallery.addEventListener("touchend", (e) => {
+    if (touchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) {
+      if (dx < 0) next();
+      else prev();
+    }
+    touchStartX = null;
+    startTimer();
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stopTimer();
+    else startTimer();
+  });
+
+  startTimer();
+}
+
 document.addEventListener("click", (e) => {
   const target = e.target;
   if (!(target instanceof HTMLElement)) return;
@@ -378,7 +575,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   setupMenuNav();
   await loadNewsFromYaml();
   await loadPubsFromYaml();
+  await loadPhotosFromYaml();
   newsPage = 1;
   renderNews();
   renderPubs();
+  setupGallery();
 });
