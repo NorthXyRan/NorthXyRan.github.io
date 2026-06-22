@@ -24,7 +24,7 @@
         document.documentElement.style.colorScheme = theme;
       })();
     </script>
-    <link rel="stylesheet" href="/assets/css/site.css?v=9" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -84,17 +84,23 @@
 
         <article class="bio-right">
           <p>
-            I'm currently a fourth-year undergraduate student in the
+            I am a first-year Ph.D. student in the
+            <a href="https://cse.hkust.edu.hk/" target="_blank" rel="noopener">Department of Computer Science and Engineering</a> at
+            <a href="https://hkust.edu.hk/" target="_blank" rel="noopener">HKUST</a>,
+            supervised by <a href="https://sehilyi.com/" target="_blank" rel="noopener" class="blue-link">Prof. Sehi L'Yi</a>.
+            I earned my B.Eng. degree from the
             <a href="https://www2.scut.edu.cn/sse/" target="_blank" rel="noopener">School of Software Engineering</a> at
             <a href="https://www.scut.edu.cn/new/" target="_blank" rel="noopener">South China University of Technology</a>,
             supervised by <a href="https://zkdeng.org/" target="_blank" rel="noopener" class="blue-link">Prof. Zikun Deng</a>.
-            My research interests include <strong>Human-Computer Interaction</strong>,
+            My work spans <strong>Human-Computer Interaction</strong>,
             <strong>Data Visualization</strong>, and <strong>Human-AI Collaboration</strong>.
           </p>
           <p>
-            I focus on transforming data into <strong>valuable insights</strong>,
-            <strong>compelling narratives</strong>, and <strong>aesthetic expressions</strong>.
-            I am particularly interested in data-driven communication and AI-assisted educational tools.
+            As an interdisciplinary researcher, I navigate between distinct ways of seeing and making the world:
+            seeking deeper understanding through rigorous research, materializing ideas through precise engineering,
+            connecting people and technology through empathetic design, and enriching expression through artistic sensibility.
+            I believe that truly valuable systems should not only handle complexity,
+            but also help people understand, reflect on, communicate through, and act on it.
           </p>
         </article>
       </section>
@@ -106,7 +112,25 @@
         <div class="education-list">
           <div class="education-item">
             <div class="education-meta">
-              <div class="education-time">Sept. 2022 - Present</div>
+              <div class="education-time">Sept. 2026 - Present</div>
+              <div class="education-place">Hong Kong, China</div>
+            </div>
+            <div class="education-main">
+              <div class="education-degree">Ph.D. in Computer Science and Engineering</div>
+              <div class="education-school">
+                Hong Kong University of Science and Technology
+              </div>
+            </div>
+            <div class="education-logo education-logo--mobile-tall">
+              <picture>
+                <source media="(max-width: 820px)" srcset="/images/logo/hkust-logo-icon.png" />
+                <img src="/images/logo/hkust-logo-wide.png" alt="HKUST logo" />
+              </picture>
+            </div>
+          </div>
+          <div class="education-item">
+            <div class="education-meta">
+              <div class="education-time">Sept. 2022 - Jun. 2026</div>
               <div class="education-place">Guangzhou, China</div>
             </div>
             <div class="education-main">
@@ -116,7 +140,10 @@
               </div>
             </div>
             <div class="education-logo">
-              <img src="/images/logo/SCUT.png" alt="SCUT logo" />
+              <picture>
+                <source media="(max-width: 820px)" srcset="/images/logo/scut-logo-icon.png" />
+                <img src="/images/logo/scut-logo-wide.png" alt="SCUT logo" />
+              </picture>
             </div>
           </div>
         </div>
@@ -125,13 +152,7 @@
       <section id="news" class="section-gap">
         <div class="section-title-row">
           <h2 class="section-heading"># News</h2>
-          <div class="pager" aria-label="News pages">
-            <button class="pager-btn" data-news-page="prev" aria-label="Previous">‹</button>
-            <button class="pager-num is-active" data-news-page="1">1</button>
-            <button class="pager-num" data-news-page="2">2</button>
-            <button class="pager-num" data-news-page="3">3</button>
-            <button class="pager-btn" data-news-page="next" aria-label="Next">›</button>
-          </div>
+          <div class="pager" aria-label="News pages"></div>
         </div>
         <div id="news-list" class="news-list"></div>
       </section>
@@ -192,6 +213,6 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
-    <script src="/assets/js/site.js?v=4"></script>
+    <script src="/assets/js/site.js"></script>
   </body>
 </html>
