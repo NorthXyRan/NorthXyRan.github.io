@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Fengyan Lin (林丰衍) - personal homepage" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Fengyan Lin</title>
+    <link rel="icon" type="image/x-icon" sizes="64x64" href="/favicon_64.ico" />
+    <link rel="icon" type="image/x-icon" sizes="512x512" href="/favicon_512.ico" />
+    <script>
+      // Apply theme before first paint to avoid a flash when user/system prefers dark.
+      (() => {
+        const KEY = "nx_theme";
+        let stored = null;
+        try {
+          stored = localStorage.getItem(KEY);
+        } catch {}
+        const prefersDark =
+          typeof window !== "undefined" &&
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = stored === "dark" || stored === "light" ? stored : prefersDark ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <h1 class="name">Fengyan Lin <span class="name-cn">(林丰衍)</span></h1>
+        <div class="topbar-actions" aria-label="Page actions">
+          <button type="button" class="theme-btn icon-btn" aria-label="Toggle dark mode" aria-pressed="false">
+            <span class="theme-glyph" aria-hidden="true">
+              <i class="fa-regular fa-sun theme-icon theme-icon-sun"></i>
+              <i class="fa-regular fa-moon theme-icon theme-icon-moon"></i>
+            </span>
+          </button>
+          <button type="button" class="menu-btn icon-btn" aria-label="Open menu" aria-expanded="false">
+            <span class="menu-glyph" aria-hidden="true">
+              <i class="fa-solid fa-bars menu-icon"></i>
+            </span>
+          </button>
+        </div>
+      </header>
+
+      <nav class="mobile-nav" aria-label="Site navigation">
+        <ul class="mobile-nav-list">
+          <li><button type="button" class="mobile-nav-link is-top">Bio</button></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#misc">Miscellaneous</a></li>
+        </ul>
+      </nav>
+
+      <section id="bio" class="bio-grid section-gap">
+        <aside class="bio-left">
+          <img class="avatar" src="/images/profile_2026.png" alt="Fengyan Lin" />
+          <div class="icon-row">
+            <a href="https://www.scut.edu.cn/new/" target="_blank" rel="noopener" title="School">
+              <i class="fa-solid fa-building-columns"></i>
+            </a>
+            <a href="https://scholar.google.com/citations?user=ujK_mmAAAAAJ&hl=en" target="_blank" rel="noopener" title="Google Scholar">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </a>
+            <a href="mailto:daniellin040608@gmail.com" title="Email">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="/PDF/CV.pdf" target="_blank" rel="noopener" title="CV">
+              <i class="fa-solid fa-file-lines"></i>
+            </a>
+          </div>
+        </aside>
+
+        <article class="bio-right">
+          <p>
+            I am a first-year Ph.D. student in the
+            <a href="https://cse.hkust.edu.hk/" target="_blank" rel="noopener">Department of Computer Science and Engineering</a> at
+            <a href="https://hkust.edu.hk/" target="_blank" rel="noopener">HKUST</a>,
+            supervised by <a href="https://sehilyi.com/" target="_blank" rel="noopener" class="blue-link">Prof. Sehi L'Yi</a>.
+            I earned my B.Eng. degree from the
+            <a href="https://www2.scut.edu.cn/sse/" target="_blank" rel="noopener">School of Software Engineering</a> at
+            <a href="https://www.scut.edu.cn/new/" target="_blank" rel="noopener">South China University of Technology</a>,
+            supervised by <a href="https://zkdeng.org/" target="_blank" rel="noopener" class="blue-link">Prof. Zikun Deng</a>.
+            My work spans <strong>Human-Computer Interaction</strong>,
+            <strong>Data Visualization</strong>, and <strong>Human-AI Collaboration</strong>.
+          </p>
+          <p>
+            I am interested in understanding and addressing problems from different perspectives:
+            seeking deeper understanding through rigorous research, materializing ideas through precise engineering,
+            connecting people and technology through empathetic design, and enriching expression through artistic sensibility.
+            I believe that truly valuable systems should not only handle complexity,
+            but also help people understand, reflect on, communicate through, and act on it.
+          </p>
+        </article>
+      </section>
+
+      <section id="education" class="section-gap">
+        <div class="section-title-row">
+          <h2 class="section-heading"># Education</h2>
+        </div>
+        <div class="education-list">
+          <div class="education-item">
+            <div class="education-meta">
+              <div class="education-time">Sept. 2026 - Present</div>
+              <div class="education-place">Hong Kong, China</div>
+            </div>
+            <div class="education-main">
+              <div class="education-degree">Ph.D. in Computer Science and Engineering</div>
+              <div class="education-school">
+                Hong Kong University of Science and Technology
+              </div>
+            </div>
+            <div class="education-logo education-logo--mobile-tall">
+              <picture>
+                <source media="(max-width: 820px)" srcset="/images/logo/hkust-logo-icon.png" />
+                <img src="/images/logo/hkust-logo-wide.png" alt="HKUST logo" />
+              </picture>
+            </div>
+          </div>
+          <div class="education-item">
+            <div class="education-meta">
+              <div class="education-time">Sept. 2022 - Jun. 2026</div>
+              <div class="education-place">Guangzhou, China</div>
+            </div>
+            <div class="education-main">
+              <div class="education-degree">B.Eng. in Software Engineering</div>
+              <div class="education-school">
+                South China University of Technology
+              </div>
+            </div>
+            <div class="education-logo">
+              <picture>
+                <source media="(max-width: 820px)" srcset="/images/logo/scut-logo-icon.png" />
+                <img src="/images/logo/scut-logo-wide.png" alt="SCUT logo" />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="news" class="section-gap">
+        <div class="section-title-row">
+          <h2 class="section-heading"># News</h2>
+          <div class="pager" aria-label="News pages"></div>
+        </div>
+        <div id="news-list" class="news-list"></div>
+      </section>
+
+      <section id="publications" class="section-gap">
+        <div class="section-title-row">
+          <h2 class="section-heading"># Publications</h2>
+          <div class="pub-note">*Asterisk indicates corresponding author.</div>
+        </div>
+
+        <div class="pub-tabs" role="tablist" aria-label="Publication categories">
+          <button class="tab is-active" data-filter="all">All (by Year)</button>
+          <button class="tab" data-filter="hci">HCI</button>
+          <button class="tab" data-filter="education">Education</button>
+        </div>
+
+        <div id="pub-list" class="pub-list"></div>
+      </section>
+
+      <section id="misc" class="section-gap">
+        <div class="section-title-row">
+          <h2 class="section-heading"># Miscellaneous</h2>
+        </div>
+        <p>
+          I am also a pianist.
+          I have been playing since the age of three.
+          Alongside my solo work, I remain actively engaged as an accompanist in university settings, including conducting classes and graduation concerts.
+          I am an avid lover of both chamber music and concertos.
+        </p>
+        <p>
+          In recent years, my artistic focus has centered on the Romantic repertoire, particularly the Ballades, Nocturnes, and Concertos of Chopin.
+          In addition, I perform selected works from across the Classical and Romantic traditions, including Mozart’s K.331, Schumann’s Piano Concerto in A minor, and Schubert’s D.960, all of which hold particular personal significance in my repertoire.
+        </p>
+        <p>
+          I stay active through basketball, tennis, swimming, and fitness. I'm also an amateur photographer who enjoys film cameras and drones.
+        </p>
+      </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <script src="/assets/js/site.js"></script>
+  </body>
+</html>
