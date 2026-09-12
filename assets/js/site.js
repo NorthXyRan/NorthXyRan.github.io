@@ -249,6 +249,7 @@ async function loadPubsFromYaml() {
           image: p.image || "",
           pdf: p.pdf || p.href || "",
           video: p.video || "",
+          code: p.code || "",
           url: p.url || "",
           abstract: p.abstract || "",
           conferenceLogo: p.conference_logo || "",
@@ -313,6 +314,13 @@ function renderPubs() {
               <a href="${p.video}" target="_blank" rel="noopener">
                 <i class="fa-solid fa-circle-play"></i>&nbsp;VIDEO
               </a>
+              ${
+                p.code
+                  ? `<a href="${p.code}" target="_blank" rel="noopener">
+                       <i class="fa-brands fa-github"></i>&nbsp;CODE
+                     </a>`
+                  : ""
+              }
             </div>
             ${
               p.abstract
