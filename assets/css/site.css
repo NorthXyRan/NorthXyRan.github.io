@@ -315,7 +315,6 @@ button:focus-visible {
 
 .bio-right p,
 #misc p {
-  max-width: var(--prose-width);
   margin: 0 0 1em;
   line-height: var(--leading-body);
   text-wrap: pretty;
@@ -471,7 +470,7 @@ button:focus-visible {
 
 .news-row {
   display: grid;
-  grid-template-columns: 170px 1fr;
+  grid-template-columns: 170px minmax(0, 1fr);
   gap: 26px;
   padding: 16px 0;
 }
@@ -484,7 +483,7 @@ button:focus-visible {
 }
 
 .news-text {
-  max-width: var(--prose-width);
+  min-width: 0;
   text-wrap: pretty;
 }
 
