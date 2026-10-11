@@ -7,6 +7,73 @@ let currentFilter = "all";
 
 const THEME_KEY = "nx_theme";
 
+// Add resource types here; publications only need the matching YAML field.
+const PUBLICATION_RESOURCES = [
+  { key: "pdf", label: "PDF", icon: "fa-solid fa-file-pdf" },
+  { key: "video", label: "VIDEO", icon: "fa-solid fa-circle-play" },
+  { key: "code", label: "CODE", icon: "fa-brands fa-github" },
+  { key: "slides", label: "SLIDES", icon: "fa-solid fa-file-powerpoint" },
+];
+
+function escapeHtml(value) {
+  const entities = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
+  return String(value ?? "").replace(/[&<>"']/g, (char) => entities[char]);
+}
+
+function resourceUrl(value) {
+  if (typeof value !== "string" || !value.trim()) return "";
+  try {
+    const url = new URL(value.trim(), window.location.href);
+    return ["http:", "https:"].includes(url.protocol) ? value.trim() : "";
+  } catch {
+    return "";
+  }
+}
+
+function categoryId(label) {
+  return label.trim().toLowerCase().replace(/\s+/g, "-");
+}
+
+function normalizePublication(p) {
+  const keywords = Array.isArray(p.keywords) ? p.keywords : String(p.keywords || "").split(",");
+  return {
+    title: p.title || "",
+    year: Number(p.year) || 0,
+    venue: p.conference || p.venue || "",
+    venueShort: p.conference_short || p.venue_short || "",
+    authors: Array.isArray(p.authors) ? p.authors : [],
+    image: resourceUrl(p.image),
+    url: resourceUrl(p.url),
+    abstract: p.abstract || "",
+    conferenceLogo: resourceUrl(p.conference_logo),
+    conferenceUrl: resourceUrl(p.conference_url),
+    categories: keywords.map((keyword) => String(keyword).trim()).filter(Boolean)
+      .map((label) => ({ id: categoryId(label), label })),
+    resources: PUBLICATION_RESOURCES.map((resource) => ({
+      ...resource,
+      href: resourceUrl(p[resource.key] || (resource.key === "pdf" ? p.href : "")),
+    })).filter((resource) => resource.href),
+  };
+}
+
+function renderAuthors(authors) {
+  return authors.filter((author) => author && author.name).map((author) => {
+    let content = escapeHtml(author.name);
+    const url = resourceUrl(author.url);
+    if (url) content = `<a href="${escapeHtml(url)}" target="_blank" rel="noopener">${content}</a>`;
+    if (author.emphasis) content = `<strong>${content}</strong>`;
+    return content;
+  }).join(", ");
+}
+
+function renderPublicationLinks(resources) {
+  return resources.map(({ href, label, icon }) => `
+    <a href="${escapeHtml(href)}" target="_blank" rel="noopener">
+      <i class="${icon}" aria-hidden="true"></i><span>${label}</span>
+    </a>
+  `).join("");
+}
+
 function getStoredTheme() {
   try {
     const t = localStorage.getItem(THEME_KEY);
@@ -70,12 +137,14 @@ function setupMenuNav() {
     nav.classList.add("is-open");
     btn.classList.add("is-open");
     btn.setAttribute("aria-expanded", "true");
+    btn.setAttribute("aria-label", "Close menu");
   }
 
   function closeNav() {
     nav.classList.remove("is-open");
     btn.classList.remove("is-open");
     btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-label", "Open menu");
   }
 
   btn.addEventListener("click", (e) => {
@@ -84,6 +153,13 @@ function setupMenuNav() {
       closeNav();
     } else {
       openNav();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && nav.classList.contains("is-open")) {
+      closeNav();
+      btn.focus();
     }
   });
 
@@ -143,18 +219,18 @@ function updatePager() {
     let start = Math.min(newsPage, Math.max(1, maxPage - 1));
     let end = Math.min(maxPage, start + 1);
     for (let i = start; i <= end; i += 1) {
-      pagesHtml += `<button class="pager-num${i === newsPage ? " is-active" : ""}" data-news-page="${i}">${i}</button>`;
+      pagesHtml += `<button class="pager-num${i === newsPage ? " is-active" : ""}" data-news-page="${i}" aria-label="News page ${i}"${i === newsPage ? ' aria-current="page"' : ""}>${i}</button>`;
     }
   } else {
     for (let i = 1; i <= maxPage; i += 1) {
-      pagesHtml += `<button class="pager-num${i === newsPage ? " is-active" : ""}" data-news-page="${i}">${i}</button>`;
+      pagesHtml += `<button class="pager-num${i === newsPage ? " is-active" : ""}" data-news-page="${i}" aria-label="News page ${i}"${i === newsPage ? ' aria-current="page"' : ""}>${i}</button>`;
     }
   }
 
   pager.innerHTML = `
-    <button class="pager-btn" data-news-page="prev" aria-label="Previous">‹</button>
+    <button class="pager-btn" data-news-page="prev" aria-label="Previous news page" ${newsPage === 1 ? "disabled" : ""}>‹</button>
     ${pagesHtml}
-    <button class="pager-btn" data-news-page="next" aria-label="Next">›</button>
+    <button class="pager-btn" data-news-page="next" aria-label="Next news page" ${newsPage === maxPage ? "disabled" : ""}>›</button>
   `;
 }
 
@@ -166,180 +242,135 @@ function renderNews() {
     .map(
       (n) => `
       <article class="news-row">
-        <div class="news-date">${n.date}</div>
-        <div class="news-text">${n.text}</div>
+        <div class="news-date">${escapeHtml(n.date)}</div>
+        <div class="news-text">${n.text ?? ""}</div>
       </article>
     `
     )
-    .join("");
+    .join("") || '<p class="content-status">No news yet.</p>';
 
   updatePager();
 }
 
+async function loadYamlList(path) {
+  const res = await fetch(path, { cache: "no-cache" });
+  if (!res.ok) throw new Error(`Failed to load ${path}: ${res.status}`);
+  if (!window.jsyaml) throw new Error("The YAML parser could not be loaded.");
+  const parsed = window.jsyaml.load(await res.text());
+  if (parsed == null) return [];
+  if (!Array.isArray(parsed) || parsed.some((entry) => !entry || typeof entry !== "object" || Array.isArray(entry))) {
+    throw new Error(`Expected a list of records in ${path}`);
+  }
+  return parsed;
+}
+
+function showLoadError(id, label, error) {
+  console.error(error);
+  document.getElementById(id).innerHTML = `<p class="content-status" role="alert">Unable to load ${label}. Please refresh to try again.</p>`;
+}
+
 async function loadNewsFromYaml() {
   try {
-    const res = await fetch("/data/news.yml?v=2");
-    if (!res.ok) throw new Error("Failed to load news.yml");
-    const text = await res.text();
-    const parsed = window.jsyaml ? window.jsyaml.load(text) : jsyaml.load(text);
-    if (Array.isArray(parsed)) {
-      NEWS = parsed.map((n) => ({
-        date: n.date ?? "",
-        text: n.text ?? "",
-      }));
-    }
-  } catch (e) {
-    // Fallback: keep NEWS empty if loading fails
-    console.error(e);
+    NEWS = await loadYamlList("/data/news.yml");
+    newsPage = 1;
+    renderNews();
+  } catch (error) {
+    showLoadError("news-list", "news", error);
   }
 }
 
 async function loadPubsFromYaml() {
   try {
-    const res = await fetch("/data/publications.yml?v=2");
-    if (!res.ok) throw new Error("Failed to load publications.yml");
-    const text = await res.text();
-    const parsed = window.jsyaml ? window.jsyaml.load(text) : jsyaml.load(text);
-
-    if (Array.isArray(parsed)) {
-      PUBS = parsed.map((p) => {
-        // authors: YAML 数组 -> 带粗体 / 链接的 HTML 文本
-        let authorsHtml = "";
-        if (Array.isArray(p.authors) && p.authors.length > 0) {
-          authorsHtml = p.authors
-            .map((a) => {
-              let name = a.name || "";
-              if (!name) return "";
-
-              let inner = name;
-              if (a.url) {
-                inner = `<a href="${a.url}" target="_blank" rel="noopener">${inner}</a>`;
-              }
-              if (a.emphasis) {
-                inner = `<strong>${inner}</strong>`;
-              }
-              return inner;
-            })
-            .filter(Boolean)
-            .join(", ");
-        }
-
-        // 从 keywords 生成用于过滤的标签（如 'education', 'hci'）
-        let keywordTags = [];
-        if (typeof p.keywords === "string" && p.keywords.trim().length > 0) {
-          keywordTags = p.keywords
-            .split(",")
-            .map((k) =>
-              String(k)
-                .trim()
-                .toLowerCase()
-                .replace(/\s+/g, "-")
-            )
-            .filter(Boolean);
-        }
-
-        const baseTags = ["all"];
-        const mergedTags = Array.from(new Set([...baseTags, ...keywordTags]));
-
-        return {
-          title: p.title || "",
-          venue: p.conference || p.venue || "",
-          venueShort: p.conference_short || p.venue_short || "",
-          authors: authorsHtml,
-          image: p.image || "",
-          pdf: p.pdf || p.href || "",
-          video: p.video || "",
-          code: p.code || "",
-          url: p.url || "",
-          abstract: p.abstract || "",
-          conferenceLogo: p.conference_logo || "",
-          conferenceUrl: p.conference_url || "",
-          tags: mergedTags,
-        };
-      });
-    }
-  } catch (e) {
-    console.error(e);
+    PUBS = (await loadYamlList("/data/publications.yml"))
+      .map(normalizePublication)
+      .sort((a, b) => b.year - a.year);
+    renderPublicationFilters();
+    renderPubs();
+  } catch (error) {
+    showLoadError("pub-list", "publications", error);
   }
 }
 
+function renderPublicationFilters() {
+  const categories = new Map();
+  PUBS.forEach((p) => p.categories.forEach(({ id, label }) => {
+    if (id !== "all" && !categories.has(id)) categories.set(id, label);
+  }));
+  if (currentFilter !== "all" && !categories.has(currentFilter)) currentFilter = "all";
+  const filters = [["all", "All (by Year)"], ...Array.from(categories).sort((a, b) => a[1].localeCompare(b[1]))];
+  document.querySelector(".pub-tabs").innerHTML = filters.map(([id, label]) => `
+    <button type="button" class="tab${id === currentFilter ? " is-active" : ""}"
+      data-filter="${escapeHtml(id)}" aria-pressed="${id === currentFilter}" aria-controls="pub-list">${escapeHtml(label)}</button>
+  `).join("");
+}
+
 function renderPubs() {
-  const data = PUBS.filter((p) => p.tags.includes(currentFilter));
+  const data = PUBS.filter((p) => currentFilter === "all" || p.categories.some((category) => category.id === currentFilter));
   const box = document.getElementById("pub-list");
   box.innerHTML = data
     .map(
       (p, idx) => `
-      <article class="pub-card">
-        <img src="${p.image}" alt="${p.title}" />
+      <article class="pub-card${p.image ? "" : " pub-card--no-image"}">
+        ${p.image ? `<img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)}" loading="lazy" />` : ""}
         <div class="pub-body">
           <h3 class="pub-title">
             ${
               p.url
-                ? `<a href="${p.url}" target="_blank" rel="noopener">${p.title}</a>`
-                : p.title
+                ? `<a href="${escapeHtml(p.url)}" target="_blank" rel="noopener">${escapeHtml(p.title)}</a>`
+                : escapeHtml(p.title)
             }
           </h3>
-          <div class="pub-header">
+          <div class="pub-header${p.conferenceLogo ? "" : " pub-header--no-logo"}">
             <div class="pub-header-main">
               <div class="pub-meta">
                 ${
                   p.venue
                     ? `<span class="venue-tag ${
-                        p.venueShort ? `tag-${p.venueShort.toLowerCase()}` : "tag-default"
-                      }">${p.venue}</span>`
+                        p.venueShort ? `tag-${escapeHtml(categoryId(String(p.venueShort)))}` : "tag-default"
+                      }">${escapeHtml(p.venue)}</span>`
                     : ""
                 }
               </div>
-              <p class="pub-authors">${p.authors}</p>
+              <p class="pub-authors">${renderAuthors(p.authors)}</p>
             </div>
             ${
               p.conferenceLogo
                 ? `<div class="pub-header-logo">
+                     <div class="pub-logo-surface">
                      ${
                        p.conferenceUrl
-                         ? `<a href="${p.conferenceUrl}" target="_blank" rel="noopener">`
+                         ? `<a href="${escapeHtml(p.conferenceUrl)}" target="_blank" rel="noopener">`
                          : ""
                      }
-                       <img src="${p.conferenceLogo}" alt="${p.venue} logo" />
+                       <img src="${escapeHtml(p.conferenceLogo)}" alt="${escapeHtml(p.venue)} logo" />
                      ${p.conferenceUrl ? "</a>" : ""}
+                     </div>
                    </div>`
                 : ""
             }
           </div>
           <div class="pub-links-row">
             <div class="pub-links">
-              <a href="${p.pdf}" target="_blank" rel="noopener">
-                <i class="fa-solid fa-file-pdf"></i>&nbsp;PDF
-              </a>
-              <a href="${p.video}" target="_blank" rel="noopener">
-                <i class="fa-solid fa-circle-play"></i>&nbsp;VIDEO
-              </a>
-              ${
-                p.code
-                  ? `<a href="${p.code}" target="_blank" rel="noopener">
-                       <i class="fa-brands fa-github"></i>&nbsp;CODE
-                     </a>`
-                  : ""
-              }
+              ${renderPublicationLinks(p.resources)}
             </div>
             ${
               p.abstract
-                ? `<button type="button" class="pub-abstract-toggle" data-idx="${idx}">
-                     Abstract <span class="pub-abstract-arrow">▼</span>
+                ? `<button type="button" class="pub-abstract-toggle" aria-expanded="false" aria-controls="pub-abstract-${idx}">
+                     Abstract <span class="pub-abstract-arrow" aria-hidden="true">▼</span>
                    </button>`
                 : ""
             }
           </div>
           ${
             p.abstract
-              ? `<div class="pub-abstract" data-idx="${idx}">${p.abstract}</div>`
+              ? `<div class="pub-abstract" id="pub-abstract-${idx}" hidden>${escapeHtml(p.abstract)}</div>`
               : ""
           }
         </div>
       </article>
     `
     )
-    .join("");
+    .join("") || '<p class="content-status">No publications yet.</p>';
 }
 
 document.addEventListener("click", (e) => {
@@ -364,10 +395,11 @@ document.addEventListener("click", (e) => {
 
   if (target.closest(".pub-abstract-toggle")) {
     const btn = target.closest(".pub-abstract-toggle");
-    const idx = btn.dataset.idx;
-    const box = document.querySelector(`.pub-abstract[data-idx="${idx}"]`);
+    const box = document.getElementById(btn.getAttribute("aria-controls"));
     if (box) {
-      const isOpen = box.classList.toggle("is-open");
+      const isOpen = box.hidden;
+      box.hidden = !isOpen;
+      btn.setAttribute("aria-expanded", String(isOpen));
       btn.classList.toggle("is-open", isOpen);
     }
     return;
@@ -375,8 +407,11 @@ document.addEventListener("click", (e) => {
 
   if (target.matches(".tab")) {
     currentFilter = target.dataset.filter || "all";
-    document.querySelectorAll(".tab").forEach((t) => t.classList.remove("is-active"));
-    target.classList.add("is-active");
+    document.querySelectorAll(".tab").forEach((tab) => {
+      const isActive = tab === target;
+      tab.classList.toggle("is-active", isActive);
+      tab.setAttribute("aria-pressed", String(isActive));
+    });
     renderPubs();
   }
 });
@@ -384,9 +419,5 @@ document.addEventListener("click", (e) => {
 document.addEventListener("DOMContentLoaded", async () => {
   setupThemeToggle();
   setupMenuNav();
-  await loadNewsFromYaml();
-  await loadPubsFromYaml();
-  newsPage = 1;
-  renderNews();
-  renderPubs();
+  await Promise.all([loadNewsFromYaml(), loadPubsFromYaml()]);
 });

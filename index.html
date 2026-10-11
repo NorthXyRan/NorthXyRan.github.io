@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Fengyan Lin (林丰衍) - personal homepage" />
+    <meta name="description" content="Fengyan (Daniel) Lin (林丰衍) - personal homepage" />
     <meta name="color-scheme" content="light dark" />
-    <title>Fengyan Lin</title>
+    <title>Fengyan (Daniel) Lin</title>
     <link rel="icon" type="image/x-icon" sizes="64x64" href="/favicon_64.ico" />
     <link rel="icon" type="image/x-icon" sizes="512x512" href="/favicon_512.ico" />
     <script>
@@ -37,7 +37,7 @@
   <body>
     <div class="page">
       <header class="topbar">
-        <h1 class="name">Fengyan Lin <span class="name-cn">(林丰衍)</span></h1>
+        <h1 class="name"><span class="name-en">Fengyan <span class="name-alias">(Daniel) Lin</span></span> <span class="name-cn" lang="zh-Hans">(林丰衍)</span></h1>
         <div class="topbar-actions" aria-label="Page actions">
           <button type="button" class="theme-btn icon-btn" aria-label="Toggle dark mode" aria-pressed="false">
             <span class="theme-glyph" aria-hidden="true">
@@ -45,7 +45,7 @@
               <i class="fa-regular fa-moon theme-icon theme-icon-moon"></i>
             </span>
           </button>
-          <button type="button" class="menu-btn icon-btn" aria-label="Open menu" aria-expanded="false">
+          <button type="button" class="menu-btn icon-btn" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
             <span class="menu-glyph" aria-hidden="true">
               <i class="fa-solid fa-bars menu-icon"></i>
             </span>
@@ -53,7 +53,7 @@
         </div>
       </header>
 
-      <nav class="mobile-nav" aria-label="Site navigation">
+      <nav id="site-nav" class="mobile-nav" aria-label="Site navigation">
         <ul class="mobile-nav-list">
           <li><button type="button" class="mobile-nav-link is-top">Bio</button></li>
           <li><a href="#education">Education</a></li>
@@ -107,7 +107,7 @@
 
       <section id="education" class="section-gap">
         <div class="section-title-row">
-          <h2 class="section-heading"># Education</h2>
+          <h2 class="section-heading"><span class="section-marker" aria-hidden="true">#</span> Education</h2>
         </div>
         <div class="education-list">
           <div class="education-item">
@@ -121,7 +121,7 @@
                 Hong Kong University of Science and Technology
               </div>
             </div>
-            <div class="education-logo education-logo--mobile-tall">
+            <div class="education-logo">
               <picture>
                 <source media="(max-width: 820px)" srcset="/images/logo/hkust-logo-icon.png" />
                 <img src="/images/logo/hkust-logo-wide.png" alt="HKUST logo" />
@@ -151,30 +151,26 @@
 
       <section id="news" class="section-gap">
         <div class="section-title-row">
-          <h2 class="section-heading"># News</h2>
+          <h2 class="section-heading"><span class="section-marker" aria-hidden="true">#</span> News</h2>
           <div class="pager" aria-label="News pages"></div>
         </div>
-        <div id="news-list" class="news-list"></div>
+        <div id="news-list" class="news-list" aria-live="polite"></div>
       </section>
 
       <section id="publications" class="section-gap">
         <div class="section-title-row">
-          <h2 class="section-heading"># Publications</h2>
+          <h2 class="section-heading"><span class="section-marker" aria-hidden="true">#</span> Publications</h2>
           <div class="pub-note">*Asterisk indicates corresponding author.</div>
         </div>
 
-        <div class="pub-tabs" role="tablist" aria-label="Publication categories">
-          <button class="tab is-active" data-filter="all">All (by Year)</button>
-          <button class="tab" data-filter="hci">HCI</button>
-          <button class="tab" data-filter="education">Education</button>
-        </div>
+        <div class="pub-tabs" role="group" aria-label="Publication categories"></div>
 
-        <div id="pub-list" class="pub-list"></div>
+        <div id="pub-list" class="pub-list" aria-live="polite"></div>
       </section>
 
       <section id="misc" class="section-gap">
         <div class="section-title-row">
-          <h2 class="section-heading"># Miscellaneous</h2>
+          <h2 class="section-heading"><span class="section-marker" aria-hidden="true">#</span> Miscellaneous</h2>
         </div>
         <p>
           I am also a pianist.
