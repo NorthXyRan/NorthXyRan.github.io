@@ -353,6 +353,19 @@ button:focus-visible {
   font-size: var(--text-body);
 }
 
+.service-heading {
+  margin: 0 0 8px;
+  color: var(--text-soft);
+  font-size: calc((var(--text-section) + var(--text-body)) / 2);
+  font-weight: var(--weight-semibold);
+  line-height: 1.4;
+}
+
+.service-venue {
+  margin: 0;
+  color: var(--text-soft);
+}
+
 .education-meta,
 .news-date,
 .pub-authors,
