@@ -7,7 +7,7 @@ let currentFilter = "all";
 
 const THEME_KEY = "nx_theme";
 
-// Add resource types here; publications only need the matching YAML field.
+// Add resource types here; papers only need the matching front matter field.
 const PUBLICATION_RESOURCES = [
   { key: "pdf", label: "PDF", icon: "fa-solid fa-file-pdf" },
   { key: "video", label: "VIDEO", icon: "fa-solid fa-circle-play" },
@@ -31,6 +31,12 @@ function resourceUrl(value) {
 }
 
 function categoryId(label) {
+  // Keep user keywords separate from the built-in overview and from venue CSS
+  // slugs: “All”, “Human AI”, and “Human-AI” are valid, distinct categories.
+  return "keyword:" + encodeURIComponent(label.trim().toLowerCase().replace(/\s+/g, " "));
+}
+
+function venueClass(label) {
   return label.trim().toLowerCase().replace(/\s+/g, "-");
 }
 
@@ -39,19 +45,19 @@ function normalizePublication(p) {
   return {
     title: p.title || "",
     year: Number(p.year) || 0,
-    venue: p.conference || p.venue || "",
-    venueShort: p.conference_short || p.venue_short || "",
+    venue: p.venue || "",
+    venueShort: p.venue_short || "",
     authors: Array.isArray(p.authors) ? p.authors : [],
     image: resourceUrl(p.image),
     url: resourceUrl(p.url),
-    abstract: p.abstract || "",
-    conferenceLogo: resourceUrl(p.conference_logo),
-    conferenceUrl: resourceUrl(p.conference_url),
+    abstractHtml: p.abstract_html || "",
+    venueLogo: resourceUrl(p.venue_logo),
+    venueUrl: resourceUrl(p.venue_url),
     categories: keywords.map((keyword) => String(keyword).trim()).filter(Boolean)
       .map((label) => ({ id: categoryId(label), label })),
     resources: PUBLICATION_RESOURCES.map((resource) => ({
       ...resource,
-      href: resourceUrl(p[resource.key] || (resource.key === "pdf" ? p.href : "")),
+      href: resourceUrl(p[resource.key]),
     })).filter((resource) => resource.href),
   };
 }
@@ -194,6 +200,8 @@ function setupMenuNav() {
 function updatePager() {
   const pager = document.querySelector(".pager");
   if (!pager) return;
+  const focusedButton = document.activeElement?.closest("[data-news-page]");
+  const focusedPage = focusedButton && pager.contains(focusedButton) ? focusedButton.dataset.newsPage : null;
 
   const maxPage = Math.max(1, Math.ceil(NEWS.length / newsPerPage));
   const isMobile =
@@ -216,8 +224,8 @@ function updatePager() {
     // 当前在第 1 页：1, 2
     // 当前在第 2 页：2, 3
     // 当前在第 3 页：3, 4 ...
-    let start = Math.min(newsPage, Math.max(1, maxPage - 1));
-    let end = Math.min(maxPage, start + 1);
+    const start = Math.min(newsPage, Math.max(1, maxPage - 1));
+    const end = Math.min(maxPage, start + 1);
     for (let i = start; i <= end; i += 1) {
       pagesHtml += `<button class="pager-num${i === newsPage ? " is-active" : ""}" data-news-page="${i}" aria-label="News page ${i}"${i === newsPage ? ' aria-current="page"' : ""}>${i}</button>`;
     }
@@ -232,6 +240,19 @@ function updatePager() {
     ${pagesHtml}
     <button class="pager-btn" data-news-page="next" aria-label="Next news page" ${newsPage === maxPage ? "disabled" : ""}>›</button>
   `;
+
+  if (focusedPage) {
+    const previous = pager.querySelector(`[data-news-page="${focusedPage}"]`);
+    const current = pager.querySelector(`[data-news-page="${newsPage}"]`);
+    (previous && !previous.disabled ? previous : current)?.focus();
+  }
+}
+
+function setupNewsPager() {
+  const viewport = window.matchMedia?.("(max-width: 820px)");
+  if (!viewport) return;
+  if (typeof viewport.addEventListener === "function") viewport.addEventListener("change", updatePager);
+  else if (typeof viewport.addListener === "function") viewport.addListener(updatePager);
 }
 
 function renderNews() {
@@ -252,12 +273,10 @@ function renderNews() {
   updatePager();
 }
 
-async function loadYamlList(path) {
+async function loadJsonList(path) {
   const res = await fetch(path, { cache: "no-cache" });
   if (!res.ok) throw new Error(`Failed to load ${path}: ${res.status}`);
-  if (!window.jsyaml) throw new Error("The YAML parser could not be loaded.");
-  const parsed = window.jsyaml.load(await res.text());
-  if (parsed == null) return [];
+  const parsed = await res.json();
   if (!Array.isArray(parsed) || parsed.some((entry) => !entry || typeof entry !== "object" || Array.isArray(entry))) {
     throw new Error(`Expected a list of records in ${path}`);
   }
@@ -269,9 +288,9 @@ function showLoadError(id, label, error) {
   document.getElementById(id).innerHTML = `<p class="content-status" role="alert">Unable to load ${label}. Please refresh to try again.</p>`;
 }
 
-async function loadNewsFromYaml() {
+async function loadNewsFromJson() {
   try {
-    NEWS = await loadYamlList("/data/news.yml");
+    NEWS = await loadJsonList("/data/news.json");
     newsPage = 1;
     renderNews();
   } catch (error) {
@@ -279,9 +298,9 @@ async function loadNewsFromYaml() {
   }
 }
 
-async function loadPubsFromYaml() {
+async function loadPubsFromJson() {
   try {
-    PUBS = (await loadYamlList("/data/publications.yml"))
+    PUBS = (await loadJsonList("/data/publications.json"))
       .map(normalizePublication)
       .sort((a, b) => b.year - a.year);
     renderPublicationFilters();
@@ -294,7 +313,7 @@ async function loadPubsFromYaml() {
 function renderPublicationFilters() {
   const categories = new Map();
   PUBS.forEach((p) => p.categories.forEach(({ id, label }) => {
-    if (id !== "all" && !categories.has(id)) categories.set(id, label);
+    if (!categories.has(id)) categories.set(id, label);
   }));
   if (currentFilter !== "all" && !categories.has(currentFilter)) currentFilter = "all";
   const filters = [["all", "All (by Year)"], ...Array.from(categories).sort((a, b) => a[1].localeCompare(b[1]))];
@@ -320,13 +339,13 @@ function renderPubs() {
                 : escapeHtml(p.title)
             }
           </h3>
-          <div class="pub-header${p.conferenceLogo ? "" : " pub-header--no-logo"}">
+          <div class="pub-header${p.venueLogo ? "" : " pub-header--no-logo"}">
             <div class="pub-header-main">
               <div class="pub-meta">
                 ${
                   p.venue
                     ? `<span class="venue-tag ${
-                        p.venueShort ? `tag-${escapeHtml(categoryId(String(p.venueShort)))}` : "tag-default"
+                        p.venueShort ? `tag-${escapeHtml(venueClass(String(p.venueShort)))}` : "tag-default"
                       }">${escapeHtml(p.venue)}</span>`
                     : ""
                 }
@@ -334,16 +353,16 @@ function renderPubs() {
               <p class="pub-authors">${renderAuthors(p.authors)}</p>
             </div>
             ${
-              p.conferenceLogo
+              p.venueLogo
                 ? `<div class="pub-header-logo">
                      <div class="pub-logo-surface">
                      ${
-                       p.conferenceUrl
-                         ? `<a href="${escapeHtml(p.conferenceUrl)}" target="_blank" rel="noopener">`
+                       p.venueUrl
+                         ? `<a href="${escapeHtml(p.venueUrl)}" target="_blank" rel="noopener">`
                          : ""
                      }
-                       <img src="${escapeHtml(p.conferenceLogo)}" alt="${escapeHtml(p.venue)} logo" />
-                     ${p.conferenceUrl ? "</a>" : ""}
+                       <img src="${escapeHtml(p.venueLogo)}" alt="${escapeHtml(p.venue)} logo" />
+                     ${p.venueUrl ? "</a>" : ""}
                      </div>
                    </div>`
                 : ""
@@ -354,7 +373,7 @@ function renderPubs() {
               ${renderPublicationLinks(p.resources)}
             </div>
             ${
-              p.abstract
+              p.abstractHtml
                 ? `<button type="button" class="pub-abstract-toggle" aria-expanded="false" aria-controls="pub-abstract-${idx}">
                      Abstract <span class="pub-abstract-arrow" aria-hidden="true">▼</span>
                    </button>`
@@ -362,8 +381,8 @@ function renderPubs() {
             }
           </div>
           ${
-            p.abstract
-              ? `<div class="pub-abstract" id="pub-abstract-${idx}" hidden>${escapeHtml(p.abstract)}</div>`
+            p.abstractHtml
+              ? `<div class="pub-abstract" id="pub-abstract-${idx}" hidden>${p.abstractHtml}</div>`
               : ""
           }
         </div>
@@ -419,5 +438,6 @@ document.addEventListener("click", (e) => {
 document.addEventListener("DOMContentLoaded", async () => {
   setupThemeToggle();
   setupMenuNav();
-  await Promise.all([loadNewsFromYaml(), loadPubsFromYaml()]);
+  setupNewsPager();
+  await Promise.all([loadNewsFromJson(), loadPubsFromJson()]);
 });

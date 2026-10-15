@@ -498,6 +498,17 @@ button:focus-visible {
   text-wrap: pretty;
 }
 
+/* Markdown adds paragraph wrappers; keep the existing row and abstract spacing. */
+.news-text > :first-child,
+.pub-abstract > :first-child {
+  margin-top: 0;
+}
+
+.news-text > :last-child,
+.pub-abstract > :last-child {
+  margin-bottom: 0;
+}
+
 .content-status {
   color: var(--muted);
 }
@@ -508,6 +519,7 @@ button:focus-visible {
 
 .pub-tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 26px;
   border-bottom: 1px solid var(--line);
   padding-bottom: 12px;
@@ -515,6 +527,8 @@ button:focus-visible {
 }
 
 .tab {
+  max-width: 100%;
+  overflow-wrap: anywhere;
   font-size: var(--text-meta);
   font-weight: var(--weight-medium);
   color: var(--muted);
@@ -747,7 +761,6 @@ html[data-theme="dark"] .venue-tag.tag-uist {
   .pub-links { gap: 10px 14px; }
   .news-row { grid-template-columns: 1fr; gap: 4px; }
   .news-date { padding-top: 0; text-align: left; }
-  .pub-tabs { flex-wrap: wrap; }
   .section-title-row {
     flex-direction: column;
     align-items: flex-start;

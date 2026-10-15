@@ -1,2 +1,7 @@
-scripts/dev_server.py
 .DS_Store
+.venv/
+__pycache__/
+*.py[cod]
+/_site/
+/index.html
+/data/*.json

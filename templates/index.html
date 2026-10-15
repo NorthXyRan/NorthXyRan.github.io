@@ -77,32 +77,14 @@
             <a href="mailto:fengyan.lin@connect.ust.hk" title="Email">
               <i class="fa-solid fa-envelope"></i>
             </a>
-            <a href="/PDF/CV.pdf" target="_blank" rel="noopener" title="CV">
+            <a href="/pdf/CV.pdf" target="_blank" rel="noopener" title="CV">
               <i class="fa-solid fa-file-lines"></i>
             </a>
           </div>
         </aside>
 
         <article class="bio-right">
-          <p>
-            I am a first-year Ph.D. student in the
-            <a href="https://cse.hkust.edu.hk/" target="_blank" rel="noopener">Department of Computer Science and Engineering</a> at
-            <a href="https://hkust.edu.hk/" target="_blank" rel="noopener">HKUST</a>,
-            supervised by <a href="https://sehilyi.com/" target="_blank" rel="noopener" class="blue-link">Prof. Sehi L'Yi</a>.
-            I earned my B.Eng. degree from the
-            <a href="https://www2.scut.edu.cn/sse/" target="_blank" rel="noopener">School of Software Engineering</a> at
-            <a href="https://www.scut.edu.cn/new/" target="_blank" rel="noopener">South China University of Technology</a>,
-            supervised by <a href="https://zkdeng.org/" target="_blank" rel="noopener" class="blue-link">Prof. Zikun Deng</a>.
-            My work spans <strong>Human-Computer Interaction</strong>,
-            <strong>Data Visualization</strong>, and <strong>Human-AI Collaboration</strong>.
-          </p>
-          <p>
-            I am interested in understanding and addressing problems from different perspectives:
-            seeking deeper understanding through rigorous research, materializing ideas through precise engineering,
-            connecting people and technology through empathetic design, and enriching expression through artistic sensibility.
-            I believe that truly valuable systems should not only handle complexity,
-            but also help people understand, reflect on, communicate through, and act on it.
-          </p>
+          {{ bio }}
         </article>
       </section>
 
@@ -173,31 +155,17 @@
         <div class="section-title-row">
           <h2 class="section-heading"><span class="section-marker" aria-hidden="true">#</span> Service</h2>
         </div>
-        <h3 class="service-heading"><span class="section-marker" aria-hidden="true">##</span> Reviewer</h3>
-        <p class="service-venue">ACM CHI 2027</p>
+        {{ service }}
       </section>
 
       <section id="misc" class="section-gap">
         <div class="section-title-row">
           <h2 class="section-heading"><span class="section-marker" aria-hidden="true">#</span> Miscellaneous</h2>
         </div>
-        <p>
-          I am also a pianist.
-          I have been playing since the age of three.
-          Alongside my solo work, I remain actively engaged as an accompanist in university settings, including conducting classes and graduation concerts.
-          I am an avid lover of both chamber music and concertos.
-        </p>
-        <p>
-          In recent years, my artistic focus has centered on the Romantic repertoire, particularly the Ballades, Nocturnes, and Concertos of Chopin.
-          In addition, I perform selected works from across the Classical and Romantic traditions, including Mozart’s K.331, Schumann’s Piano Concerto in A minor, and Schubert’s D.960, all of which hold particular personal significance in my repertoire.
-        </p>
-        <p>
-          I stay active through basketball, tennis, swimming, and fitness. I'm also an amateur photographer who enjoys film cameras and drones.
-        </p>
+        {{ miscellaneous }}
       </section>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
     <script src="/assets/js/site.js"></script>
   </body>
 </html>
