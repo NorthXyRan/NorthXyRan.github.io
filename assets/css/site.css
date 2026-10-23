@@ -15,7 +15,6 @@
   --weight-semibold: 600;
   --leading-body: 1.7;
   --leading-meta: 1.55;
-  --prose-width: 78ch;
   --bg: #ececec;
   --bg-tint: rgba(143, 77, 77, 0.08);
   --text: #272727;
@@ -733,7 +732,6 @@ html[data-theme="dark"] .venue-tag.tag-uist {
 }
 
 .pub-abstract {
-  max-width: var(--prose-width);
   margin-top: 10px;
   color: var(--text-soft);
   line-height: var(--leading-body);
