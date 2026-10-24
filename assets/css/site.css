@@ -757,9 +757,6 @@ html[data-theme="dark"] .venue-tag.tag-uist {
   .pub-header--no-logo { grid-template-columns: minmax(0, 1fr); }
   .pub-header-logo img { height: 32px; }
   .pub-links { gap: 10px 14px; }
-  .pub-abstract {
-    line-height: var(--leading-meta);
-  }
   .news-row { grid-template-columns: 1fr; gap: 4px; }
   .news-date { padding-top: 0; text-align: left; }
   .section-title-row {
