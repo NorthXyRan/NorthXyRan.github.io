@@ -16,6 +16,7 @@ url: ""
 pdf: ""
 video: ""
 code: ""
+project: ""
 slides: ""
 ---
 

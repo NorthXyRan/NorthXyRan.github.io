@@ -3,7 +3,7 @@ title: "Open-ended Structured Question Assessment with Human-LLM Collaboration"
 year: 2026
 pdf: "/pdf/publications/Open-ended Structured Question Assessment with Human-LLM Collaboration.pdf"
 video: "https://youtu.be/cE8lAvIZVAQ"
-code: "https://github.com/NorthXyRan/VeriGrader"
+project: "https://northxyran.github.io/VeriGrader/"
 slides: "/slides/VeriGrader.pptx"
 url: "https://dl.acm.org/doi/10.1145/3772318.3791034"
 venue: "CHI 2026"

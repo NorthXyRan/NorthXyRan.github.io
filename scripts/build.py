@@ -30,11 +30,11 @@ ROOT = Path(__file__).resolve().parents[1]
 SECTIONS = ("bio", "service", "miscellaneous")
 TEXT_FIELDS = (
     "venue", "venue_short", "venue_logo", "venue_url",
-    "url", "image", "pdf", "video", "code", "slides",
+    "url", "image", "pdf", "video", "code", "project", "slides",
 )
 URL_FIELDS = {
     "venue_logo", "venue_url",
-    "url", "image", "pdf", "video", "code", "slides",
+    "url", "image", "pdf", "video", "code", "project", "slides",
 }
 PUBLICATION_FIELDS = {"title", "year", "authors", "keywords", *TEXT_FIELDS}
 

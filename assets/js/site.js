@@ -12,6 +12,7 @@ const PUBLICATION_RESOURCES = [
   { key: "pdf", label: "PDF", icon: "fa-solid fa-file-pdf" },
   { key: "video", label: "VIDEO", icon: "fa-solid fa-circle-play" },
   { key: "code", label: "CODE", icon: "fa-brands fa-github" },
+  { key: "project", label: "PROJECT", icon: "fa-solid fa-globe" },
   { key: "slides", label: "SLIDES", icon: "fa-solid fa-file-powerpoint" },
 ];
 
